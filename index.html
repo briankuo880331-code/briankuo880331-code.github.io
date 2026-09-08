@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>網頁設計作品集</title>
+<title>BRIAN — 網頁設計作品集</title>
 <meta name="description" content="專注企業官網與品牌形象網站設計，從資訊架構、視覺設計到 WordPress 上線。">
 <style>
   :root {
     --white: #fff; --panel: #f5f5f7; --ink: #1d1d1f; --muted: #6e6e73;
-    --link: #0066cc; --line: #d2d2d7;
+    --accent: #38b48b; --accent-dark: #2d9c78; --accent-soft: rgba(56,180,139,.10); --line: #d2d2d7;
+    --glass: rgba(255,255,255,.62); --glass-line: rgba(0,0,0,.06);
     --font: -apple-system, BlinkMacSystemFont, "SF Pro TC", "SF Pro Text", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --w: 980px; --gutter: 24px; --gap: 12px; --r-tile: 18px; --r-btn: 980px;
     --ease: cubic-bezier(.2,.7,.2,1);
@@ -17,13 +18,14 @@
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body { font-family: var(--font); font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   body.locked { overflow: hidden; }
-  a { color: var(--link); text-decoration: none; }
+  a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
   img { max-width: 100%; display: block; }
-  svg.i { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-  :focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 4px; }
+  svg.i { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
   .wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--gutter); }
+  .glass { background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(24px); backdrop-filter: saturate(180%) blur(24px); }
 
   h1, h2, h3 { font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
   h1 { font-size: 56px; letter-spacing: -0.02em; }
@@ -31,76 +33,65 @@
   h3 { font-size: 28px; }
   .lead { font-size: 21px; line-height: 1.5; color: var(--muted); }
 
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: var(--r-btn); background: var(--link); color: var(--white); font-size: 17px; line-height: 1.2; transition: background .2s, transform .2s var(--ease); }
-  .btn:hover { background: #0071e3; text-decoration: none; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: var(--r-btn); background: var(--accent); color: var(--white); font-size: 17px; line-height: 1.2; transition: background .2s, transform .2s var(--ease), box-shadow .3s; box-shadow: 0 6px 18px rgba(56,180,139,.25); }
+  .btn:hover { background: var(--accent-dark); text-decoration: none; box-shadow: 0 8px 22px rgba(56,180,139,.32); }
   .btn:active { transform: scale(.97); }
-  .btn.ghost { background: transparent; color: var(--link); padding: 12px 6px; }
+  .btn.ghost { background: transparent; color: var(--accent); padding: 13px 6px; box-shadow: none; }
   .btn.ghost:hover { background: transparent; text-decoration: underline; }
   .btn.ghost::after { content: "\203A"; }
 
-  /* Nav */
-  .nav { position: sticky; top: 0; z-index: 10; height: 48px; background: rgba(255,255,255,.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,.08); transition: transform .35s var(--ease); }
-  .nav.hidden { transform: translateY(-100%); }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 100%; }
-  .nav .brand { font-size: 17px; font-weight: 600; color: var(--ink); display: inline-flex; align-items: center; gap: 8px; }
-  .nav .brand svg { width: 20px; height: 20px; }
-  .nav .brand:hover { text-decoration: none; }
-  .nav ul { list-style: none; display: flex; gap: 8px; }
-  .nav li a { font-size: 13px; color: var(--ink); opacity: .8; padding: 12px 10px; display: block; }
+  /* ---------- Header ---------- */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 56px; border-bottom: 1px solid transparent; transition: transform .4s var(--ease), background .4s, border-color .4s; }
+  .nav .wrap { position: relative; display: flex; align-items: center; justify-content: flex-end; height: 100%; }
+  .nav .brand { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; padding: 8px; }
+  .nav .brand svg.logo { width: 92px; height: 24px; display: block; }
+  .nav ul { list-style: none; display: flex; gap: 8px; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .35s var(--ease), transform .35s var(--ease); }
+  .nav li a { font-size: 13px; color: var(--ink); opacity: .85; padding: 12px 10px; display: block; }
   .nav li a:hover, .nav li a.active { opacity: 1; text-decoration: none; }
-  .nav li a.active { color: var(--link); }
+  .nav li a.active { color: var(--accent); }
+  .nav.scrolled { background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(24px); backdrop-filter: saturate(180%) blur(24px); border-bottom-color: var(--glass-line); }
+  .nav.scrolled ul { opacity: 1; transform: none; pointer-events: auto; }
+  .nav.hidden { transform: translateY(-100%); }
 
   /* ---------- Hero ---------- */
-  .hero { position: relative; padding: 120px 0 110px; text-align: center; overflow: hidden; min-height: 640px; }
-  .hero .wrap { position: relative; z-index: 2; }
-  .hero h1 { max-width: 760px; margin: 0 auto 18px; }
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; overflow: hidden; }
+  .hero .copy { position: relative; z-index: 3; text-align: center; padding: 96px var(--gutter) 24px; align-self: center; pointer-events: none; }
+  .hero .copy > * { pointer-events: auto; }
+  .hero h1 { max-width: 860px; margin: 0 auto 20px; }
   .hero h1 .word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
   .hero h1 .word > span { display: inline-block; }
-  .hero .lead { max-width: 560px; margin: 0 auto 30px; }
+  .hero .lead { max-width: 560px; margin: 0 auto 32px; letter-spacing: .12em; font-size: 19px; }
   .hero .actions { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; }
-  .hero .pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
-  .hero .pills span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); background: rgba(245,245,247,.9); padding: 6px 12px; border-radius: var(--r-btn); }
-  .hero .pills svg { width: 14px; height: 14px; }
 
-  /* Floating screenshot cards */
-  .float { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-  .float .card { position: absolute; width: var(--cw, 220px); background: var(--white); border-radius: 10px; box-shadow: 0 24px 50px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.05); overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 1.2s var(--ease), transform 1.2s var(--ease); will-change: transform; }
-  .float .card .top { height: 16px; background: #f0f0f2; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 3px; padding: 0 7px; }
-  .float .card .top i { width: 5px; height: 5px; border-radius: 50%; background: #d8d8dc; display: block; }
-  .float .card .img { height: var(--ch, 150px); overflow: hidden; background: var(--panel); }
-  .float .card .img img { width: 100%; object-fit: cover; object-position: top; }
-  .float .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(255,255,255,0) 60%, rgba(255,255,255,.55)); pointer-events: none; }
-  .hero.ready .float .card { opacity: 1; transform: none; }
-  .float .c1 { left: 2%; top: 12%; --cw: 240px; --ch: 165px; }
-  .float .c2 { right: 3%; top: 10%; --cw: 210px; --ch: 150px; }
-  .float .c3 { left: 6%; bottom: 8%; --cw: 190px; --ch: 130px; }
-  .float .c4 { right: 5%; bottom: 10%; --cw: 250px; --ch: 170px; }
-  .float .glow { position: absolute; width: 900px; height: 900px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(closest-side, rgba(0,102,204,.07), transparent); }
+  /* 3D ring */
+  .ring-stage { position: relative; z-index: 1; height: 50vh; min-height: 320px; perspective: 1600px; perspective-origin: 50% 30%; cursor: grab; user-select: none; touch-action: pan-y; }
+  .ring-stage.dragging { cursor: grabbing; }
+  .ring-stage::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 34%; background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,0)); z-index: 2; pointer-events: none; }
+  .ring-tilt { position: absolute; left: 50%; top: 44%; width: 0; height: 0; transform-style: preserve-3d; transform: translate3d(0,0,0) rotateX(-16deg) rotateZ(-10deg); }
+  .ring { position: absolute; left: 0; top: 0; transform-style: preserve-3d; will-change: transform; }
+  .ring .card { position: absolute; left: calc(var(--cw) / -2); top: calc(var(--ch) / -2); width: var(--cw); height: var(--ch); border-radius: 12px; overflow: hidden; background: var(--white); box-shadow: 0 20px 44px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06); transform: rotateY(var(--a)) translateZ(var(--r)); backface-visibility: visible; transition: box-shadow .3s; }
+  .ring .card img { width: 100%; height: 100%; object-fit: cover; object-position: top; pointer-events: none; }
+  .ring .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(255,255,255,.35)); }
+  .ring .card:hover { box-shadow: 0 26px 54px rgba(0,0,0,.2), 0 0 0 2px var(--accent); }
+  .hero.ready .ring .card { animation: cardin 1s var(--ease) both; animation-delay: calc(var(--n) * 50ms); }
+  @keyframes cardin { from { opacity: 0; } to { opacity: 1; } }
+
+  .scroll-cue { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; pointer-events: none; }
+  .scroll-cue .line { width: 1px; height: 44px; background: var(--line); position: relative; overflow: hidden; }
+  .scroll-cue .line::after { content: ""; position: absolute; left: 0; top: -50%; width: 100%; height: 50%; background: var(--accent); animation: cue 1.8s var(--ease) infinite; }
+  @keyframes cue { 0% { top: -50%; } 100% { top: 100%; } }
+
   @media (prefers-reduced-motion: no-preference) {
-    .hero.ready .float .card { animation: drift 12s ease-in-out infinite; animation-delay: var(--d, 0s); }
-    .hero.ready .float .c2, .hero.ready .float .c3 { animation-name: drift2; }
-    @keyframes drift { 0%,100% { transform: translate(var(--px,0), var(--py,0)) translateY(0) rotate(-1deg); } 50% { transform: translate(var(--px,0), var(--py,0)) translateY(-14px) rotate(1deg); } }
-    @keyframes drift2 { 0%,100% { transform: translate(var(--px,0), var(--py,0)) translateY(0) rotate(1deg); } 50% { transform: translate(var(--px,0), var(--py,0)) translateY(-10px) rotate(-1deg); } }
     .hero h1 .word > span { animation: rise .9s var(--ease) both; animation-delay: calc(var(--i) * 80ms); }
-    .hero .lead, .hero .actions, .hero .pills { animation: fade .8s var(--ease) both; animation-delay: .45s; }
-    .hero .actions { animation-delay: .6s; } .hero .pills { animation-delay: .75s; }
+    .hero .lead, .hero .actions { animation: fade .8s var(--ease) both; animation-delay: .45s; }
+    .hero .actions { animation-delay: .6s; }
     @keyframes rise { from { transform: translateY(110%); } to { transform: none; } }
     @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   }
-  /* Mobile: marquee strip instead of floating cards */
-  .marquee { display: none; overflow: hidden; margin-top: 44px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-  .marquee .track { display: flex; gap: 12px; width: max-content; animation: slide 40s linear infinite; }
-  .marquee .card { width: 180px; flex: none; background: var(--white); border-radius: 10px; box-shadow: 0 10px 24px rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.05); overflow: hidden; }
-  .marquee .card .img { height: 120px; overflow: hidden; } .marquee .card img { width: 100%; object-fit: cover; object-position: top; }
-  .marquee .card .top { height: 14px; background: #f0f0f2; border-bottom: 1px solid var(--line); }
-  @keyframes slide { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .marquee .track { animation: none; } }
 
-  .section { padding: 96px 0 0; }
+  .section { padding: 110px 0 0; }
   .section-head { text-align: center; margin-bottom: 44px; }
   .section-head h2 { margin-bottom: 10px; }
-  .section-head .icon { width: 44px; height: 44px; border-radius: 12px; background: var(--panel); display: inline-grid; place-items: center; margin-bottom: 18px; color: var(--link); }
-  .section-head .icon svg { width: 22px; height: 22px; }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
   .reveal.in { opacity: 1; transform: none; }
@@ -108,21 +99,18 @@
 
   /* ---------- Tiles ---------- */
   .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
-  .tile { grid-column: span 2; background: var(--panel); border-radius: var(--r-tile); overflow: hidden; text-align: center; padding: 44px 32px 0; color: inherit; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; transition: background .4s; }
+  .tile { grid-column: span 2; background: var(--panel); border-radius: var(--r-tile); overflow: hidden; text-align: center; padding: 48px 32px 0; color: inherit; display: flex; flex-direction: column; align-items: center; width: 100%; position: relative; transition: background .4s; }
   .tile:hover { background: #ededf0; }
   .tile.half { grid-column: span 1; padding-top: 40px; }
-  .tile .kind { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
-  .tile .kind svg { width: 15px; height: 15px; }
   .tile h3 { margin-bottom: 6px; }
   .tile.half h3 { font-size: 24px; }
   .tile p { color: var(--muted); max-width: 460px; }
-  .tile .more { margin-top: 8px; font-size: 17px; color: var(--link); }
+  .tile .more { margin-top: 8px; font-size: 17px; color: var(--accent); }
   .tile .more::after { content: " \203A"; display: inline-block; transition: transform .25s var(--ease); }
   .tile:hover .more::after { transform: translateX(4px); }
   .tile .art { width: 100%; display: flex; justify-content: center; align-items: flex-end; padding-top: 26px; perspective: 1200px; }
   .tile .art .browser { transition: transform .6s var(--ease); transform-style: preserve-3d; }
   .tile:hover .art .browser { transform: translateY(-6px) rotateX(var(--rx, 0)) rotateY(var(--ry, 0)); }
-
   .browser { width: min(720px, 100%); background: var(--white); border-radius: 12px 12px 0 0; box-shadow: 0 30px 60px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06); overflow: hidden; }
   .tile.half .browser { width: min(400px, 100%); }
   .browser .bar { height: 34px; background: #f0f0f2; display: flex; align-items: center; padding: 0 12px; gap: 6px; border-bottom: 1px solid var(--line); }
@@ -130,20 +118,19 @@
   .browser .bar b { flex: 1; height: 18px; margin-left: 12px; background: var(--white); border-radius: 6px; border: 1px solid var(--line); font-size: 11px; font-weight: 400; color: var(--muted); line-height: 16px; text-align: center; overflow: hidden; white-space: nowrap; }
   .browser .shot { height: 300px; overflow: hidden; background: var(--panel); }
   .tile.half .browser .shot { height: 240px; }
-  .browser .shot img { width: 100%; height: auto; object-fit: cover; object-position: top; transition: transform 6s ease-out; }
-  /* slow, slight drift on hover: only ~90px, not the whole page */
+  .browser .shot img { width: 100%; height: auto; transition: transform 6s ease-out; }
   @media (hover: hover) { .tile:hover .browser .shot img { transform: translateY(-90px); } }
 
   /* ---------- Approach ---------- */
-  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .cols > div { background: var(--panel); border-radius: var(--r-tile); padding: 36px 32px; }
-  .cols .icon { width: 48px; height: 48px; border-radius: 14px; background: var(--white); color: var(--link); display: grid; place-items: center; margin-bottom: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .cols .icon { width: 48px; height: 48px; border-radius: 14px; background: var(--white); color: var(--accent); display: grid; place-items: center; margin-bottom: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
   .cols .icon svg { width: 24px; height: 24px; }
   .cols h3 { font-size: 21px; margin-bottom: 10px; }
   .cols p { color: var(--muted); font-size: 16px; }
 
   /* ---------- About ---------- */
-  .about { background: var(--panel); margin-top: 96px; padding: 96px 0; }
+  .about { background: var(--panel); margin-top: 110px; padding: 96px 0; }
   .about .wrap { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: center; }
   .about .photo { aspect-ratio: 4 / 5; border-radius: var(--r-tile); background: linear-gradient(160deg, #e8e8ed, #d2d2d7); display: grid; place-items: center; color: #b0b0b8; }
   .about .photo svg { width: 64px; height: 64px; stroke-width: 1.2; }
@@ -153,6 +140,7 @@
 
   footer { padding: 24px 0 40px; font-size: 12px; color: var(--muted); }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 20px; align-items: center; }
+  footer .brand svg.logo { width: 70px; height: 18px; }
   footer ul { list-style: none; display: flex; gap: 8px; }
   footer li a { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: var(--r-btn); }
   footer li a:hover { background: var(--panel); text-decoration: none; color: var(--ink); }
@@ -166,24 +154,23 @@
   @media (min-width: 835px) { .sheet { top: 24px; border-radius: 18px 18px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,.2); } }
   @media (prefers-reduced-motion: reduce) { .sheet, .sheet-backdrop { transition: none; } }
 
-  .sheet-bar { position: sticky; top: 0; z-index: 2; height: 52px; background: rgba(255,255,255,.8); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,.08); }
+  .sheet-bar { position: sticky; top: 0; z-index: 2; height: 56px; border-bottom: 1px solid var(--glass-line); }
   .sheet-bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 100%; }
-  .sheet-bar .back { font-size: 15px; color: var(--link); display: inline-flex; align-items: center; gap: 4px; padding: 10px 0; }
+  .sheet-bar .back { font-size: 15px; color: var(--accent); display: inline-flex; align-items: center; gap: 4px; padding: 10px 0; }
   .sheet-bar .back svg { width: 18px; height: 18px; }
-  .sheet-bar .title { font-size: 15px; font-weight: 600; }
-  .sheet-bar .close { width: 32px; height: 32px; border-radius: 50%; background: var(--panel); display: grid; place-items: center; color: var(--muted); }
+  .sheet-bar .close { width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,.06); display: grid; place-items: center; color: var(--muted); transition: background .2s; }
   .sheet-bar .close svg { width: 16px; height: 16px; stroke-width: 2; }
-  .sheet-bar .close:hover { background: #e8e8ed; color: var(--ink); }
+  .sheet-bar .close:hover { background: rgba(0,0,0,.12); color: var(--ink); }
 
   .p-hero { text-align: center; padding: 72px 0 0; }
   .p-hero h1 { font-size: 48px; margin-bottom: 12px; }
   .p-hero .lead { max-width: 640px; margin: 0 auto 28px; }
-  .p-hero .actions { margin-bottom: 40px; }
-  .p-meta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 auto 40px; }
-  .p-meta > div { display: flex; align-items: center; gap: 12px; background: var(--panel); border-radius: 14px; padding: 12px 18px 12px 12px; text-align: left; font-size: 15px; color: var(--ink); }
-  .p-meta .ic { width: 36px; height: 36px; border-radius: 10px; background: var(--white); color: var(--link); display: grid; place-items: center; flex: none; }
+  .p-hero .actions { margin-bottom: 44px; }
+  .p-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); margin: 0 0 40px; }
+  .p-meta > div { display: flex; align-items: flex-start; gap: 14px; background: var(--panel); border-radius: 14px; padding: 18px 18px 18px 16px; text-align: left; font-size: 15px; color: var(--ink); line-height: 1.45; }
+  .p-meta .ic { width: 36px; height: 36px; border-radius: 10px; background: var(--white); color: var(--accent); display: grid; place-items: center; flex: none; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
   .p-meta .ic svg { width: 18px; height: 18px; }
-  .p-meta strong { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+  .p-meta strong { display: block; color: var(--muted); font-weight: 500; font-size: 12px; margin-bottom: 2px; }
 
   .stage { background: var(--panel); border-radius: var(--r-tile); padding: 48px 32px 0; }
   .stage .frame { background: var(--white); border-radius: 12px 12px 0 0; box-shadow: 0 30px 60px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.06); overflow: hidden; max-width: 860px; margin: 0 auto; }
@@ -197,8 +184,7 @@
 
   .p-section { padding: 88px 0 0; }
   .p-section .wrap.narrow { max-width: 720px; }
-  .p-section h2 { font-size: 32px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-  .p-section h2 svg { width: 28px; height: 28px; color: var(--link); }
+  .p-section h2 { font-size: 32px; margin-bottom: 16px; }
   .p-section p { color: var(--muted); margin-bottom: 16px; }
   .p-section p:last-child { margin-bottom: 0; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
@@ -206,35 +192,41 @@
 
   .gallery { display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 max(var(--gutter), calc((100% - var(--w)) / 2 + var(--gutter))) 24px; margin-top: 32px; scrollbar-width: none; }
   .gallery::-webkit-scrollbar { display: none; }
-  .gallery figure { flex: 0 0 min(420px, 82vw); scroll-snap-align: start; background: var(--panel); border-radius: var(--r-tile); overflow: hidden; cursor: zoom-in; transition: transform .35s var(--ease); }
-  .gallery figure:hover { transform: translateY(-4px); }
+  .gallery figure { flex: 0 0 min(420px, 82vw); scroll-snap-align: start; background: var(--panel); border-radius: var(--r-tile); overflow: hidden; cursor: pointer; }
   .gallery .thumb { aspect-ratio: 4 / 3; overflow: hidden; position: relative; }
-  .gallery .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-  .gallery .thumb .zoom { position: absolute; right: 12px; bottom: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.9); display: grid; place-items: center; color: var(--ink); opacity: 0; transition: opacity .3s; }
-  .gallery .thumb .zoom svg { width: 16px; height: 16px; }
-  .gallery figure:hover .zoom { opacity: 1; }
-  .gallery figcaption { padding: 14px 18px; font-size: 15px; display: flex; justify-content: space-between; }
-  .gallery figcaption span { color: var(--muted); font-size: 13px; }
+  .gallery .thumb img { width: 100%; height: auto; transition: transform 5s ease-out; }
+  .gallery .thumb .mask { position: absolute; inset: 0; background: rgba(29,29,31,.28); display: grid; place-items: center; opacity: 0; transition: opacity .35s; }
+  .gallery .thumb .mask span { width: 60px; height: 60px; border-radius: 50%; border: 1.5px solid #fff; display: grid; place-items: center; color: #fff; transform: scale(.85); transition: transform .35s var(--ease); }
+  .gallery .thumb .mask svg { width: 22px; height: 22px; stroke-width: 1.5; }
+  .gallery figure:hover .mask { opacity: 1; }
+  .gallery figure:hover .mask span { transform: none; }
+  @media (hover: hover) { .gallery figure:hover .thumb img { transform: translateY(-70px); } }
+  .gallery figcaption { padding: 14px 18px; font-size: 15px; }
   .gal-nav { display: flex; gap: 8px; justify-content: flex-end; max-width: var(--w); margin: 0 auto; padding: 0 var(--gutter); }
   .gal-nav button { width: 36px; height: 36px; border-radius: 50%; background: var(--panel); color: var(--ink); display: grid; place-items: center; }
   .gal-nav button svg { width: 18px; height: 18px; }
   .gal-nav button:hover { background: #e8e8ed; }
 
-  .p-next { margin-top: 96px; background: var(--panel); padding: 72px 0; text-align: center; }
-  .p-next p { color: var(--muted); margin-bottom: 8px; }
-  .p-next button { font-size: 32px; font-weight: 600; color: var(--ink); }
-  .p-next button::after { content: " \203A"; color: var(--link); }
-  .p-next button:hover { color: var(--link); }
+  .p-next { position: relative; margin-top: 96px; overflow: hidden; text-align: center; display: block; width: 100%; color: var(--ink); }
+  .p-next .bg { position: absolute; inset: 0; background-size: cover; background-position: top center; transform: scale(1.04); transition: transform 6s ease-out; }
+  .p-next .veil { position: absolute; inset: 0; background: rgba(255,255,255,.78); -webkit-backdrop-filter: saturate(160%) blur(22px); backdrop-filter: saturate(160%) blur(22px); transition: background .5s; }
+  .p-next .inner { position: relative; padding: 88px var(--gutter); }
+  .p-next p { color: var(--muted); margin-bottom: 8px; font-size: 15px; }
+  .p-next .name { font-size: 36px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: color .3s; }
+  .p-next .name svg { width: 1em; height: 1em; stroke-width: 2; transition: transform .3s var(--ease); }
+  .p-next:hover .name { color: var(--accent); }
+  .p-next:hover .name svg { transform: translateX(6px); }
+  .p-next:hover .veil { background: rgba(255,255,255,.6); }
+  .p-next:hover .bg { transform: scale(1.1); }
 
   /* ---------- Lightbox ---------- */
   .lb { position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,.9); display: none; }
   .lb.open { display: block; }
-  .lb .lb-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; color: #fff; font-size: 15px; z-index: 2; background: linear-gradient(rgba(0,0,0,.7), transparent); }
-  .lb .lb-bar .cnt { color: rgba(255,255,255,.6); margin-left: 10px; font-size: 13px; }
+  .lb .lb-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; color: #fff; font-size: 15px; z-index: 2; background: rgba(0,0,0,.35); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
   .lb .lb-bar button, .lb .arrow { color: #fff; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.14); display: grid; place-items: center; transition: background .2s; }
   .lb .lb-bar button:hover, .lb .arrow:hover { background: rgba(255,255,255,.28); }
   .lb button svg { width: 20px; height: 20px; stroke-width: 2; }
-  .lb .stagebox { position: absolute; inset: 0; overflow-y: auto; padding: 64px 0 40px; touch-action: pan-y; }
+  .lb .stagebox { position: absolute; inset: 0; overflow-y: auto; padding: 70px 0 40px; touch-action: pan-y; }
   .lb img { width: min(1100px, 92vw); margin: 0 auto; border-radius: 8px; transition: opacity .25s; }
   .lb img.swap { opacity: 0; }
   .lb .arrow { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; z-index: 2; }
@@ -244,33 +236,28 @@
   .lb .dots i.on { background: #fff; }
 
   /* ---------- RWD ---------- */
-  @media (max-width: 1100px) {
-    .float .c1 { left: -30px; } .float .c2 { right: -30px; } .float .c3 { left: -20px; } .float .c4 { right: -40px; }
-  }
-  @media (max-width: 1024px) {
-    .nav li a { font-size: 14px; }
-  }
+  @media (max-width: 1024px) { .nav li a { font-size: 14px; } }
   @media (max-width: 834px) {
     h1 { font-size: 40px; } h2 { font-size: 32px; } h3 { font-size: 24px; }
-    .hero { padding: 64px 0 48px; min-height: 0; }
-    .float { display: none; }
-    .marquee { display: block; }
-    .hero .pills { margin-top: 28px; }
-    .section { padding-top: 72px; }
+    .hero .copy { padding-top: 80px; }
+    .hero .lead { font-size: 17px; letter-spacing: .08em; }
+    .ring-stage { height: 48vh; min-height: 300px; perspective: 1100px; }
+    .ring-tilt { top: 38%; transform: rotateX(-18deg) rotateZ(-12deg); }
+    .section { padding-top: 80px; }
     .tile { padding: 36px 24px 0; }
     .tile .art { padding-top: 20px; }
     .cols { grid-template-columns: 1fr; gap: 12px; }
-    .about { margin-top: 72px; padding: 72px 0; }
+    .about { margin-top: 80px; padding: 72px 0; }
     .about .wrap { grid-template-columns: 1fr; gap: 32px; }
     .about .photo { max-width: 240px; }
     .p-hero h1 { font-size: 34px; }
     .p-hero { padding-top: 48px; }
     .p-section { padding-top: 64px; }
-    .p-meta { display: grid; grid-template-columns: 1fr 1fr; max-width: 560px; }
+    .p-meta { grid-template-columns: 1fr 1fr; }
     .stage { padding: 20px 12px 0; }
     .stage .shot { height: 420px; }
-    .sheet-bar .title { display: none; }
     .gallery figure { flex-basis: 78vw; }
+    .p-next .name { font-size: 28px; }
     .lb .arrow { width: 40px; height: 40px; } .lb .arrow.prev { left: 8px; } .lb .arrow.next { right: 8px; }
   }
   @media (max-width: 700px) {
@@ -280,13 +267,18 @@
   }
   @media (max-width: 480px) {
     body { font-size: 16px; }
-    h1 { font-size: 32px; } h2 { font-size: 28px; }
+    h1 { font-size: 30px; } h2 { font-size: 28px; }
     .lead { font-size: 18px; }
-    .nav .brand span { display: none; }
+    .nav { height: 52px; }
+    .nav .brand svg.logo { width: 76px; height: 20px; }
     .nav ul { gap: 0; }
-    .nav li a { padding: 12px 8px; font-size: 13px; }
-    .hero { padding: 48px 0 40px; }
+    .nav li a { padding: 12px 7px; font-size: 12px; }
+    .nav.scrolled .brand { left: var(--gutter); transform: translateY(-50%); padding-left: 0; }
+    .hero .copy { padding-top: 72px; }
+    .hero h1 { margin-bottom: 14px; }
     .hero .actions { gap: 8px; }
+    .ring-stage { height: 38vh; }
+    .scroll-cue { bottom: 16px; }
     .tile { padding: 32px 18px 0; }
     .tile.half h3 { font-size: 22px; }
     .browser .shot, .tile.half .browser .shot { height: 200px; }
@@ -298,47 +290,45 @@
     .stage .shot { height: 360px; }
     .gallery figure { flex-basis: 84vw; }
     .gal-nav { display: none; }
-    .p-next button { font-size: 24px; }
+    .p-next .inner { padding: 64px var(--gutter); }
+    .p-next .name { font-size: 24px; }
     .lb img { width: 100vw; border-radius: 0; }
-    .lb .stagebox { padding-top: 60px; }
     footer .wrap { flex-direction: column; align-items: flex-start; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .tile, .btn, .tile .art .browser, .browser .shot img, .gallery figure, .float .card { transition: none; animation: none; }
+    .tile, .btn, .tile .art .browser, .browser .shot img, .gallery .thumb img, .p-next .bg, .scroll-cue .line::after { transition: none; animation: none; }
   }
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M9 10v10"/></symbol>
-  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4.5-6.2"/></symbol>
   <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.6-2.2-.5-1.4.4-2.8 1.9-2.8H17a4 4 0 0 0 4-4c0-5-4-9-9-9z"/><circle cx="7.5" cy="12" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
-  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0 4.9 4.9L21 13l-8 8-2-2 6-6-6-6 2-2 1.6 1.5zM3 21l6-6"/></symbol>
-  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M16 9h2a2 2 0 0 1 2 2v10M2 21h20M8 7h2M8 11h2M8 15h2M12 7h1M12 11h1M12 15h1"/></symbol>
-  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></symbol>
-  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4zM13 8l3 3"/></symbol>
+  <symbol id="i-handoff" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4M7 9h5M7 13h3"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="12" height="18" rx="2"/><path d="M16 9h3a1 1 0 0 1 1 1v11M8 7h1M11 7h1M8 11h1M11 11h1M8 15h1M11 15h1M9 21v-3h2v3"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17l9 5 9-5"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
-  <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M11 8v6M8 11h6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-scroll" viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="18" rx="4"/><path d="M12 7v3"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
-  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM14 3v5h5"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7L11.5 6.8M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1.5-1.5"/></symbol>
-  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
-  <symbol id="i-logo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 15l3-6 2 4 1-2 2 4"/></symbol>
 </svg>
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><svg class="i"><use href="#i-logo"/></svg><span>網頁設計作品集</span></a>
+    <a class="brand" href="#top" aria-label="回到頂端"><svg class="logo" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN">
+<path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg)"/>
+<defs><linearGradient id="lg" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.500947" stop-color="#38B48B"/><stop offset="0.9999" stop-color="#35A68D"/></linearGradient></defs>
+</svg></a>
     <nav aria-label="主選單">
       <ul>
         <li><a href="#work">作品</a></li>
@@ -353,37 +343,26 @@
 <main id="top">
 
   <section class="hero" id="hero">
-    <div class="float" id="float" aria-hidden="true">
-      <div class="glow"></div>
-      <div class="card c1" style="--d:0s"><div class="top"><i></i><i></i><i></i></div><div class="img"><img alt=""></div></div>
-      <div class="card c2" style="--d:-4s"><div class="top"><i></i><i></i><i></i></div><div class="img"><img alt=""></div></div>
-      <div class="card c3" style="--d:-7s"><div class="top"><i></i><i></i><i></i></div><div class="img"><img alt=""></div></div>
-      <div class="card c4" style="--d:-2s"><div class="top"><i></i><i></i><i></i></div><div class="img"><img alt=""></div></div>
-    </div>
-    <div class="wrap">
+    <div class="copy">
       <h1>
-        <span class="word"><span style="--i:0">讓企業官網，</span></span>
-        <span class="word"><span style="--i:1">清楚說好一件事。</span></span>
+        <span class="word"><span style="--i:0">清楚的網頁設計，</span></span>
+        <span class="word"><span style="--i:1">讓企業把話說明白。</span></span>
       </h1>
-      <p class="lead">專注企業官網與品牌形象網站設計，從資訊架構、視覺語言到 WordPress 上線，一手整合。</p>
+      <p class="lead">專注企業官網與品牌形象網站設計</p>
       <div class="actions">
         <a class="btn" href="#work">看作品 <svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="btn ghost" href="#contact">討論專案</a>
+        <a class="btn ghost" href="#contact">與我聯絡</a>
       </div>
-      <div class="pills">
-        <span><svg class="i"><use href="#i-building"/></svg>企業官網</span>
-        <span><svg class="i"><use href="#i-users"/></svg>上市櫃公司</span>
-        <span><svg class="i"><use href="#i-globe"/></svg>多語系</span>
-        <span><svg class="i"><use href="#i-phone"/></svg>RWD 響應式</span>
-      </div>
-      <div class="marquee" aria-hidden="true"><div class="track" id="marquee"></div></div>
     </div>
+    <div class="ring-stage" id="ringStage" aria-hidden="true">
+      <div class="ring-tilt"><div class="ring" id="ring"></div></div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
   </section>
 
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="icon"><svg class="i"><use href="#i-grid"/></svg></div>
         <h2>精選作品</h2>
         <p class="lead">四個企業官網專案，從資訊架構到上線。點進去看完整的設計說明與內頁。</p>
       </div>
@@ -393,14 +372,11 @@
 
   <section class="section" id="approach">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="icon"><svg class="i"><use href="#i-pen"/></svg></div>
-        <h2>工作方式</h2>
-      </div>
+      <div class="section-head reveal"><h2>工作方式</h2></div>
       <div class="cols reveal">
         <div><div class="icon"><svg class="i"><use href="#i-users"/></svg></div><h3>先釐清網站要對誰說話</h3><p>企業官網通常同時面對客戶、投資人與求職者。開工前先定義每一種對象要找什麼，再決定資訊架構與頁面順序。</p></div>
         <div><div class="icon"><svg class="i"><use href="#i-palette"/></svg></div><h3>色彩用得少，出現才有份量</h3><p>每個專案只保留一個主色，用在標題、按鈕與關鍵數字；其餘交給留白、攝影與中性色，讓內容成為主角。</p></div>
-        <div><div class="icon"><svg class="i"><use href="#i-wrench"/></svg></div><h3>交付客戶能自己維護的網站</h3><p>以 WordPress 與 Elementor 建置，最新消息、案例與產品頁都能由客戶自行更新，不必每次回頭找設計師。</p></div>
+        <div><div class="icon"><svg class="i"><use href="#i-handoff"/></svg></div><h3>交付客戶能自己維護的網站</h3><p>以 WordPress 與 Elementor 建置，最新消息、案例與產品頁都能由客戶自行更新，不必每次回頭找設計師。</p></div>
       </div>
     </div>
   </section>
@@ -411,7 +387,7 @@
       <div class="reveal">
         <h2>關於我</h2>
         <p>網頁設計師，專注於企業官網、上市櫃公司網站與品牌形象網站。服務過精密製造、營造、室內設計與石化貿易等產業，擅長把大量且多對象的內容整理成清楚易讀的頁面。</p>
-        <p>設計以 HTML、CSS 直接在瀏覽器中進行，建置於 WordPress，上線後持續協助維護。</p>
+        <p>設計以 HTML、CSS 直接在瀏覽器中進行，建置於 WordPress 與 Elementor，上線後持續協助維護。</p>
         <div class="actions" id="contact">
           <a class="btn" href="mailto:hello@example.com"><svg class="i"><use href="#i-mail"/></svg>寄信給我</a>
           <a class="btn ghost" href="#">下載履歷</a>
@@ -423,7 +399,10 @@
 
 <footer>
   <div class="wrap">
-    <p>© 2026 網頁設計作品集</p>
+    <a class="brand" href="#top" aria-label="BRIAN"><svg class="logo" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN">
+<path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg)"/>
+<defs><linearGradient id="lg" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.500947" stop-color="#38B48B"/><stop offset="0.9999" stop-color="#35A68D"/></linearGradient></defs>
+</svg></a>
     <ul>
       <li><a href="#"><svg class="i"><use href="#i-link"/></svg>LinkedIn</a></li>
       <li><a href="#"><svg class="i"><use href="#i-palette"/></svg>Behance</a></li>
@@ -435,10 +414,9 @@
 <!-- Project sheet -->
 <div class="sheet-backdrop" id="backdrop"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="p-title" aria-hidden="true">
-  <div class="sheet-bar">
+  <div class="sheet-bar glass">
     <div class="wrap">
       <button class="back" data-close><svg class="i"><use href="#i-chev-l"/></svg>所有作品</button>
-      <span class="title" id="p-bar-title"></span>
       <button class="close" data-close aria-label="關閉"><svg class="i"><use href="#i-x"/></svg></button>
     </div>
   </div>
@@ -450,9 +428,9 @@
       <div class="actions"><a class="btn" id="p-url" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#i-globe"/></svg>前往網站</a></div>
       <div class="p-meta">
         <div><span class="ic"><svg class="i"><use href="#i-building"/></svg></span><div><strong>客戶</strong><span id="p-client"></span></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-tag"/></svg></span><div><strong>類型</strong><span id="p-type"></span></div></div>
+        <div><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span><div><strong>類型</strong><span id="p-type"></span></div></div>
         <div><span class="ic"><svg class="i"><use href="#i-pen"/></svg></span><div><strong>負責項目</strong><span id="p-role"></span></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-wrench"/></svg></span><div><strong>建置</strong><span id="p-stack"></span></div></div>
+        <div><span class="ic"><svg class="i"><use href="#i-code"/></svg></span><div><strong>建置</strong><span id="p-stack"></span></div></div>
       </div>
       <div class="stage">
         <div class="frame" aria-hidden="true">
@@ -466,14 +444,14 @@
 
   <section class="p-section">
     <div class="wrap narrow">
-      <h2><svg class="i"><use href="#i-info"/></svg>專案背景</h2>
+      <h2>專案背景</h2>
       <div id="p-brief"></div>
     </div>
   </section>
 
   <section class="p-section">
     <div class="wrap narrow">
-      <h2><svg class="i"><use href="#i-palette"/></svg>設計理念</h2>
+      <h2>設計理念</h2>
       <div id="p-concept"></div>
       <div class="tags" id="p-tags"></div>
     </div>
@@ -481,7 +459,7 @@
 
   <section class="p-section">
     <div class="wrap narrow">
-      <h2><svg class="i"><use href="#i-layout"/></svg>內頁</h2>
+      <h2>內頁</h2>
       <p>點擊任一頁面可放大瀏覽整頁，放大後可左右切換。</p>
     </div>
     <div class="gallery" id="gallery"></div>
@@ -491,17 +469,19 @@
     </div>
   </section>
 
-  <section class="p-next">
-    <div class="wrap">
+  <button class="p-next" id="p-next">
+    <div class="bg" id="p-next-bg"></div>
+    <div class="veil"></div>
+    <div class="inner">
       <p>下一個作品</p>
-      <button id="p-next"></button>
+      <span class="name"><span id="p-next-name"></span><svg class="i"><use href="#i-chev-r"/></svg></span>
     </div>
-  </section>
+  </button>
 </div>
 
 <!-- Lightbox -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="放大瀏覽">
-  <div class="lb-bar"><div><span id="lb-cap"></span><span class="cnt" id="lb-cnt"></span></div><button id="lb-close" aria-label="關閉"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="lb-bar"><span id="lb-cap"></span><button id="lb-close" aria-label="關閉"><svg class="i"><use href="#i-x"/></svg></button></div>
   <button class="arrow prev" id="lb-prev" aria-label="上一張"><svg class="i"><use href="#i-chev-l"/></svg></button>
   <button class="arrow next" id="lb-next" aria-label="下一張"><svg class="i"><use href="#i-chev-r"/></svg></button>
   <div class="stagebox" id="lb-box"><img id="lb-img" alt=""></div>
@@ -513,19 +493,21 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   /* ===== 圖片來源設定 =====
      LOCAL_IMAGES = false：直接讀 Google Drive 縮圖（資料夾需為「知道連結者可檢視」）。
-     LOCAL_IMAGES = true ：讀 images/ 資料夾裡的檔案，命名規則：
-        images/<專案key>/home.webp、images/<專案key>/1.webp、2.webp…（依 pages 順序）
-     用 optimize.py 可以一次產生。正式上線建議改成 true。 */
+     LOCAL_IMAGES = true ：讀 images/ 資料夾裡的檔案：images/<key>/home.webp、1.webp、2.webp…
+     用 optimize.py 一次產生。正式上線建議改成 true。 */
   const LOCAL_IMAGES = false;
   const drive = id => `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
   const driveFull = id => `https://drive.google.com/thumbnail?id=${id}&sz=w2400`;
+  const driveSmall = id => `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
   const img = (key, name, id) => LOCAL_IMAGES ? `images/${key}/${name}.webp` : drive(id);
   const imgFull = (key, name, id) => LOCAL_IMAGES ? `images/${key}/${name}.webp` : driveFull(id);
+  const imgSmall = (key, name, id) => LOCAL_IMAGES ? `images/${key}/${name}.webp` : driveSmall(id);
 
+  const STACK = 'WordPress、Elementor';
   const projects = {
     fusheng: {
       title: '復盛應用科技', lead: '全球最大高爾夫球具製造商',
-      client: '復盛應用科技股份有限公司', type: '上市公司企業官網', role: '資訊架構、視覺設計、前端建置', stack: 'WordPress、多語系',
+      client: '復盛應用科技股份有限公司', type: '上市公司企業官網', role: '資訊架構、視覺設計、前端建置', stack: STACK,
       url: 'https://www.fusheng-precision.com/', size: 'full',
       brief: ['復盛應用科技是全球最大的高爾夫球具製造商，市占超過四成，製造據點橫跨台灣、中國、越南、泰國等，並以同一套精密製造能量延伸至運動休閒、手工具、航太與車用等多元領域。作為上市公司，企業官網必須同時面對三種對象：向海外品牌客戶證明製造實力、向投資人提供透明即時的財務與治理資訊、向社會傳達永續承諾。','本專案從資訊架構重新梳理，整合企業介紹、產業應用、技術服務、投資人關係、ESG 與人才招募，建構一個層次清楚的多語系企業平台，讓一家七十年的製造集團以符合國際大廠規格的數位門面與世界對話。'],
       concept: ['全站以品牌紅作為視覺主軸，搭配銀灰、霧白與金屬黑，建立精密製造的質感基底。紅色只用在標題、按鈕與關鍵數字上，在大面積的中性色中一出現就能被看見，既維持品牌辨識度，也不讓工業網站顯得花俏。產品與形象區塊採用滿版攝影與深色背景，讓金屬製品在光影下成為畫面主角；需要閱讀的資訊區塊則回到明亮的淺灰底，以微圓角卡片與半透明的毛玻璃層次整理內容。','整體風格在穩定信任與現代感之間取得平衡。滿版影像與大字級數字建立氣勢，微圓角、毛玻璃與充足的留白則讓冷硬的工業質感變得親近；英文浮水印、章節編號與統一的卡片規則貫穿全站，讓長頁面在滑動時保有清楚的節奏。'],
@@ -536,7 +518,7 @@
     },
     angle: {
       title: '意力室內設計', lead: '為空間賦能，從專業設計開始',
-      client: 'AD 意力室內裝修有限公司', type: '品牌形象官網、作品集網站', role: '資訊架構、視覺設計、前端建置', stack: 'WordPress',
+      client: 'AD 意力室內裝修有限公司', type: '品牌形象官網、作品集網站', role: '資訊架構、視覺設計、前端建置', stack: STACK,
       url: 'https://www.anglespace.com.tw/', size: 'half',
       brief: ['AD 意力室內裝修成立於 2012 年，是一支專注於企業辦公空間的設計與工程團隊，服務範圍從空間策略規劃、室內設計、施工監造，到機電、消防、弱電與家具整合，客戶橫跨企業總部、跨國辦公室、研發中心與醫療診所，並以台北總公司與台中分公司同步服務全台。','隨著案量與服務範圍持續擴大，原有網站已無法完整呈現團隊「專業、務實、傾聽」的核心價值與十多年累積的工程實績。本專案為其重新規劃企業官網，從資訊架構到視覺語言全面升級：整合公司介紹、精選作品、歷年案例、裝修流程與設計知識，讓企業客戶能快速了解意力的整合能力與作業方式。'],
       concept: ['全站以暖灰白的紙質底色為基調，搭配深炭灰與品牌橘紅。橘紅只用在色塊、標題、按鈕與數字上，其餘畫面交給大量留白與實景攝影，讓辦公空間作品本身成為主角；標題以中文搭配拉寬字距的英文副標，再加上淡淡的大型英文浮水印，建立沉穩、帶有設計事務所氣質的閱讀節奏。','版面上最具辨識度的做法，是讓橘紅色塊刻意跨越照片與文字區塊的邊界，形成錯位疊加的層次，既呼應室內設計「空間切割與重組」的本質，也讓靜態頁面產生前後深度。流程與數據類的內容則以編號、細線與大字級數字整理，讓裝修階段、服務項目與公司實績一眼可讀。'],
@@ -547,7 +529,7 @@
     },
     chunho: {
       title: '春賀營造', lead: '以制度奠定品質，從細節凝聚信任',
-      client: '春賀營造工程股份有限公司', type: '企業官網', role: '資訊架構、視覺設計、前端建置', stack: 'WordPress',
+      client: '春賀營造工程股份有限公司', type: '企業官網', role: '資訊架構、視覺設計、前端建置', stack: STACK,
       url: 'https://www.chunho.com.tw/', size: 'half',
       brief: ['春賀營造工程股份有限公司位於桃園平鎮，深耕在地二十年，專精廠房與住宅新建，服務範圍涵蓋營造統包、舊屋翻新、房屋修繕、自地自建、鋼構廠房與危老改建。團隊具備公共工程品管與工地主任證照，並在設計階段導入 BIM 建築資訊模型，提前排除結構與設備衝突；施工過程以影像全程紀錄，讓業主隨時掌握進度。','隨著業務從單一營造延伸到設計施工一條龍，原有形象已不足以呈現春賀「制度化品管、透明化流程」的核心價值。本專案為其建立第一個完整的企業官網，整合公司介紹、服務項目、六階段服務流程、實績案例與最新消息，讓有新建、改建或重建需求的業主，能在網站上清楚理解春賀的作業方式與技術實力。'],
       concept: ['全站以深墨綠為主色，搭配金色點綴與深炭灰收尾，在營造業常見的冷硬印象中，建立穩重且帶有質感的品牌調性。綠色只用在區塊底色與標題，金色只用在編號、按鈕與強調詞，用量刻意節制，讓每次出現都有份量。','版面將半透明的斜切色塊疊在建築攝影上，呼應建築的量體與結構線條；圖片與區塊採用單邊大圓角的切角處理，讓方正的工程內容多了柔和的節奏。服務流程與服務項目以大型編號與英文浮水印整理，讓長頁面在滑動時保有清楚的段落感。真實工地攝影負責證明實力，綠金配色與圓弧語彙則傳達「春」與「賀」的品牌寓意——萌發的開始與圓滿的落成。'],
@@ -558,7 +540,7 @@
     },
     yuanjen: {
       title: '元禎企業', lead: '深耕產業應用與法規需求，協助客戶安心選料、穩定使用',
-      client: '元禎企業股份有限公司', type: '上市公司企業官網', role: '資訊架構、視覺設計、前端建置', stack: 'WordPress、多語系',
+      client: '元禎企業股份有限公司', type: '上市公司企業官網', role: '資訊架構、視覺設計、前端建置', stack: STACK,
       url: 'https://www.yuanjen.com/', size: 'full',
       brief: ['元禎企業股份有限公司創立於 1977 年，並於 2000 年在台灣證券市場掛牌上市，是國內外知名石化廠的專業代理商，專營工業用化學品、溶劑、塑膠原料、油品與永續材料的經銷貿易。據點涵蓋台北、台中、高雄，並於上海、廣州、泰國設立子公司，同時擁有倉儲、分裝與運輸車隊，提供從原料代理到物流配送的一站式服務。','作為上市公司，官網需要同時面對三種對象：向下游客戶清楚呈現五大產品部門與服務據點、向投資人提供公司治理、財務資訊與最新公告、向社會揭露 ESG 與企業社會責任的推動成果。本專案為其重新規劃多語系企業官網，整合公司介紹、產品介紹、投資人專區、企業永續發展、人才招募與聯絡管道，讓一家近五十年的石化貿易公司，以現代、清楚的數位形象與客戶及股東溝通。'],
       concept: ['全站以企業藍為主色，用漸層、同心圓與大圓弧的幾何色塊鋪陳頁首與重點區塊，讓化學貿易這類偏冷的產業看起來有現代感與流動感；資訊區塊則回到白底與淺灰漸層，用白色卡片和淺色表格整理內容，讓大量的產品規格、財務資料與公告易於閱讀。','每個章節以六角形圖示搭配中英文標題開頭，背景放上淡色的大型英文浮水印，讓長頁面在滑動時段落清楚，也帶出國際企業的氣質。產品部門用大圖卡片與編號呈現，服務據點用點陣地圖標示，投資人與 ESG 內容則用側邊選單與表格整理，讓不同對象各自找到需要的資訊。'],
@@ -571,50 +553,78 @@
   const order = ['fusheng', 'angle', 'chunho', 'yuanjen'];
   const $ = id => document.getElementById(id);
   const host = u => u.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  const icon = n => `<svg class="i"><use href="#${n}"/></svg>`;
 
-  /* ---- Hero floating cards + mobile marquee ---- */
-  const hero = $('hero');
-  order.forEach((k, i) => { const im = document.querySelectorAll('#float .card img')[i]; if (im) im.src = img(k, 'home', projects[k].home); });
-  const mq = [...order, ...order].map(k => `<div class="card"><div class="top"></div><div class="img"><img src="${img(k, 'home', projects[k].home)}" alt="" loading="lazy"></div></div>`).join('');
-  $('marquee').innerHTML = mq;
-  requestAnimationFrame(() => setTimeout(() => hero.classList.add('ready'), 300));
-  if (!reduce && matchMedia('(hover: hover)').matches) {
-    const cards = document.querySelectorAll('#float .card');
-    hero.addEventListener('pointermove', e => {
-      const r = hero.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      cards.forEach((c, i) => { const k = (i % 2 ? -1 : 1) * (10 + i * 4); c.style.setProperty('--px', x * k + 'px'); c.style.setProperty('--py', y * k + 'px'); });
-    });
-  }
-
-  /* ---- Tiles ---- */
-  $('tiles').innerHTML = order.map(k => {
-    const p = projects[k];
-    return `<button class="tile ${p.size} reveal" data-project="${k}">
-      <span class="kind">${icon('i-tag')}${p.type}</span>
-      <h3>${p.title}</h3><p>${p.lead}</p><span class="more">查看專案</span>
-      <div class="art"><div class="browser" aria-hidden="true">
-        <div class="bar"><i></i><i></i><i></i><b>${host(p.url)}</b></div>
-        <div class="shot"><img src="${img(k, 'home', p.home)}" alt="" loading="lazy"></div>
-      </div></div></button>`;
-  }).join('');
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  /* ---- Nav ---- */
+  /* ---------- Header: logo only at top / menu when scrolling up / hidden when scrolling down ---------- */
   const nav = $('nav');
-  let lastY = 0;
-  addEventListener('scroll', () => { const y = scrollY; nav.classList.toggle('hidden', y > lastY && y > 120); lastY = y; }, { passive: true });
+  let lastY = scrollY;
+  function onScroll() {
+    const y = scrollY;
+    nav.classList.toggle('scrolled', y > 40);
+    nav.classList.toggle('hidden', y > lastY && y > 140);
+    lastY = y;
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
   const links = [...document.querySelectorAll('.nav li a')];
   const spy = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); });
   }, { rootMargin: '-40% 0px -55% 0px' });
   ['work', 'approach', 'about'].forEach(id => spy.observe($(id)));
 
+  /* ---------- 3D ring ---------- */
+  const ringCards = [];
+  order.forEach(k => { const p = projects[k]; ringCards.push([k, 'home', p.home], [k, 1, p.pages[0][1]], [k, 2, p.pages[1][1]]); });
+  const N = ringCards.length, ring = $('ring'), stage = $('ringStage'), hero = $('hero');
+  ring.innerHTML = ringCards.map(([k, name, id], i) =>
+    `<div class="card" data-project="${k}" style="--a:${i * 360 / N}deg;--n:${i}"><img src="${imgSmall(k, name, id)}" alt="" loading="${i < 6 ? 'eager' : 'lazy'}" draggable="false"></div>`).join('');
+  function sizeRing() {
+    const vw = innerWidth;
+    const cw = vw <= 834 ? Math.round(Math.min(170, Math.max(120, vw * 0.34))) : Math.round(Math.min(236, vw * 0.17)); const ch = Math.round(cw * 0.64);
+    const r = Math.round((cw + 22) / (2 * Math.tan(Math.PI / N)));
+    ring.style.setProperty('--cw', cw + 'px'); ring.style.setProperty('--ch', ch + 'px'); ring.style.setProperty('--r', r + 'px');
+  }
+  sizeRing(); addEventListener('resize', sizeRing);
+  let angle = 0, vel = 0, dragging = false, startX = 0, moved = 0, lastX = 0, lastT = 0, heroVisible = true;
+  const idle = reduce ? 0 : 0.045;  // deg per frame ≈ one turn every 2 min
+  function frame() {
+    if (heroVisible) {
+      if (!dragging) { angle += idle + vel; vel *= 0.94; if (Math.abs(vel) < 0.002) vel = 0; }
+      ring.style.transform = `rotateY(${angle}deg)`;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  new IntersectionObserver(es => es.forEach(e => heroVisible = e.isIntersecting), { threshold: 0.05 }).observe(hero);
+  stage.addEventListener('pointerdown', e => { dragging = true; startX = lastX = e.clientX; moved = 0; lastT = performance.now(); vel = 0; stage.classList.add('dragging'); stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX, now = performance.now();
+    angle += dx * 0.22; moved += Math.abs(dx);
+    vel = (dx * 0.22) / Math.max(1, (now - lastT) / 16);
+    lastX = e.clientX; lastT = now;
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false; stage.classList.remove('dragging');
+    vel = Math.max(-4, Math.min(4, vel));
+    if (moved < 6 && e && e.target.closest && e.target.closest('.card')) open(e.target.closest('.card').dataset.project);
+  }
+  stage.addEventListener('pointerup', endDrag); stage.addEventListener('pointercancel', endDrag); stage.addEventListener('pointerleave', endDrag);
+  addEventListener('load', () => setTimeout(() => hero.classList.add('ready'), 200));
+
+  /* ---------- Tiles ---------- */
+  $('tiles').innerHTML = order.map(k => {
+    const p = projects[k];
+    return `<button class="tile ${p.size} reveal" data-project="${k}">
+      <h3>${p.title}</h3><p>${p.lead}</p><span class="more">查看專案</span>
+      <div class="art"><div class="browser" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><b>${host(p.url)}</b></div>
+        <div class="shot"><img src="${img(k, 'home', p.home)}" alt="" loading="lazy"></div>
+      </div></div></button>`;
+  }).join('');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   if (!reduce && matchMedia('(hover: hover)').matches) {
     document.querySelectorAll('.tile').forEach(tile => {
       const art = tile.querySelector('.browser');
@@ -627,14 +637,13 @@
     });
   }
 
-  /* ---- Sheet ---- */
+  /* ---------- Sheet ---------- */
   const sheet = $('sheet');
   let lastFocus = null, current = null;
   const paras = arr => arr.map(t => `<p>${t}</p>`).join('');
-
   function fill(key) {
     const p = projects[key]; current = key;
-    $('p-title').textContent = p.title; $('p-bar-title').textContent = p.title; $('p-lead').textContent = p.lead;
+    $('p-title').textContent = p.title; $('p-lead').textContent = p.lead;
     $('p-url').href = p.url; $('p-urlbar').textContent = host(p.url);
     $('p-client').textContent = p.client; $('p-type').textContent = p.type; $('p-role').textContent = p.role; $('p-stack').textContent = p.stack;
     $('p-home').src = img(key, 'home', p.home); $('p-shot').scrollTop = 0;
@@ -642,10 +651,12 @@
     $('p-tags').innerHTML = p.tags.map(t => `<span>#${t}</span>`).join('');
     $('gallery').innerHTML = p.pages.map(([cap, id], i) =>
       `<figure data-i="${i}" tabindex="0" role="button" aria-label="放大瀏覽 ${cap}">
-        <div class="thumb"><img src="${img(key, i + 1, id)}" alt="${p.title} ${cap}" loading="lazy"><span class="zoom">${icon('i-zoom')}</span></div>
-        <figcaption>${cap}<span>${i + 1} / ${p.pages.length}</span></figcaption></figure>`).join('');
+        <div class="thumb"><img src="${img(key, i + 1, id)}" alt="${p.title} ${cap}" loading="lazy"><div class="mask"><span><svg class="i"><use href="#i-plus"/></svg></span></div></div>
+        <figcaption>${cap}</figcaption></figure>`).join('');
     $('gallery').scrollLeft = 0;
-    $('p-next').textContent = projects[p.next].title; $('p-next').dataset.project = p.next;
+    const n = projects[p.next];
+    $('p-next-name').textContent = n.title; $('p-next').dataset.project = p.next;
+    $('p-next-bg').style.backgroundImage = `url("${imgSmall(p.next, 'home', n.home)}")`;
     sheet.scrollTop = 0;
   }
   function open(key, push = true) {
@@ -679,13 +690,13 @@
   });
   if (projects[location.hash.slice(1)]) { history.replaceState({ project: location.hash.slice(1) }, ''); open(location.hash.slice(1), false); }
 
-  /* ---- Gallery nav ---- */
+  /* ---------- Gallery nav ---------- */
   const gal = $('gallery');
   const step = () => { const f = gal.querySelector('figure'); return f ? f.getBoundingClientRect().width + 12 : 400; };
   $('gal-prev').addEventListener('click', () => gal.scrollBy({ left: -step(), behavior: 'smooth' }));
   $('gal-next').addEventListener('click', () => gal.scrollBy({ left: step(), behavior: 'smooth' }));
 
-  /* ---- Lightbox with prev / next ---- */
+  /* ---------- Lightbox ---------- */
   const lb = $('lb'), lbImg = $('lb-img'), lbBox = $('lb-box');
   let lbIndex = 0;
   function showLb(i) {
@@ -694,10 +705,9 @@
     const [cap, id] = pages[lbIndex];
     lbImg.classList.add('swap');
     setTimeout(() => { lbImg.src = imgFull(current, lbIndex + 1, id); lbImg.alt = cap; lbBox.scrollTop = 0; lbImg.onload = () => lbImg.classList.remove('swap'); }, reduce ? 0 : 200);
-    $('lb-cap').textContent = cap; $('lb-cnt').textContent = `${lbIndex + 1} / ${pages.length}`;
+    $('lb-cap').textContent = cap;
     $('lb-dots').innerHTML = pages.map((_, k) => `<i class="${k === lbIndex ? 'on' : ''}"></i>`).join('');
-    // preload neighbours
-    [lbIndex + 1, lbIndex - 1].forEach(n => { const im = new Image(); const j = (n + pages.length) % pages.length; im.src = imgFull(current, j + 1, pages[j][1]); });
+    [lbIndex + 1, lbIndex - 1].forEach(n => { const j = (n + pages.length) % pages.length; const im = new Image(); im.src = imgFull(current, j + 1, pages[j][1]); });
   }
   function openLb(i) { lb.classList.add('open'); showLb(i); $('lb-close').focus(); }
   function closeLb() { lb.classList.remove('open'); lbImg.src = ''; }
@@ -714,7 +724,6 @@
       else if (e.key === 'ArrowRight') showLb(lbIndex + 1);
     } else if (e.key === 'Escape' && document.body.classList.contains('sheet-open')) close();
   });
-  // swipe
   let sx = 0, sy = 0;
   lb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
   lb.addEventListener('touchend', e => {
