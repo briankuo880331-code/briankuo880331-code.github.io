@@ -34,10 +34,14 @@
   .lead { font-size: 21px; line-height: 1.5; color: var(--muted); }
 
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: var(--r-btn); background: var(--accent); color: var(--white); font-size: 17px; line-height: 1.2; transition: background .2s, transform .2s var(--ease), box-shadow .3s; box-shadow: 0 2px 6px rgba(56,180,139,.22); }
-  .btn:hover { background: var(--accent-dark); text-decoration: none; box-shadow: 0 3px 8px rgba(56,180,139,.28); }
+  .btn:hover { background: var(--accent-dark); text-decoration: none; box-shadow: 0 3px 8px rgba(56,180,139,.28), 0 0 0 6px rgba(56,180,139,.14); }
+  .btn::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%); transform: translateX(-120%); transition: transform .8s var(--ease); }
+  .btn:hover::before { transform: translateX(120%); }
+  .btn { position: relative; overflow: hidden; }
   .btn:active { transform: scale(.97); }
   .btn.ghost { background: transparent; color: var(--accent); padding: 13px 14px; box-shadow: none; justify-content: center; gap: 6px; }
-  .btn.ghost:hover { background: transparent; text-decoration: underline; }
+  .btn.ghost:hover { background: transparent; text-decoration: none; color: var(--accent-dark); box-shadow: none; }
+  .btn.ghost::before { display: none; }
   .btn.ghost::after { content: "\203A"; }
 
   /* ---------- Header ---------- */
@@ -83,8 +87,9 @@
   @keyframes cue { 0% { top: -50%; } 100% { top: 100%; } }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hero h1 .word > span { animation: rise .9s var(--ease) both; animation-delay: calc(var(--i) * 80ms); }
-    .hero .lead, .hero .actions { animation: fade .8s var(--ease) both; animation-delay: .45s; }
+    .hero h1 .word > span { animation: rise .9s var(--ease) both; animation-delay: calc(var(--i) * 80ms); animation-play-state: paused; }
+    body:not(.loading) .hero h1 .word > span, body:not(.loading) .hero .lead, body:not(.loading) .hero .actions { animation-play-state: running; }
+    .hero .lead, .hero .actions { animation: fade .8s var(--ease) both; animation-delay: .45s; animation-play-state: paused; }
     .hero .actions { animation-delay: .6s; }
     @keyframes rise { from { transform: translateY(110%); } to { transform: none; } }
     @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -107,6 +112,8 @@
   .tile.half h3 { font-size: 24px; }
   .tile p { color: var(--muted); max-width: 460px; }
   .tile .more { margin-top: 8px; font-size: 17px; color: var(--accent); }
+  .tile .more { transition: color .25s; }
+  .tile:hover .more { color: var(--accent-dark); }
   .tile .more::after { content: " \203A"; display: inline-block; transition: transform .25s var(--ease); }
   .tile:hover .more::after { transform: translateX(4px); }
   .tile .art { width: 100%; display: flex; justify-content: center; align-items: flex-end; padding-top: 26px; }
@@ -117,8 +124,8 @@
   .browser .bar b { flex: 1; height: 18px; margin-left: 12px; background: var(--white); border-radius: 6px; border: 1px solid var(--line); font-size: 11px; font-weight: 400; color: var(--muted); line-height: 16px; text-align: center; overflow: hidden; white-space: nowrap; }
   .browser .shot { height: 300px; overflow: hidden; background: var(--panel); }
   .tile.half .browser .shot { height: 240px; }
-  .browser .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; transition: object-position 6s ease-out; }
-  @media (hover: hover) { .tile:hover .browser .shot img { object-position: 50% 28%; } }
+  .browser .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; transition: object-position .6s ease-out; }
+  
 
   /* ---------- Approach ---------- */
   .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -129,13 +136,15 @@
   .cols p { color: var(--muted); font-size: 16px; }
 
   /* ---------- About ---------- */
-  .about { background: var(--panel); margin-top: 110px; padding: 96px 0; }
-  .about .wrap { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: center; }
+  .about { background: var(--panel); margin-top: 110px; padding: 120px 0; }
+  .about .wrap { display: grid; grid-template-columns: 340px 1fr; gap: 88px; align-items: start; }
+  .about .photo { position: sticky; top: 96px; }
   .about .photo { aspect-ratio: 4 / 5; border-radius: var(--r-tile); background: linear-gradient(160deg, #e8e8ed, #d2d2d7); overflow: hidden; }
   .about .photo img { width: 100%; height: 100%; object-fit: cover; }
-  .about h2 { margin-bottom: 16px; }
-  .about p { margin-bottom: 16px; max-width: 540px; }
-  .about .actions { display: flex; gap: 20px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+  .about .eyebrow { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .about h2 { margin-bottom: 24px; }
+  .about p { margin-bottom: 18px; max-width: 560px; font-size: 17px; line-height: 1.85; }
+  .about .actions { display: flex; gap: 20px; align-items: center; margin-top: 44px; flex-wrap: wrap; }
 
   footer { padding: 24px 0 40px; font-size: 12px; color: var(--muted); }
   footer .wrap { display: flex; flex-direction: column; align-items: center; gap: 28px; border-top: 1px solid var(--line); padding-top: 32px; }
@@ -259,8 +268,9 @@
     .tile .art { padding-top: 20px; }
     .cols { grid-template-columns: 1fr; gap: 12px; }
     .about { margin-top: 80px; padding: 72px 0; }
-    .about .wrap { grid-template-columns: 1fr; gap: 32px; }
-    .about .photo { max-width: 240px; }
+    .about .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .about .photo { max-width: 260px; position: static; }
+    .stats-row b { font-size: 36px; }
     .p-hero h1 { font-size: 34px; }
     .p-hero { padding-top: 48px; }
     .p-section { padding-top: 64px; }
@@ -305,13 +315,72 @@
     footer li a .in svg { width: 18px; height: 18px; }
     footer ul { gap: 12px; }
   }
+
+  /* ================= FX（進階互動效果） ================= */
+  /* 1. 頂端捲動進度條 */
+  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 100%; z-index: 40; transform-origin: 0 50%; transform: scaleX(0); background: var(--accent); pointer-events: none; }
+  body.sheet-open .progress { display: none; }
+  .sheet .progress { position: sticky; top: 0; z-index: 3; margin-bottom: -2px; }
+  body.sheet-open .sheet .progress { display: block; }
+  .totop { position: fixed; right: 24px; bottom: 24px; z-index: 12; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: var(--ink); background: var(--glass); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); box-shadow: 0 6px 20px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.05); opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .35s, transform .35s var(--ease), box-shadow .3s; }
+  .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+  .totop:hover { box-shadow: 0 8px 24px rgba(0,0,0,.16), 0 0 0 6px rgba(56,180,139,.14); color: var(--accent); }
+  .totop svg { width: 20px; height: 20px; stroke-width: 2; }
+  .sheet .totop { position: sticky; float: right; bottom: 24px; margin-right: 24px; z-index: 3; }
+  /* 6. Loading */
+  .loader { position: fixed; inset: 0; z-index: 60; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; transition: opacity .7s var(--ease), visibility .7s; }
+  .loader.done { opacity: 0; visibility: hidden; }
+  .loader .num { font-size: 120px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; display: flex; align-items: baseline; }
+  .loader .num .d { display: inline-block; min-width: 2ch; text-align: right; transition: transform .12s; }
+  .loader .num .d.tick { animation: digit .18s var(--ease); }
+  @keyframes digit { 0% { transform: translateY(.18em); opacity: .4; } 100% { transform: none; opacity: 1; } }
+  .loader .num .pct { font-size: 28px; color: var(--accent); margin-left: 6px; }
+  .loader .bar { width: 200px; height: 1px; background: var(--line); position: relative; overflow: hidden; }
+  .loader .bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); transition: transform .3s var(--ease); }
+  body.loading { overflow: hidden; }
+  /* 2. 自訂游標 */
+  .cur, .cur-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 50; border-radius: 50%; transform: translate(-50%, -50%); }
+  .cur { width: 6px; height: 6px; background: var(--accent); }
+  .cur-ring { width: 34px; height: 34px; border: 1.5px solid rgba(56,180,139,.6); transition: width .25s var(--ease), height .25s var(--ease), background .25s, border-color .25s; }
+  body.cur-on .cur-ring { width: 56px; height: 56px; background: rgba(56,180,139,.10); border-color: rgba(56,180,139,.9); }
+  body.cur-grab .cur-ring { width: 64px; height: 64px; border-style: dashed; }
+  @media (hover: none), (max-width: 834px) { .cur, .cur-ring { display: none; } }
+  /* 3. 標題逐字浮現 */
+  .split .ch { display: inline-block; opacity: 0; transform: translateY(.6em) rotate(4deg); transition: opacity .6s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--k) * 35ms); }
+  .split.in .ch { opacity: 1; transform: none; }
+  /* 4. 卡片聚光燈：跟著游標的柔光 */
+  .tile { --mx: 50%; --my: 50%; }
+  .tile::before { content: ""; position: absolute; inset: 0; background: radial-gradient(460px circle at var(--mx) var(--my), rgba(255,255,255,.75), transparent 60%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+  .tile:hover::before { opacity: 1; }
+  .tile > * { position: relative; }
+  /* 5. 磁吸按鈕 */
+  .btn { will-change: transform; }
+  /* 6. 產業跑馬燈 */
+  .marquee-band { overflow: hidden; margin-top: 110px; padding: 26px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .marquee-band .track { display: flex; gap: 56px; width: max-content; animation: band 60s linear infinite; }
+  .marquee-band span { font-size: 13px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase; color: rgba(29,29,31,.42); white-space: nowrap; display: inline-flex; align-items: center; gap: 56px; }
+  .marquee-band span::after { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: .8; }
+  @keyframes band { to { transform: translateX(-50%); } }
+  /* 7. 關於我數字 */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); margin: 48px 0 0; }
+  .stats-row div { padding: 4px 28px 4px 0; line-height: 1.1; border-right: 1px solid var(--line); }
+  .stats-row div + div { padding-left: 28px; }
+  .stats-row div:last-child { border-right: 0; }
+  .stats-row b { font-size: 48px; font-weight: 500; letter-spacing: -0.03em; color: var(--ink); display: block; font-variant-numeric: tabular-nums; margin-bottom: 12px; }
+  .stats-row b i { font-style: normal; font-size: 22px; color: var(--accent); margin-left: 2px; }
+  .stats-row small { font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+  /* 8. 截圖視差 */
+  .browser .shot img { will-change: object-position; }
+  /* 9. 圖片載入失敗時的預覽底色（僅預覽用） */
+  .ph { background: linear-gradient(135deg, #c9d4e5, #7d9cc0) !important; }
+  @media (prefers-reduced-motion: reduce) { .split .ch { opacity: 1; transform: none; transition: none; } .marquee-band .track { animation: none; } .cur, .cur-ring { display: none; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .tile, .btn, .browser .shot img, .gallery .thumb img, .p-next .bg, .scroll-cue .line::after { transition: none; animation: none; }
   }
 </style>
 </head>
-<body>
+<body class="loading">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4.5-6.2"/></symbol>
@@ -324,6 +393,7 @@
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
   <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M9 10v10"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
@@ -336,6 +406,9 @@
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7L11.5 6.8M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1.5-1.5"/></symbol>
 </svg>
 
+<div class="loader" id="loader"><div class="num" id="ldNum"><span class="d">0</span><span class="pct">%</span></div><div class="bar"><i id="ldBar"></i></div></div>
+<div class="progress" id="progress"></div>
+<button class="totop" id="totop" aria-label="回到最上方"><svg class="i"><use href="#i-up"/></svg></button><div class="cur" id="cur"></div><div class="cur-ring" id="curRing"></div>
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="回到頂端"><svg class="logo" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg1)"/><defs><linearGradient id="lg1" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#38B48B"/><stop offset="0.9" stop-color="#35A68D" stop-opacity="0"/></linearGradient></defs></svg></a>
@@ -372,16 +445,17 @@
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2>精選作品</h2>
+        <h2 class="split">精選作品</h2>
         <p class="lead">四個企業官網專案，從資訊架構到上線。點進去看完整的設計說明與內頁。</p>
       </div>
       <div class="tiles" id="tiles"></div>
     </div>
   </section>
 
+
   <section class="section" id="approach">
     <div class="wrap">
-      <div class="section-head reveal"><h2>工作方式</h2></div>
+      <div class="section-head reveal"><h2 class="split">工作方式</h2></div>
       <div class="cols reveal">
         <div><div class="icon"><svg class="i"><use href="#i-users"/></svg></div><h3>先釐清網站要對誰說話</h3><p>企業官網通常同時面對客戶、投資人與求職者。開工前先定義每一種對象要找什麼，再決定資訊架構與頁面順序。</p></div>
         <div><div class="icon"><svg class="i"><use href="#i-palette"/></svg></div><h3>色彩用得少，出現才有份量</h3><p>每個專案只保留一個主色，用在標題、按鈕與關鍵數字；其餘交給留白、攝影與中性色，讓內容成為主角。</p></div>
@@ -394,9 +468,15 @@
     <div class="wrap">
       <div class="photo reveal"><img id="me" src="" alt="Brian，網頁設計師" loading="lazy"></div>
       <div class="reveal">
-        <h2>關於我</h2>
+        <p class="eyebrow">About</p>
+        <h2 class="split">關於我</h2>
         <p>嗨！我是一名網頁設計師，目前任職於振作雲科技，快兩年的時間完成 8 個企業官網，其中 4 件從設計到製作基本都由我獨立負責完成。</p>
         <p>製作的產業橫跨製造、營造、室內設計等，內容型態差異很大。我擅長的是快速摸清一個陌生產業的邏輯，把龐雜且面向多種對象的資訊，整理成一眼讀懂的頁面。</p>
+        <div class="stats-row">
+          <div><b><span data-count="8">0</span><i>+</i></b><small>企業官網</small></div>
+          <div><b><span data-count="4">0</span></b><small>獨立負責</small></div>
+          <div><b><span data-count="2">0</span><i>yr</i></b><small>設計經驗</small></div>
+        </div>
         <div class="actions" id="contact">
           <a class="btn" href="mailto:briankuo880331@gmail.com"><svg class="i"><use href="#i-mail"/></svg>寄信給我</a>
           <a class="btn ghost" href="#">下載履歷</a>
@@ -421,6 +501,7 @@
 <!-- Project sheet -->
 <div class="sheet-backdrop" id="backdrop"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="p-title" aria-hidden="true">
+  <div class="progress" id="sprogress"></div>
   <div class="sheet-bar glass">
     <div class="wrap">
       <button class="back" data-close><svg class="i"><use href="#i-chev-l"/></svg>所有作品</button>
@@ -476,6 +557,7 @@
     </div>
   </section>
 
+  <button class="totop" id="stotop" aria-label="回到專案頂端"><svg class="i"><use href="#i-up"/></svg></button>
   <button class="p-next" id="p-next">
     <div class="bg" id="p-next-bg"></div>
     <div class="veil"></div>
@@ -581,7 +663,7 @@
   /* ---------- 3D ring ---------- */
   const ringCards = [];
   order.forEach(k => { const p = projects[k]; ringCards.push([k, 'home', p.home], [k, 1, p.pages[0][1]], [k, 2, p.pages[1][1]]); });
-  const N = ringCards.length, ring = $('ring'), stage = $('ringStage'), hero = $('hero');
+  const N = ringCards.length, ring = $('ring'), stage = $('ringStage'), hero = $('hero'), sheet = $('sheet');
   ring.innerHTML = ringCards.map(([k, name, id], i) =>
     `<div class="card" data-project="${k}" style="--a:${i * 360 / N}deg;--n:${i}"><img src="${imgSmall(k, name, id)}" alt="" loading="${i < 6 ? 'eager' : 'lazy'}" draggable="false"></div>`).join('');
   function sizeRing() {
@@ -617,7 +699,7 @@
     if (moved < 6 && e && e.target.closest && e.target.closest('.card')) open(e.target.closest('.card').dataset.project);
   }
   stage.addEventListener('pointerup', endDrag); stage.addEventListener('pointercancel', endDrag); stage.addEventListener('pointerleave', endDrag);
-  addEventListener('load', () => setTimeout(() => hero.classList.add('ready'), 200));
+  
 
   /* ---------- Tiles ---------- */
   $('tiles').innerHTML = order.map(k => {
@@ -633,8 +715,85 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ================= FX ================= */
+  // 6. Loading 0→100%
+  (function () {
+    const ld = $('loader'), num = $('ldNum').querySelector('.d'), bar = $('ldBar');
+    const imgs = [...document.querySelectorAll('#ring img')].slice(0, 6);
+    let target = 0, shown = 0, done = 0;
+    const bump = () => { done++; target = Math.min(90, Math.round(done / imgs.length * 90)); };
+    imgs.forEach(im => { if (im.complete) bump(); else { im.addEventListener('load', bump); im.addEventListener('error', bump); } });
+    const t0 = performance.now();
+    (function tick(now) {
+      const elapsed = now - t0;
+      const floor = Math.min(100, Math.round(elapsed / 1400 * 100));     // 至少 1.4 秒跑完
+      const goal = elapsed > 2600 ? 100 : Math.max(Math.min(target, floor), Math.min(floor, 70));
+      shown += (goal - shown) * .12; if (goal - shown < .5) shown = goal;
+      const v = Math.round(shown); if (num.textContent !== String(v)) { num.textContent = v; num.classList.remove('tick'); void num.offsetWidth; num.classList.add('tick'); } bar.style.transform = `scaleX(${shown / 100})`;
+      if (shown >= 100 && (done >= imgs.length || elapsed > 2600)) { ld.classList.add('done'); document.body.classList.remove('loading'); hero.classList.add('ready'); return; }
+      requestAnimationFrame(tick);
+    })(t0);
+  })();
+  // 5b. 作品內頁進度條 + 7. 回到頂端
+  const sprog = $('sprogress');
+  sheet.addEventListener('scroll', () => { sprog.style.transform = `scaleX(${sheet.scrollTop / (sheet.scrollHeight - sheet.clientHeight)})`; $('stotop').classList.toggle('show', sheet.scrollTop > 600); }, { passive: true });
+  $('stotop').addEventListener('click', () => sheet.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+  addEventListener('scroll', () => $('totop').classList.toggle('show', scrollY > 600), { passive: true });
+  $('totop').addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+  const hoverOK = matchMedia('(hover: hover)').matches && innerWidth > 834 && !reduce;
+  // 圖片載入失敗 → 底色（預覽環境用）
+  document.addEventListener('error', e => { const t = e.target; if (t && t.tagName === 'IMG') { t.style.visibility = 'hidden'; (t.closest('.shot, .thumb, .card, .photo, .img') || t.parentElement).classList.add('ph'); } }, true);
+  // 1. 進度條
+  const prog = $('progress');
+  addEventListener('scroll', () => { const h = document.documentElement; prog.style.transform = `scaleX(${scrollY / (h.scrollHeight - innerHeight)})`; }, { passive: true });
+  // 2. 自訂游標
+  if (hoverOK) {
+    const cur = $('cur'), ringC = $('curRing'); let cx = innerWidth / 2, cy = innerHeight / 2, rx = cx, ry = cy;
+    addEventListener('pointermove', e => { cx = e.clientX; cy = e.clientY; cur.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`; });
+    (function follow() { rx += (cx - rx) * .18; ry += (cy - ry) * .18; ringC.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(follow); })();
+    document.addEventListener('pointerover', e => {
+      const t = e.target;
+      document.body.classList.toggle('cur-on', !!t.closest('a, button, .tile, figure, .card'));
+      document.body.classList.toggle('cur-grab', !!t.closest('.ring-stage'));
+    });
+  }
+  // 3. 標題逐字
+  document.querySelectorAll('.split').forEach(h => {
+    h.innerHTML = [...h.textContent].map((c, k) => `<span class="ch" style="--k:${k}">${c}</span>`).join('');
+    new IntersectionObserver((es, o) => es.forEach(en => { if (en.isIntersecting) { h.classList.add('in'); o.disconnect(); } }), { threshold: .6 }).observe(h);
+  });
+  // 4. 卡片聚光燈
+  document.querySelectorAll('.tile').forEach(t => t.addEventListener('pointermove', e => {
+    const r = t.getBoundingClientRect(); t.style.setProperty('--mx', (e.clientX - r.left) + 'px'); t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }));
+  // 5. 磁吸按鈕
+  if (hoverOK) document.querySelectorAll('.btn').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px, ${(e.clientY - r.top - r.height / 2) * .28}px)`; });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+  });
+  // 6. 跑馬燈
+  // 7. 數字計數
+  new IntersectionObserver((es, o) => es.forEach(en => {
+    if (!en.isIntersecting) return; o.disconnect();
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const end = +el.dataset.count, t0 = performance.now();
+      (function step(now) { const k = Math.min(1, (now - t0) / 1200); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(t0);
+    });
+  }), { threshold: .5 }).observe(document.querySelector('.stats-row'));
+  // 8. 捲動帶動 3D 環 + 截圖視差
+  let lastScroll = scrollY;
+  addEventListener('scroll', () => {
+    const d = scrollY - lastScroll; lastScroll = scrollY;
+    if (heroVisible && !dragging) vel += d * 0.012;
+    document.querySelectorAll('.tile .shot img').forEach(im => {
+      const r = im.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+      const k = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;  // -0.5 ~ 0.5
+      im.style.objectPosition = `50% ${Math.max(0, Math.min(35, 12 - k * 24))}%`;
+    });
+  }, { passive: true });
+
   /* ---------- Sheet ---------- */
-  const sheet = $('sheet');
   let lastFocus = null, current = null;
   const paras = arr => arr.map(t => `<p>${t}</p>`).join('');
   function fill(key) {
