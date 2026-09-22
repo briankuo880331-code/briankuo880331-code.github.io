@@ -7,6 +7,8 @@
 <meta name="description" content="專注企業官網與品牌形象網站設計，從資訊架構、視覺設計到 WordPress 上線。">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --white: #fff; --panel: #f5f5f7; --ink: #1d1d1f; --muted: #6e6e73;
@@ -378,134 +380,214 @@
   .ph { background: linear-gradient(135deg, #c9d4e5, #7d9cc0) !important; }
   @media (prefers-reduced-motion: reduce) { .split .ch { opacity: 1; transform: none; transition: none; } .marquee-band .track { animation: none; } .cur, .cur-ring { display: none; } }
 
-  /* ================= DARK MODE (Obsidian Chrome) ================= */
+
+  /* ================= THEME: AERO (Void / Volt) ================= */
+  :root {
+    --void: #080b10; --slate: #10161f; --volt: #c6ff3d; --glacier: #9ed8ff; --frost: #eaf1f7; --mist: #8593a3; --ice: #c9dcea;
+    --display: "Michroma", "Inter", sans-serif;
+    --font: "Inter", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    --bg: #f3f7fa; --bg-2: #ffffff; --ink: var(--void); --muted: #5f6b78; --hair: rgba(16,22,31,.12); --hair-2: rgba(16,22,31,.06);
+    --card: linear-gradient(160deg, #ffffff 0%, #f1f6fa 100%); --card-hover: linear-gradient(160deg, #ffffff 0%, #eaf1f7 100%);
+    --accent: #7fa800; --accent-dark: #5f8000; --accent-fill: var(--volt); --on-accent: var(--void);
+    --line: var(--hair); --panel: #eaf1f7; --white: #fff; --glass: rgba(243,247,250,.7); --glass-line: rgba(16,22,31,.08);
+    --r-tile: 20px; --gap: 20px; --chrome: #e4ebf2; --chrome-2: #d5dfe8;
+  }
   html[data-theme="dark"] {
-    --onyx: #0a0a0a; --slate: #536878; --alab: #e5e4e2;
-    --bg: var(--onyx); --ink: var(--alab); --muted: rgba(229,228,226,.58); --hair: rgba(229,228,226,.12); --hair-2: rgba(229,228,226,.06);
-    --accent: #9fb4c4; --accent-dark: #c8d4dd; --line: var(--hair); --panel: #111417; --white: #14181c;
-    --glass: rgba(10,10,10,.55); --glass-line: rgba(229,228,226,.08); --r-tile: 22px; --gap: 18px;
-    --card: linear-gradient(160deg, #1a2128 0%, #0f1215 55%, #0a0a0a 100%);
+    --bg: var(--void); --bg-2: var(--slate); --ink: var(--frost); --muted: var(--mist); --hair: rgba(234,241,247,.12); --hair-2: rgba(234,241,247,.05);
+    --card: linear-gradient(160deg, #141b25 0%, #0b0f15 100%); --card-hover: linear-gradient(160deg, #182130 0%, #0d1219 100%);
+    --accent: var(--volt); --accent-dark: #d9ff70; --accent-fill: var(--volt); --on-accent: var(--void);
+    --panel: var(--slate); --white: var(--slate); --glass: rgba(8,11,16,.6); --glass-line: rgba(234,241,247,.08);
+    --chrome: #161d27; --chrome-2: #232c38;
   }
-  html[data-theme="dark"], html[data-theme="dark"] body { background: var(--bg); color: var(--ink); }
-  html[data-theme="dark"] ::selection { background: rgba(83,104,120,.6); }
-  html[data-theme="dark"] .loader { background: var(--onyx); }
-  html[data-theme="dark"] .loader .num { color: var(--alab); font-weight: 300; }
-  html[data-theme="dark"] .loader .num .pct { color: var(--slate); }
-  html[data-theme="dark"] .loader .bar { background: var(--hair); }
-  html[data-theme="dark"] .loader .bar i { background: var(--alab); }
-  html[data-theme="dark"] .progress { background: var(--alab); opacity: .8; }
-  html[data-theme="dark"] .cur { background: var(--alab); }
-  html[data-theme="dark"] .cur-ring { border-color: rgba(229,228,226,.5); }
-  html[data-theme="dark"] body.cur-on .cur-ring { background: rgba(229,228,226,.08); border-color: var(--alab); }
-  html[data-theme="dark"] .nav.scrolled { background: rgba(10,10,10,.6); border-bottom-color: var(--hair); }
-  html[data-theme="dark"] .nav li a { color: var(--alab); opacity: .7; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
-  html[data-theme="dark"] .nav li a.active, html[data-theme="dark"] .nav li a:hover { opacity: 1; color: var(--alab); }
-  html[data-theme="dark"] .hero::after { height: 68%; background:
-      radial-gradient(48% 50% at 50% 38%, rgba(83,104,120,.55) 0%, rgba(83,104,120,.18) 45%, rgba(10,10,10,0) 75%),
-      linear-gradient(180deg, var(--onyx) 0%, var(--onyx) 42%, rgba(10,10,10,0) 100%); }
-  html[data-theme="dark"] .hero::before { background: linear-gradient(0deg, var(--onyx) 0%, rgba(10,10,10,0) 100%); height: 14%; }
-  html[data-theme="dark"] .hero h1 { color: var(--alab); font-weight: 400; letter-spacing: -0.02em; }
-  html[data-theme="dark"] .hero .lead { color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .scroll-cue { color: var(--muted); }
-  html[data-theme="dark"] .scroll-cue .line { background: var(--hair); }
-  html[data-theme="dark"] .scroll-cue .line::after { background: var(--alab); }
-  html[data-theme="dark"] .ring .card { border-radius: 14px; box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(229,228,226,.1); background: #111; }
-  html[data-theme="dark"] .ring .card:hover { box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(229,228,226,.35); }
-  html[data-theme="dark"] .btn { background: var(--alab); color: var(--onyx); box-shadow: none; font-weight: 500; }
-  html[data-theme="dark"] .btn:hover { background: #fff; box-shadow: 0 0 0 6px rgba(229,228,226,.12); }
-  html[data-theme="dark"] .btn::before { background: linear-gradient(115deg, transparent 30%, rgba(83,104,120,.35) 50%, transparent 70%); }
-  html[data-theme="dark"] .btn.ghost, html[data-theme="dark"] .btn.ghost:hover { background: transparent; color: var(--alab); box-shadow: none; }
-  html[data-theme="dark"] .btn.ghost { opacity: .75; }
-  html[data-theme="dark"] .btn.ghost:hover { opacity: 1; }
-  html[data-theme="dark"] .section-head { text-align: left; display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 24px; margin-bottom: 36px; padding-top: 28px; border-top: 1px solid var(--hair); position: relative; }
-  html[data-theme="dark"] .section-head::before { content: attr(data-n); position: absolute; top: -9px; left: 0; padding-right: 12px; background: var(--bg); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
-  html[data-theme="dark"] .section-head h2 { margin: 0; font-size: 52px; font-weight: 300; letter-spacing: -0.02em; color: var(--alab); }
-  html[data-theme="dark"] .section-head .lead { margin: 0; font-size: 16px; color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .tile { background: var(--card); border-radius: var(--r-tile); box-shadow: 0 0 0 1px var(--hair); padding: 44px 44px 0; text-align: left; align-items: flex-start; }
-  html[data-theme="dark"] .tile:hover { background: linear-gradient(160deg, #202932 0%, #12161a 55%, #0a0a0a 100%); box-shadow: 0 0 0 1px rgba(229,228,226,.22); }
-  html[data-theme="dark"] .tile::before { background: radial-gradient(500px circle at var(--mx) var(--my), rgba(229,228,226,.10), transparent 60%); }
-  html[data-theme="dark"] .tile::after { content: ""; position: absolute; inset: 12px; border-radius: 14px; border: 1px solid var(--hair-2); pointer-events: none; }
-  html[data-theme="dark"] .tile h3 { color: var(--alab); font-weight: 400; }
-  html[data-theme="dark"] .tile p { color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .tile .more { color: var(--accent); }
-  html[data-theme="dark"] .tile:hover .more { color: var(--alab); }
-  html[data-theme="dark"] .tile .art { justify-content: flex-end; }
-  html[data-theme="dark"] .tile.full .art { justify-content: center; }
-  html[data-theme="dark"] .browser { border-radius: 12px 12px 0 0; background: #14181c; box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(229,228,226,.12); }
-  html[data-theme="dark"] .browser .bar { background: #1a1f24; border-color: var(--hair); }
-  html[data-theme="dark"] .browser .bar i { background: #3a434b; }
-  html[data-theme="dark"] .browser .bar b { background: #0f1215; border-color: var(--hair); color: var(--muted); }
-  html[data-theme="dark"] .browser .shot { background: #0f1215; }
-  html[data-theme="dark"] .cols { gap: 18px; }
-  html[data-theme="dark"] .cols > div { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: var(--r-tile); padding: 40px 36px; position: relative; }
-  html[data-theme="dark"] .cols .icon { background: rgba(229,228,226,.06); color: var(--accent); box-shadow: 0 0 0 1px var(--hair); border-radius: 14px; }
-  html[data-theme="dark"] .cols h3 { color: var(--alab); font-weight: 400; }
-  html[data-theme="dark"] .cols p { color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .about { background: transparent; margin-top: 110px; padding: 0; }
-  html[data-theme="dark"] .about .wrap { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: var(--r-tile); padding: 72px; max-width: calc(var(--w) - 48px); grid-template-columns: 320px 1fr; gap: 72px; }
-  html[data-theme="dark"] .about .photo { border-radius: 16px; position: static; background: #14181c; box-shadow: 0 0 0 1px var(--hair); }
-  html[data-theme="dark"] .about .eyebrow { color: var(--accent); }
-  html[data-theme="dark"] .about h2 { color: var(--alab); font-weight: 400; }
-  html[data-theme="dark"] .about p { color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .stats-row div { border-color: var(--hair); }
-  html[data-theme="dark"] .stats-row b { color: var(--alab); font-weight: 300; }
-  html[data-theme="dark"] .stats-row b i { color: var(--slate); }
-  html[data-theme="dark"] .stats-row small { color: var(--muted); }
-  html[data-theme="dark"] footer { padding: 48px 0 56px; }
-  html[data-theme="dark"] footer .wrap { border-top: 1px solid var(--hair); }
-  html[data-theme="dark"] footer li a { color: var(--muted); }
-  html[data-theme="dark"] footer li a .ring-svg .base { stroke: rgba(229,228,226,.5); }
-  html[data-theme="dark"] footer li a .ring-svg .draw { stroke: var(--alab); }
-  html[data-theme="dark"] footer .copy { color: var(--muted); }
-  html[data-theme="dark"] .totop { background: rgba(229,228,226,.06); color: var(--alab); box-shadow: 0 0 0 1px var(--hair); }
-  html[data-theme="dark"] .totop:hover { color: var(--alab); box-shadow: 0 0 0 1px rgba(229,228,226,.3), 0 0 0 6px rgba(229,228,226,.08); }
-  html[data-theme="dark"] .sheet { background: var(--onyx); color: var(--alab); }
-  
-  @media (min-width: 835px) {
-  html[data-theme="dark"] .sheet { box-shadow: 0 -10px 40px rgba(0,0,0,.6), 0 0 0 1px var(--hair); } }
-  html[data-theme="dark"] .sheet-backdrop { background: rgba(0,0,0,.6); }
-  html[data-theme="dark"] .sheet-bar.glass { background: rgba(10,10,10,.6); border-bottom-color: var(--hair); }
-  html[data-theme="dark"] .sheet-bar .back { color: var(--accent); }
-  html[data-theme="dark"] .sheet-bar .close { background: rgba(229,228,226,.08); color: var(--alab); }
-  html[data-theme="dark"] .sheet-bar .close:hover { background: rgba(229,228,226,.16); }
-  html[data-theme="dark"] .sheet .progress { background: var(--alab); }
-  html[data-theme="dark"] .p-hero h1 { font-weight: 400; color: var(--alab); }
-  html[data-theme="dark"] .p-hero .lead { color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .p-meta > div { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: 16px; color: var(--alab); }
-  html[data-theme="dark"] .p-meta .ic { background: rgba(229,228,226,.06); color: var(--accent); box-shadow: 0 0 0 1px var(--hair); }
-  html[data-theme="dark"] .p-meta strong { color: var(--muted); }
-  html[data-theme="dark"] .stage { background: var(--card); box-shadow: 0 0 0 1px var(--hair); }
-  html[data-theme="dark"] .stage .frame { background: #14181c; box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(229,228,226,.12); }
-  html[data-theme="dark"] .stage .bar { background: #1a1f24; border-color: var(--hair); }
-  html[data-theme="dark"] .stage .bar i { background: #3a434b; }
-  html[data-theme="dark"] .stage .bar b { background: #0f1215; border-color: var(--hair); color: var(--muted); }
-  html[data-theme="dark"] .stage .shot { background: #0f1215; scrollbar-color: #3a434b transparent; }
-  html[data-theme="dark"] .stage-hint { color: var(--muted); }
-  html[data-theme="dark"] .p-section h2 { color: var(--alab); font-weight: 400; }
-  html[data-theme="dark"] .p-section h2 svg { color: var(--accent); }
-  html[data-theme="dark"] .p-section p { color: var(--muted); font-weight: 300; }
-  html[data-theme="dark"] .tags span { background: rgba(229,228,226,.06); color: var(--muted); box-shadow: 0 0 0 1px var(--hair); }
-  html[data-theme="dark"] .gallery figure { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: 16px; }
-  html[data-theme="dark"] .gallery figcaption { color: var(--alab); }
-  html[data-theme="dark"] .gal-nav button { background: rgba(229,228,226,.06); color: var(--alab); box-shadow: 0 0 0 1px var(--hair); }
-  html[data-theme="dark"] .gal-nav button:hover { background: rgba(229,228,226,.14); }
-  html[data-theme="dark"] .p-next { background: #0f1215; box-shadow: inset 0 1px 0 var(--hair); color: var(--alab); }
-  html[data-theme="dark"] .p-next p { color: var(--muted); }
-  html[data-theme="dark"] .p-next .veil { background: rgba(10,10,10,.5); }
-  html[data-theme="dark"] .p-next:hover .name { color: #fff; }
-  html[data-theme="dark"] .sheet .totop { background: rgba(229,228,226,.08); color: var(--alab); }
-  html[data-theme="dark"] .lb { background: rgba(5,5,5,.96); }
-  .ph { background: linear-gradient(135deg, #2a333c, #0f1215) !important; 
-  }
-  
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font); }
+  ::selection { background: var(--volt); color: var(--void); }
+  .eyebrow, .scroll-cue, .nav li a, .section-head::before, .idx, .p-meta strong, .tags span, .stats-row small, .loader .num, .stats-row b, .p-next p, .stage-hint, .browser .bar b, .stage .bar b, footer .copy, .tile .num { font-family: var(--display); }
+  h1, h2, h3 { font-weight: 300; letter-spacing: -0.01em; }
+  .hl { color: var(--accent); }
+  .loader { background: var(--bg); } .loader .num { color: var(--ink); font-weight: 400; font-size: 96px; letter-spacing: -0.02em; }
+  .loader .num .pct { color: var(--accent); font-size: 22px; } .loader .bar { background: var(--hair); width: 220px; } .loader .bar i { background: var(--volt); }
+  .progress { background: var(--volt); }
+  .cur { background: var(--volt); } .cur-ring { border-color: rgba(198,255,61,.7); } body.cur-on .cur-ring { background: rgba(198,255,61,.12); border-color: var(--volt); }
+  html:not([data-theme="dark"]) .cur { background: var(--void); } html:not([data-theme="dark"]) .cur-ring { border-color: rgba(8,11,16,.45); } html:not([data-theme="dark"]) body.cur-on .cur-ring { background: rgba(198,255,61,.35); border-color: var(--void); }
+  .nav.scrolled { background: var(--glass); border-bottom-color: var(--hair); }
+  .nav li a { color: var(--ink); opacity: .75; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+  .nav li a.active, .nav li a:hover { opacity: 1; color: var(--accent); }
+  .theme-toggle { color: var(--ink); background: var(--glass); box-shadow: 0 0 0 1px var(--hair); }
+  html[data-theme="dark"] .theme-toggle { background: rgba(8,11,16,.5); color: var(--frost); box-shadow: 0 0 0 1px var(--hair); }
+  .theme-toggle:hover, html[data-theme="dark"] .theme-toggle:hover { box-shadow: 0 0 0 1px var(--hair), 0 0 0 6px rgba(198,255,61,.18); }
+  .hero::after { height: 66%; background: linear-gradient(180deg, var(--bg) 0%, var(--bg) 50%, transparent 100%); }
+  html[data-theme="dark"] .hero::after { background: radial-gradient(50% 50% at 50% 40%, rgba(158,216,255,.16) 0%, rgba(158,216,255,0) 70%), linear-gradient(180deg, var(--bg) 0%, var(--bg) 46%, transparent 100%); }
+  .hero::before { height: 14%; background: linear-gradient(0deg, var(--bg) 0%, transparent 100%); }
+  .hero .copy { padding-top: 84px; }
+  .hero .meta { display: flex; justify-content: space-between; max-width: var(--w); margin: 0 auto 28px; padding: 0 var(--gutter); font-family: var(--display); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+  .hero .meta .vt { color: var(--accent); }
+  .hero .wordmark { font-family: var(--display); font-size: clamp(64px, 12vw, 168px); line-height: .95; letter-spacing: -0.01em; font-weight: 400; margin: 0 auto 26px; background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 58%, var(--volt) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  html:not([data-theme="dark"]) .hero .wordmark { background: linear-gradient(90deg, var(--void) 0%, var(--void) 58%, #7fa800 100%); -webkit-background-clip: text; background-clip: text; }
+  .hero h1 { font-size: 34px; font-weight: 300; color: var(--ink); margin-bottom: 14px; }
+  .hero .lead { font-size: 15px; letter-spacing: .12em; color: var(--muted); margin-bottom: 30px; font-weight: 300; }
+  .hero .pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+  .hero .pills span { font-family: var(--display); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 8px 14px; border-radius: 980px; border: 1px solid var(--hair); color: var(--muted); }
+  .scroll-cue { color: var(--muted); font-size: 9px; letter-spacing: .32em; } .scroll-cue .line { background: var(--hair); } .scroll-cue .line::after { background: var(--volt); }
+  .ring .card { border-radius: 12px; background: var(--bg-2); box-shadow: 0 30px 70px rgba(0,0,0,.35), 0 0 0 1px var(--hair); }
+  html:not([data-theme="dark"]) .ring .card { box-shadow: 0 24px 50px rgba(16,22,31,.16), 0 0 0 1px var(--hair); }
+  .ring .card:hover { box-shadow: 0 30px 70px rgba(0,0,0,.4), 0 0 0 1px rgba(198,255,61,.7); }
+  .btn { background: var(--accent-fill); color: var(--on-accent); font-weight: 500; font-size: 14px; letter-spacing: .02em; padding: 13px 22px; box-shadow: none; }
+  .btn:hover { background: #d4ff66; box-shadow: 0 0 0 6px rgba(198,255,61,.18); }
+  .btn::before { background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); }
+  .btn.ghost, .btn.ghost:hover { background: transparent; color: var(--ink); border: 1px solid var(--hair); padding: 12px 20px; box-shadow: none; }
+  .btn.ghost::after { content: "\2192"; font-family: var(--display); font-size: 12px; }
+  .btn.ghost:hover { border-color: var(--ink); }
+  .btn.ghost::before { display: none; }
+  .section-head { text-align: left; display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 24px; margin-bottom: 40px; padding-top: 22px; border-top: 1px solid var(--hair); position: relative; }
+  .section-head::before { content: attr(data-n); position: absolute; top: -8px; left: 0; padding-right: 14px; background: var(--bg); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); }
+  .section-head h2 { margin: 0; font-size: 46px; font-weight: 300; line-height: 1.15; color: var(--ink); }
+  .section-head .lead { margin: 0; font-size: 15px; color: var(--muted); font-weight: 300; line-height: 1.7; }
+  .tile { background: var(--card); border-radius: var(--r-tile); box-shadow: 0 0 0 1px var(--hair); padding: 40px 40px 0; text-align: left; align-items: flex-start; }
+  .tile:hover { background: var(--card-hover); box-shadow: 0 0 0 1px rgba(198,255,61,.6); }
+  .tile::before { background: radial-gradient(500px circle at var(--mx) var(--my), rgba(198,255,61,.10), transparent 60%); }
+  html:not([data-theme="dark"]) .tile::before { background: radial-gradient(500px circle at var(--mx) var(--my), rgba(255,255,255,.9), transparent 60%); }
+  .tile .num { font-size: 10px; letter-spacing: .3em; color: var(--accent); margin-bottom: 14px; text-transform: uppercase; }
+  .tile h3 { color: var(--ink); font-weight: 300; font-size: 30px; }
+  .tile.half h3 { font-size: 26px; }
+  .tile p { color: var(--muted); font-weight: 300; }
+  .tile .more { color: var(--ink); font-family: var(--display); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-top: 14px; }
+  .tile .more::after { content: " \2192"; }
+  .tile:hover .more { color: var(--accent); }
+  .tile .art { justify-content: flex-end; } .tile.full .art { justify-content: center; }
+  .browser { border-radius: 12px 12px 0 0; background: var(--bg-2); box-shadow: 0 30px 60px rgba(0,0,0,.3), 0 0 0 1px var(--hair); }
+  html:not([data-theme="dark"]) .browser { box-shadow: 0 30px 60px rgba(16,22,31,.14), 0 0 0 1px var(--hair); }
+  .browser .bar { background: var(--chrome); border-color: var(--hair); } .browser .bar i { background: var(--chrome-2); } .browser .bar b { background: var(--bg-2); border-color: var(--hair); color: var(--muted); font-size: 9px; letter-spacing: .08em; }
+  .cols { gap: 20px; }
+  .cols > div { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: var(--r-tile); padding: 40px 34px; position: relative; }
+  .cols > div:nth-child(2) { background: var(--volt); color: var(--void); box-shadow: none; }
+  .cols > div:nth-child(2) h3, .cols > div:nth-child(2) p { color: var(--void); }
+  .cols .icon { background: transparent; color: var(--accent); box-shadow: 0 0 0 1px var(--hair); border-radius: 12px; }
+  .cols > div:nth-child(2) .icon { color: var(--void); box-shadow: 0 0 0 1px rgba(8,11,16,.25); }
+  .cols .idx { font-size: 10px; letter-spacing: .3em; color: var(--accent); position: absolute; top: 40px; right: 34px; }
+  .cols > div:nth-child(2) .idx { color: var(--void); }
+  .cols h3 { color: var(--ink); font-weight: 400; font-size: 20px; }
+  .cols p { color: var(--muted); font-weight: 300; }
+  .about { background: transparent; margin-top: 110px; padding: 0; }
+  .about .wrap { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: var(--r-tile); padding: 72px; max-width: calc(var(--w) - 48px); grid-template-columns: 300px 1fr; gap: 72px; }
+  .about .photo { border-radius: 14px; position: static; box-shadow: 0 0 0 1px var(--hair); }
+  .about .eyebrow { color: var(--accent); font-size: 10px; letter-spacing: .3em; }
+  .about h2 { color: var(--ink); font-weight: 300; font-size: 40px; }
+  .about p { color: var(--muted); font-weight: 300; font-size: 16px; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+  .stats-row div { border-right: 0; border-top: 1px solid var(--hair); padding: 22px 0 0 !important; }
+  .stats-row div:first-child { border-top-color: var(--volt); }
+  .stats-row b { color: var(--ink); font-weight: 400; font-size: 38px; margin-bottom: 10px; }
+  .stats-row b i { color: var(--accent); font-family: var(--font); font-size: 14px; margin-left: 6px; }
+  .stats-row small { font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+  .about .btn { background: var(--accent-fill); color: var(--on-accent); }
+  footer { padding: 48px 0 56px; }
+  footer .wrap { border-top: 1px solid var(--hair); gap: 32px; }
+  .foot-nav { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .foot-nav a { font-family: var(--display); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 10px 16px; border-radius: 980px; border: 1px solid var(--hair); color: var(--muted); transition: color .3s, border-color .3s; }
+  .foot-nav a:hover { color: var(--ink); border-color: var(--ink); text-decoration: none; }
+  .foot-nav a b { color: var(--accent); font-weight: 400; margin-right: 8px; }
+  footer li a { color: var(--muted); font-family: var(--display); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+  footer li a .ring-svg .base { stroke: var(--muted); } footer li a .ring-svg .draw { stroke: var(--volt); }
+  footer .copy { color: var(--muted); font-size: 9px; letter-spacing: .24em; text-transform: uppercase; }
+  .totop { background: var(--glass); color: var(--ink); box-shadow: 0 0 0 1px var(--hair); }
+  .totop:hover { color: var(--accent); box-shadow: 0 0 0 1px var(--hair), 0 0 0 6px rgba(198,255,61,.18); }
+  .sheet { background: var(--bg); color: var(--ink); }
+  @media (min-width: 835px) { .sheet { box-shadow: 0 -10px 40px rgba(0,0,0,.5), 0 0 0 1px var(--hair); } }
+  .sheet-backdrop { background: rgba(8,11,16,.6); }
+  .sheet-bar.glass { background: var(--glass); border-bottom-color: var(--hair); }
+  .sheet-bar .back { color: var(--ink); font-family: var(--display); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+  .sheet-bar .close { background: transparent; color: var(--ink); box-shadow: 0 0 0 1px var(--hair); } .sheet-bar .close:hover { background: var(--hair-2); }
+  .sheet .progress { background: var(--volt); }
+  .p-hero h1 { font-weight: 300; color: var(--ink); font-size: 52px; } .p-hero .lead { color: var(--muted); font-weight: 300; font-size: 18px; }
+  .p-meta { grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 48px; }
+  .p-meta > div { background: transparent; box-shadow: none; border-radius: 0; border-top: 1px solid var(--hair); padding: 22px 0 0; display: block; color: var(--ink); }
+  .p-meta > div:first-child { border-top-color: var(--volt); }
+  .p-meta .ic { display: none; }
+  .p-meta strong { color: var(--accent); font-size: 9px; letter-spacing: .3em; text-transform: uppercase; margin-bottom: 12px; }
+  .p-meta > div > div > span { display: block; font-size: 16px; font-weight: 300; line-height: 1.6; }
+  .stage { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: var(--r-tile); }
+  .stage .frame { background: var(--bg-2); box-shadow: 0 30px 60px rgba(0,0,0,.3), 0 0 0 1px var(--hair); }
+  .stage .bar { background: var(--chrome); border-color: var(--hair); } .stage .bar i { background: var(--chrome-2); } .stage .bar b { background: var(--bg-2); border-color: var(--hair); color: var(--muted); font-size: 9px; letter-spacing: .08em; }
+  .stage .shot { background: var(--bg-2); scrollbar-color: var(--chrome-2) transparent; }
+  .stage-hint { color: var(--muted); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; }
+  .p-section h2 { color: var(--ink); font-weight: 300; font-size: 34px; display: block; position: relative; padding-top: 22px; border-top: 1px solid var(--hair); margin-bottom: 22px; }
+  .p-section h2 svg { display: none; }
+  .p-section h2::before { content: attr(data-n); position: absolute; top: -8px; left: 0; padding-right: 14px; background: var(--bg); font-family: var(--display); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); }
+  .p-section p { color: var(--muted); font-weight: 300; font-size: 16px; line-height: 1.9; }
+  .tags span { background: transparent; color: var(--muted); border: 1px solid var(--hair); font-family: var(--display); font-size: 9px; letter-spacing: .1em; padding: 8px 12px; }
+  .gallery figure { background: var(--card); box-shadow: 0 0 0 1px var(--hair); border-radius: 16px; }
+  .gallery figcaption { color: var(--ink); font-size: 14px; display: flex; align-items: center; gap: 12px; }
+  .gallery figcaption::before { content: attr(data-i); font-family: var(--display); font-size: 9px; letter-spacing: .2em; color: var(--accent); }
+  .gallery .thumb .mask { background: rgba(8,11,16,.5); } .gallery .thumb .mask span { border-color: var(--volt); color: var(--volt); }
+  .gal-nav button { background: transparent; color: var(--ink); box-shadow: 0 0 0 1px var(--hair); } .gal-nav button:hover { background: var(--hair-2); }
+  .p-next { background: var(--bg-2); box-shadow: inset 0 1px 0 var(--hair); color: var(--ink); }
+  .p-next p { color: var(--accent); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; } .p-next .name { font-weight: 300; }
+  .p-next .veil { background: rgba(8,11,16,.55); } .p-next:hover .name { color: #fff; } .p-next:hover p { color: var(--volt); }
+  .sheet .totop { background: var(--glass); color: var(--ink); }
+  .lb { background: rgba(8,11,16,.96); }
+  .ph { background: linear-gradient(135deg, #2a3646, #0d1219) !important; }
+  html:not([data-theme="dark"]) .ph { background: linear-gradient(135deg, #c9dcea, #8593a3) !important; }
   @media (max-width: 834px) {
-  html[data-theme="dark"] .section-head { grid-template-columns: 1fr; gap: 10px; }
-  html[data-theme="dark"] .section-head h2 { font-size: 36px; }
-  html[data-theme="dark"] .tile { padding: 32px 28px 0; }
-  html[data-theme="dark"] .about .wrap { padding: 40px 28px; grid-template-columns: 1fr; gap: 32px; margin: 0 var(--gutter); }
-  
+    .hero .wordmark { font-size: clamp(56px, 16vw, 120px); }
+    .hero h1 { font-size: 26px; }
+    .section-head { grid-template-columns: 1fr; gap: 10px; }
+    .section-head h2 { font-size: 34px; }
+    .tile { padding: 32px 26px 0; }
+    .tile h3 { font-size: 26px; }
+    .about .wrap { padding: 40px 28px; grid-template-columns: 1fr; gap: 32px; margin: 0 var(--gutter); }
+    .p-meta { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .p-hero h1 { font-size: 36px; }
+  }
+  @media (max-width: 480px) {
+    .hero .meta { font-size: 9px; }
+    .stats-row { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .stats-row b { font-size: 28px; }
+    .p-meta { grid-template-columns: 1fr; }
+    .foot-nav a { padding: 8px 12px; }
   }
 
+  /* ---------- Hover layer ---------- */
+  .tile, .cols > div, .about .wrap, .gallery figure, .p-meta > div, .stage, .foot-nav a, .hero .pills span, .tags span { transition: transform .5s var(--ease), border-radius .5s var(--ease), box-shadow .5s var(--ease), background .5s, color .3s, border-color .3s; }
+  .tile:hover { transform: translateY(-6px) scale(1.012); border-radius: 28px; }
+  .cols > div:hover { transform: translateY(-6px) scale(1.015); border-radius: 28px; box-shadow: 0 0 0 1px rgba(198,255,61,.6), 0 30px 60px rgba(0,0,0,.25); }
+  .cols > div:nth-child(2):hover { box-shadow: 0 30px 60px rgba(198,255,61,.25); }
+  html:not([data-theme="dark"]) .cols > div:hover { box-shadow: 0 0 0 1px rgba(127,168,0,.6), 0 24px 50px rgba(16,22,31,.12); }
+  .cols > div .icon { transition: transform .5s var(--ease), color .3s, background .3s; }
+  .cols > div:hover .icon { transform: rotate(-8deg) scale(1.08); background: var(--volt); color: var(--void); box-shadow: none; }
+  .cols > div:nth-child(2):hover .icon { background: var(--void); color: var(--volt); }
+  .cols > div .idx { transition: color .3s, transform .5s var(--ease); }
+  .cols > div:hover .idx { color: var(--ink); transform: translateX(-4px); }
+  .cols > div:nth-child(2):hover .idx { color: var(--void); }
+  .about .wrap:hover { border-radius: 28px; box-shadow: 0 0 0 1px rgba(198,255,61,.5); }
+  .about .photo { overflow: hidden; } .about .photo img { transition: transform 1.2s var(--ease); } .about .wrap:hover .photo img { transform: scale(1.04); }
+  .gallery figure:hover { transform: translateY(-6px); border-radius: 24px; box-shadow: 0 0 0 1px rgba(198,255,61,.6), 0 24px 50px rgba(0,0,0,.25); }
+  .p-meta > div:hover { border-top-color: var(--volt); }
+  .p-meta > div:hover strong { color: var(--ink); }
+  .stage:hover { box-shadow: 0 0 0 1px rgba(198,255,61,.5); }
+  .hero .pills span:hover { border-color: var(--volt); color: var(--ink); transform: translateY(-2px); }
+  .tags span { cursor: default; } .tags span:hover { border-color: var(--volt); color: var(--ink); transform: translateY(-2px); }
+  .foot-nav a:hover { transform: translateY(-2px); border-color: var(--volt); }
+  .nav li a { position: relative; } .nav li a::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 6px; height: 1px; background: var(--volt); transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s var(--ease); }
+  .nav li a:hover::after, .nav li a.active::after { transform: scaleX(1); }
+  .ring .card { transition: box-shadow .35s, transform .35s var(--ease), border-radius .35s var(--ease); }
+  .ring .card:hover { border-radius: 18px; }
+  .btn { transition: background .25s, transform .25s var(--ease), box-shadow .3s, border-radius .3s var(--ease); }
+  .btn:hover { border-radius: 14px; }
+  .theme-toggle:hover { transform: rotate(15deg); }
+  .totop:hover { transform: translateY(-3px); }
+  .sheet-bar .back { transition: color .3s, transform .3s var(--ease); } .sheet-bar .back:hover { color: var(--accent); transform: translateX(-3px); }
+  .sheet-bar .close { transition: background .3s, transform .4s var(--ease); } .sheet-bar .close:hover { transform: rotate(90deg); }
+  .gal-nav button { transition: background .3s, transform .3s var(--ease); } .gal-nav button:hover { transform: scale(1.1); }
+  .stats-row div { transition: border-color .3s; } .stats-row div:hover { border-top-color: var(--volt); }
+  .stats-row b { transition: color .3s; } .stats-row div:hover b { color: var(--accent); }
+  .p-next .name svg { transition: transform .3s var(--ease); }
+  .hero .meta span { transition: color .3s; } .hero .meta span:hover { color: var(--ink); }
+
+  /* ---------- Animated wordmark gradient ---------- */
+  .hero .wordmark { background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 30%, var(--volt) 50%, var(--glacier) 62%, var(--ink) 80%, var(--ink) 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 7s linear infinite; }
+  html:not([data-theme="dark"]) .hero .wordmark { background: linear-gradient(90deg, var(--void) 0%, var(--void) 30%, #7fa800 50%, #3b7fa8 62%, var(--void) 80%, var(--void) 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; }
+  @keyframes shine { 0% { background-position: 100% 50%; } 100% { background-position: -200% 50%; } }
+  @media (prefers-reduced-motion: reduce) { .hero .wordmark { animation: none; } .tile:hover, .cols > div:hover, .gallery figure:hover { transform: none; } }
   /* ---------- Theme toggle ---------- */
   .theme-toggle { position: fixed; top: 8px; right: 16px; z-index: 25; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: var(--ink); background: var(--glass); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px var(--glass-line); transition: box-shadow .3s, color .3s, background .3s, transform .3s var(--ease); }
   .theme-toggle:hover { box-shadow: 0 0 0 1px var(--glass-line), 0 0 0 6px rgba(56,180,139,.14); }
@@ -560,7 +642,7 @@
 <button class="theme-toggle" id="themeToggle" aria-label="切換深色 / 淺色模式"><svg class="i moon"><use href="#i-moon"/></svg><svg class="i sun"><use href="#i-sun"/></svg></button>
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="回到頂端"><svg class="logo logo-light" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg1)"/><defs><linearGradient id="lg1" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#38B48B"/><stop offset="0.9" stop-color="#35A68D" stop-opacity="0"/></linearGradient></defs></svg><svg class="logo logo-dark" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg1d)"/><defs><linearGradient id="lg1d" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#E5E4E2"/><stop offset="0.9" stop-color="#E5E4E2" stop-opacity="0"/></linearGradient></defs></svg></a>
+    <a class="brand" href="#top" aria-label="回到頂端"><svg class="logo logo-light" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg1)"/><defs><linearGradient id="lg1" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#38B48B"/><stop offset="0.9" stop-color="#35A68D" stop-opacity="0"/></linearGradient></defs></svg><svg class="logo logo-dark" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg1d)"/><defs><linearGradient id="lg1d" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#EAF1F7"/><stop offset="0.9" stop-color="#EAF1F7" stop-opacity="0"/></linearGradient></defs></svg></a>
     <nav aria-label="主選單">
       <ul>
         <li><a href="#work">Works</a></li>
@@ -575,26 +657,29 @@
 
   <section class="hero" id="hero">
     <div class="copy">
+      <div class="meta"><span>Web Designer</span><span class="vt">Portfolio (2026)</span></div>
+      <div class="wordmark" aria-hidden="true">BRIAN</div>
       <h1>
         <span class="word"><span style="--i:0">清楚的網頁設計，</span></span>
-        <span class="word"><span style="--i:1">讓企業把話說明白。</span></span>
+        <span class="word"><span style="--i:1">讓企業<span class="hl">把話說明白</span>。</span></span>
       </h1>
       <p class="lead">專注企業官網與品牌形象網站設計</p>
       <div class="actions">
         <a class="btn" href="#work">查看作品 <svg class="i"><use href="#i-arrow"/></svg></a>
         <a class="btn ghost" href="#contact">與我聯絡</a>
       </div>
+      <div class="pills"><span>Corporate</span><span>Listed Co.</span><span>Brand</span><span>WordPress</span></div>
     </div>
     <div class="ring-stage" id="ringStage" aria-hidden="true">
       <div class="ring-tilt"><div class="ring" id="ring"></div></div>
     </div>
-    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+    <div class="scroll-cue"><span>Scroll to explore</span><span class="line"></span></div>
   </section>
 
   <section class="section" id="work">
     <div class="wrap">
-      <div class="section-head reveal" data-n="01 / Works">
-        <h2 class="split">精選作品</h2>
+      <div class="section-head reveal" data-n="(01) Selected Works">
+        <h2>精選作品，<br><span class="hl">從架構到上線。</span></h2>
         <p class="lead">四個企業官網專案，從資訊架構到上線。點進去看完整的設計說明與內頁。</p>
       </div>
       <div class="tiles" id="tiles"></div>
@@ -604,11 +689,11 @@
 
   <section class="section" id="approach">
     <div class="wrap">
-      <div class="section-head reveal" data-n="02 / Approach"><h2 class="split">工作方式</h2><p class="lead">三個原則，貫穿每一個專案。</p></div>
+      <div class="section-head reveal" data-n="(02) Approach"><h2>工作方式，<br><span class="hl">三個原則。</span></h2><p class="lead">每個專案都從釐清對象開始，用最少的色彩讓內容成為主角，最後交付一個客戶能自己維護的網站。</p></div>
       <div class="cols reveal">
-        <div><div class="icon"><svg class="i"><use href="#i-users"/></svg></div><h3>先釐清網站要對誰說話</h3><p>企業官網通常同時面對客戶、投資人與求職者。開工前先定義每一種對象要找什麼，再決定資訊架構與頁面順序。</p></div>
-        <div><div class="icon"><svg class="i"><use href="#i-palette"/></svg></div><h3>色彩用得少，出現才有份量</h3><p>每個專案只保留一個主色，用在標題、按鈕與關鍵數字；其餘交給留白、攝影與中性色，讓內容成為主角。</p></div>
-        <div><div class="icon"><svg class="i"><use href="#i-handoff"/></svg></div><h3>交付客戶能自己維護的網站</h3><p>以 WordPress 與 Elementor 建置，最新消息、案例與產品頁都能由客戶自行更新，不必每次回頭找設計師。</p></div>
+        <div><span class="idx">01</span><div class="icon"><svg class="i"><use href="#i-users"/></svg></div><h3>先釐清網站要對誰說話</h3><p>企業官網通常同時面對客戶、投資人與求職者。開工前先定義每一種對象要找什麼，再決定資訊架構與頁面順序。</p></div>
+        <div><span class="idx">02</span><div class="icon"><svg class="i"><use href="#i-palette"/></svg></div><h3>色彩用得少，出現才有份量</h3><p>每個專案只保留一個主色，用在標題、按鈕與關鍵數字；其餘交給留白、攝影與中性色，讓內容成為主角。</p></div>
+        <div><span class="idx">03</span><div class="icon"><svg class="i"><use href="#i-handoff"/></svg></div><h3>交付客戶能自己維護的網站</h3><p>以 WordPress 與 Elementor 建置，最新消息、案例與產品頁都能由客戶自行更新，不必每次回頭找設計師。</p></div>
       </div>
     </div>
   </section>
@@ -617,14 +702,14 @@
     <div class="wrap">
       <div class="photo reveal"><img id="me" src="" alt="Brian，網頁設計師" loading="lazy"></div>
       <div class="reveal">
-        <p class="eyebrow">About</p>
-        <h2 class="split">關於我</h2>
+        <p class="eyebrow">(03) About</p>
+        <h2>關於我</h2>
         <p>嗨！我是一名網頁設計師，目前任職於振作雲科技，快兩年的時間完成 8 個企業官網，其中 4 件從設計到製作基本都由我獨立負責完成。</p>
         <p>製作的產業橫跨製造、營造、室內設計等，內容型態差異很大。我擅長的是快速摸清一個陌生產業的邏輯，把龐雜且面向多種對象的資訊，整理成一眼讀懂的頁面。</p>
         <div class="stats-row">
-          <div><b><span data-count="8">0</span><i>+</i></b><small>企業官網</small></div>
-          <div><b><span data-count="4">0</span></b><small>獨立負責</small></div>
-          <div><b><span data-count="2">0</span><i>yr</i></b><small>設計經驗</small></div>
+          <div><b><span data-count="8">0</span><i>+</i></b><small>01 · Websites</small></div>
+          <div><b><span data-count="4">0</span></b><small>02 · Solo builds</small></div>
+          <div><b><span data-count="2">0</span><i>yr</i></b><small>03 · Years</small></div>
         </div>
         <div class="actions" id="contact">
           <a class="btn" href="mailto:briankuo880331@gmail.com"><svg class="i"><use href="#i-mail"/></svg>寄信給我</a>
@@ -637,13 +722,14 @@
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="BRIAN"><svg class="logo logo-light" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg2)"/><defs><linearGradient id="lg2" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#6E6E73"/><stop offset="0.9" stop-color="#6E6E73" stop-opacity="0"/></linearGradient></defs></svg><svg class="logo logo-dark" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg2d)"/><defs><linearGradient id="lg2d" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#536878"/><stop offset="0.9" stop-color="#536878" stop-opacity="0"/></linearGradient></defs></svg></a>
+    <a class="brand" href="#top" aria-label="BRIAN"><svg class="logo logo-light" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg2)"/><defs><linearGradient id="lg2" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#6E6E73"/><stop offset="0.9" stop-color="#6E6E73" stop-opacity="0"/></linearGradient></defs></svg><svg class="logo logo-dark" viewBox="0 0 92 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BRIAN"><path d="M14.3271 0C14.6595 9.82887e-06 15.0582 0.0221065 15.5234 0.0664062C16.011 0.110728 16.4877 0.233171 16.9531 0.432617C17.4405 0.60991 17.8392 0.898061 18.1494 1.29688C18.4595 1.67353 18.6152 2.21596 18.6152 2.9248C18.6152 3.67815 18.3822 4.25444 17.917 4.65332C17.4516 5.03005 16.9196 5.29605 16.3213 5.45117C15.723 5.58413 15.213 5.65137 14.792 5.65137H14.1943V5.9502C14.7704 5.95022 15.3578 6.01648 15.9561 6.14941C16.5765 6.26024 17.1528 6.50418 17.6846 6.88086C18.2163 7.23543 18.6371 7.7675 18.9473 8.47656C19.0709 8.74036 19.1714 9.03788 19.249 9.36914C20.0059 9.34935 20.5298 9.18628 20.8203 8.875C21.1525 8.52051 21.3193 8.01116 21.3193 7.34668V4.88672C21.3193 4.22196 21.1527 3.68989 20.8203 3.29102C20.5101 2.86998 19.9339 2.65919 19.0918 2.65918V0H33.4189C33.7513 1.32061e-05 34.15 0.0221051 34.6152 0.0664062C35.1028 0.110728 35.5795 0.233171 36.0449 0.432617C36.5323 0.609912 36.931 0.898079 37.2412 1.29688C37.5513 1.67353 37.707 2.21599 37.707 2.9248C37.707 3.67814 37.5072 4.25444 37.1084 4.65332C36.7317 5.03005 36.2438 5.29605 35.6455 5.45117C35.0694 5.58411 34.4821 5.65137 33.8838 5.65137H33.6182V5.9834C34.615 5.9834 35.3461 6.10506 35.8115 6.34863C36.2768 6.57021 36.6101 6.84733 36.8096 7.17969C37.0312 7.5121 37.241 7.84532 37.4404 8.17773C37.662 8.51009 37.9843 8.79826 38.4053 9.04199C38.7982 9.24858 39.4128 9.35726 40.249 9.37109C41.0419 9.35868 41.5877 9.18348 41.8867 8.8418C42.2191 8.48723 42.3857 7.95516 42.3857 7.24609V4.95312C42.3857 4.24401 42.2191 3.6899 41.8867 3.29102C41.5765 2.86996 41.0003 2.65918 40.1582 2.65918V0H49.8643V2.65918C49.0445 2.65926 48.4681 2.89213 48.1357 3.35742C47.8035 3.80058 47.6377 4.33274 47.6377 4.95312V7.24609C47.6377 7.86641 47.8035 8.37655 48.1357 8.77539C48.4367 9.13655 48.938 9.33205 49.6387 9.36621C50.0547 9.35054 50.41 9.29991 50.7041 9.20801C51.0808 9.07506 51.4352 8.82 51.7676 8.44336C52.1 8.04447 52.4995 7.46831 52.9648 6.71484L56.9863 0H63.4355L67.1582 6.61523C67.5792 7.34648 67.9226 7.91168 68.1885 8.31055C68.4766 8.70943 68.7988 8.98648 69.1533 9.1416C69.4984 9.28357 69.9642 9.35917 70.5508 9.37109C71.5066 9.35788 72.1129 9.17161 72.3691 8.80859C72.6349 8.43187 72.7676 7.88865 72.7676 7.17969V4.95312C72.7676 4.28842 72.6018 3.74524 72.2695 3.32422C71.9372 2.88108 71.3276 2.65925 70.4414 2.65918V0H78.1533L84.1699 7.84473V4.88672C84.1699 4.22194 84.0033 3.6899 83.6709 3.29102C83.3606 2.86996 82.7845 2.65918 81.9424 2.65918V0H91.6484V2.65918C90.8287 2.65925 90.2523 2.89212 89.9199 3.35742C89.5876 3.82275 89.4219 4.38801 89.4219 5.05273V7.17969C89.4219 7.84434 89.5877 8.37653 89.9199 8.77539C90.2523 9.17422 90.8287 9.37397 91.6484 9.37402V23.8008H82.0088V9.20801L77.8535 3.82227V7.14648C77.8535 8.52045 78.6294 9.20801 80.1807 9.20801V23.8008H59.8457V9.20801H60.377C60.7315 9.20801 61.0086 9.10765 61.208 8.9082C61.4074 8.68661 61.5078 8.40951 61.5078 8.07715C61.5077 7.76715 61.4073 7.51282 61.208 7.31348C61.0086 7.11403 60.7315 7.01367 60.377 7.01367H57.0527C56.654 7.01374 56.3657 7.13619 56.1885 7.37988C56.0115 7.60126 55.923 7.84476 55.9229 8.11035C55.9229 8.46469 56.0336 8.74199 56.2549 8.94141C56.4986 9.11862 56.7648 9.20794 57.0527 9.20801H57.917V23.8008H40.4326L40.1357 23.834C39.7909 23.8672 39.3026 23.9003 38.6709 23.9336C37.851 23.9779 36.9756 24 36.0449 24C34.5823 24 33.4631 23.8223 32.6875 23.4678C31.9341 23.1133 31.4131 22.6262 31.125 22.0059C30.8591 21.3632 30.7266 20.6425 30.7266 19.8447V9.37402C30.7266 8.64278 30.5489 8.05551 30.1943 7.6123C29.8619 7.16909 29.3189 6.94727 28.5654 6.94727H26.5713C26.5713 7.72276 26.737 8.29905 27.0693 8.67578C27.4017 9.03031 27.9891 9.20796 28.8311 9.20801V23.8008H19.0918V20.0664C18.7143 21.0939 18.0677 21.9394 17.1523 22.6035C16.0443 23.4013 14.7143 23.8008 13.1631 23.8008H0V9.37402C0.842109 9.37402 1.41827 9.20741 1.72852 8.875C2.06075 8.52051 2.22747 8.01119 2.22754 7.34668V4.88672C2.22754 4.22194 2.06088 3.6899 1.72852 3.29102C1.41827 2.86996 0.842109 2.65918 0 2.65918V0H14.3271ZM7.81152 9.20801H11.6016C12.532 9.2079 12.9971 8.84155 12.9971 8.11035C12.9969 7.37945 12.5429 7.01377 11.6348 7.01367H7.81152V9.20801ZM57.0527 5.05273H60.2773L58.6816 2.29395L57.0527 5.05273ZM26.5713 4.82031H30.0615C30.4825 4.82028 30.8149 4.73096 31.0586 4.55371C31.3022 4.35428 31.4238 4.07714 31.4238 3.72266C31.4237 3.41256 31.3133 3.15738 31.0918 2.95801C30.8702 2.75872 30.5266 2.65921 30.0615 2.65918H26.5713V4.82031ZM7.81152 4.68652H10.9365C11.8671 4.68648 12.332 4.36527 12.332 3.72266C12.332 3.41256 12.2215 3.15738 12 2.95801C11.7784 2.75873 11.4349 2.6592 10.9697 2.65918H7.81152V4.68652Z" fill="url(#lg2d)"/><defs><linearGradient id="lg2d" x1="45.8242" y1="0" x2="45.8242" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0.2" stop-color="#8593A3"/><stop offset="0.9" stop-color="#8593A3" stop-opacity="0"/></linearGradient></defs></svg></a>
+    <nav class="foot-nav" aria-label="頁尾導覽"><a href="#work"><b>01</b>Works</a><a href="#approach"><b>02</b>Approach</a><a href="#about"><b>03</b>About</a><a href="#contact"><b>04</b>Contact</a></nav>
     <ul>
       <li><a href="https://pda.104.com.tw/profile/share/eWj6CHsbM4Yqv421vqiNE462f9yHclEP" target="_blank" rel="noopener"><svg class="ring-svg" viewBox="0 0 100 100" aria-hidden="true"><circle class="base" cx="50" cy="50" r="49"/><circle class="draw" cx="50" cy="50" r="49"/></svg><span class="in"><svg class="i"><use href="#u-link"/></svg>104 Job Bank</span></a></li>
       <li><a href="https://www.behance.net/briankuo88d9c8" target="_blank" rel="noopener"><svg class="ring-svg" viewBox="0 0 100 100" aria-hidden="true"><circle class="base" cx="50" cy="50" r="49"/><circle class="draw" cx="50" cy="50" r="49"/></svg><span class="in"><svg class="i"><use href="#u-behance"/></svg>Behance</span></a></li>
       <li><a href="mailto:briankuo880331@gmail.com"><svg class="ring-svg" viewBox="0 0 100 100" aria-hidden="true"><circle class="base" cx="50" cy="50" r="49"/><circle class="draw" cx="50" cy="50" r="49"/></svg><span class="in"><svg class="i"><use href="#u-mail"/></svg>Email</span></a></li>
     </ul>
-    <p class="copy">© 2026 BRIAN</p>
+    <p class="copy">© 2026 Brian · Web Design Portfolio</p>
   </div>
 </footer>
 
@@ -664,10 +750,10 @@
       <p class="lead" id="p-lead"></p>
       <div class="actions"><a class="btn" id="p-url" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#i-globe"/></svg>前往網站</a></div>
       <div class="p-meta">
-        <div><span class="ic"><svg class="i"><use href="#i-building"/></svg></span><div><strong>客戶</strong><span id="p-client"></span></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span><div><strong>類型</strong><span id="p-type"></span></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-pen"/></svg></span><div><strong>負責項目</strong><span id="p-role"></span></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-code"/></svg></span><div><strong>建置</strong><span id="p-stack"></span></div></div>
+        <div><span class="ic"><svg class="i"><use href="#i-building"/></svg></span><div><strong>01 · Client</strong><span id="p-client"></span></div></div>
+        <div><span class="ic"><svg class="i"><use href="#i-layers"/></svg></span><div><strong>02 · Type</strong><span id="p-type"></span></div></div>
+        <div><span class="ic"><svg class="i"><use href="#i-pen"/></svg></span><div><strong>03 · Role</strong><span id="p-role"></span></div></div>
+        <div><span class="ic"><svg class="i"><use href="#i-code"/></svg></span><div><strong>04 · Stack</strong><span id="p-stack"></span></div></div>
       </div>
       <div class="stage">
         <div class="frame" aria-hidden="true">
@@ -681,14 +767,14 @@
 
   <section class="p-section">
     <div class="wrap narrow">
-      <h2><svg class="i"><use href="#i-info"/></svg>專案背景</h2>
+      <h2 data-n="(01) Overview"><svg class="i"><use href="#i-info"/></svg>專案背景</h2>
       <div id="p-brief"></div>
     </div>
   </section>
 
   <section class="p-section">
     <div class="wrap narrow">
-      <h2><svg class="i"><use href="#i-palette"/></svg>設計理念</h2>
+      <h2 data-n="(02) Concept"><svg class="i"><use href="#i-palette"/></svg>設計理念</h2>
       <div id="p-concept"></div>
       <div class="tags" id="p-tags"></div>
     </div>
@@ -696,7 +782,7 @@
 
   <section class="p-section">
     <div class="wrap narrow">
-      <h2><svg class="i"><use href="#i-layout"/></svg>內頁</h2>
+      <h2 data-n="(03) Pages"><svg class="i"><use href="#i-layout"/></svg>內頁</h2>
       <p>點擊任一頁面可放大瀏覽整頁，放大後可左右切換。</p>
     </div>
     <div class="gallery" id="gallery"></div>
@@ -711,7 +797,7 @@
     <div class="bg" id="p-next-bg"></div>
     <div class="veil"></div>
     <div class="inner">
-      <p>下一個作品</p>
+      <p>Next project</p>
       <span class="name"><span id="p-next-name"></span><svg class="i"><use href="#i-chev-r"/></svg></span>
     </div>
   </button>
@@ -854,6 +940,7 @@
   $('tiles').innerHTML = order.map(k => {
     const p = projects[k];
     return `<button class="tile ${p.size} reveal" data-project="${k}">
+      <span class="num">(0${order.indexOf(k) + 1}) ${p.type}</span>
       <h3>${p.title}</h3><p>${p.lead}</p><span class="more">查看專案</span>
       <div class="art"><div class="browser" aria-hidden="true">
         <div class="bar"><i></i><i></i><i></i><b>${host(p.url)}</b></div>
@@ -864,6 +951,7 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
 
   /* ---------- Theme toggle ---------- */
   $('themeToggle').addEventListener('click', () => {
@@ -963,7 +1051,7 @@
     $('gallery').innerHTML = p.pages.map(([cap, id], i) =>
       `<figure data-i="${i}" tabindex="0" role="button" aria-label="放大瀏覽 ${cap}">
         <div class="thumb"><img src="${img(key, i + 1, id)}" alt="${p.title} ${cap}" loading="lazy"><div class="mask"><span><svg class="i"><use href="#i-plus"/></svg></span></div></div>
-        <figcaption>${cap}</figcaption></figure>`).join('');
+        <figcaption data-i="${String(i + 1).padStart(2, "0")}">${cap}</figcaption></figure>`).join('');
     $('gallery').scrollLeft = 0;
     const n = projects[p.next];
     $('p-next-name').textContent = n.title; $('p-next').dataset.project = p.next;
