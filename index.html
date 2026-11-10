@@ -496,6 +496,113 @@ dialog#post{width:100%;max-width:none;max-height:none;margin:0;padding:0;border:
 .foot nav{display:flex;gap:1.25rem}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}}
+
+/* ===== alignment & line system (overrides) =====
+   One content edge everywhere: var(--pad). Horizontal rules sit inside that edge;
+   vertical rules only separate cells inside tables/grids. */
+.ph{margin:0 var(--pad);padding:7.5rem 0 1.875rem}
+.wlist{margin:0 var(--pad)}
+.wcard{padding:1.875rem 0 1.875rem;border-right:0}
+.wcard:nth-child(odd){padding-right:1.875rem;border-right:1px solid var(--border)}
+.wcard:nth-child(even){padding-left:1.875rem}
+.wcard .ci{padding:0}
+.wcard .fl{display:none}
+.wcard .num{right:0;top:0}
+.wcard .cc{padding:1.1rem 0 0}
+.ahd{padding:7.5rem var(--pad) 0}
+.ahd-top{padding:0 0 1.875rem}
+.adesc{padding:3.75rem 0 6rem}
+.asec{margin:0 var(--pad);padding:6rem 0}
+.asec .ag{padding:0}
+.abg{margin:0 var(--pad)}
+.ctg{padding:3.75rem var(--pad) 6rem}
+.foot{margin:0 var(--pad);padding:1.875rem 0 calc(var(--hh) + 1.25rem)}
+#menu::before,#menu::after{display:none}
+
+/* post */
+#post{--pp:var(--pad)}
+.pbar{padding:0 var(--pad)}
+.phd{padding:0 var(--pad)}
+.phc{padding:3.5rem 0 3rem;align-items:flex-end}
+.plink{margin:0 var(--pad);padding:0;height:3.75rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pcover{padding:2rem var(--pad) 0}
+.pcover::before,.pcover::after{display:none}
+.pcover .pb{border:0;aspect-ratio:16/8}
+.pov{margin:0 var(--pad);padding:3.5rem 0;border-bottom:1px solid var(--border)}
+.povi{padding:0}
+.povi>div:first-child{padding-left:0}
+.povt{padding-right:0}
+.psx,.pcrea{margin:0 var(--pad);border-bottom:1px solid var(--border)}
+.pch{padding:0}
+.pchi{padding:3.5rem 0 1.5rem}
+.pbody{padding:0 0 3.5rem}
+.pbody>.in2{border-left:0;border-right:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.aleg{padding:1rem 0}
+.sroot{padding:1rem 0}
+.scol:first-child{padding-left:0}
+.smeta div:first-child{padding-left:0}
+.ct2>div:first-child{padding-left:0}.ct2>div:last-child{padding-right:0}
+.roles li{padding-left:0}
+.st2>div:nth-child(even){padding-right:0}
+.rwd>div:first-child{padding-left:0}.rwd>div:last-child{padding-right:0}
+/* page gallery: compact grid instead of one tall row per page */
+.pgal{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem 1.5rem;padding:0 0 3.5rem}
+.pgal figure{cursor:zoom-in}
+.pgal .pw{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--bg2);outline:1px solid var(--border);container-type:size}
+.pgal .pw img{position:absolute;left:0;top:0;width:100%;height:auto;transition:transform 7s cubic-bezier(.45,.05,.4,1)}
+@media (hover:hover){.pgal figure:hover .pw img{transform:translateY(calc(-100% + 100cqh))}}
+.pgal figcaption{display:flex;gap:.75rem;padding-top:.7rem;font-size:.8125rem}
+.pgal figcaption .lbl{opacity:.5;min-width:1.5rem}
+.pcredit{margin:0 var(--pad);padding:3.5rem 0}
+.pcredit .ci{padding:0}
+.pnext{padding:3.5rem var(--pad)}
+@media (max-width:1000px){.pgal{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:768px){
+  .ph{margin:0 var(--pad);padding:3.5rem 0 1.25rem}
+  .wcard,.wcard:nth-child(odd),.wcard:nth-child(even){padding:1.25rem 0;border-right:0}
+  .ahd{padding:3.5rem var(--pad) 0}
+  .asec{padding:3.5rem 0}
+  .phc{padding:2.5rem 0 2rem}
+  .plink{padding:0}
+  .pcover{padding:1.25rem var(--pad) 0}.pcover .pb{aspect-ratio:4/3}
+  .pov{padding:2.5rem 0}
+  .pchi{padding:2.5rem 0 1.25rem}
+  .pbody{padding:0 0 2.5rem}
+  .scol{padding-left:0;padding-right:0}
+  .ct2>div{padding-left:0;padding-right:0}
+  .roles li{padding-right:0}
+  .st2>div:nth-child(odd){padding-left:0}
+  .rwd>div{padding-top:1rem;padding-bottom:1rem}
+  .rwd>div:first-child{padding-right:0}
+  .rwd>div:nth-child(2){padding-left:0}
+  .pgal{grid-template-columns:1fr 1fr;gap:1.25rem .9rem;padding-bottom:2.5rem}
+  .pcredit{padding:2.5rem 0}
+  .pnext{padding:2.5rem var(--pad)}
+}
+
+body[data-view=home] .top{border-bottom:1px solid var(--border-a)}
+body[data-view=home] .bot{border-top:1px solid var(--border-a)}
+body.intro .top,body.intro .bot{border-color:transparent!important}
+.ctg .ls{align-content:start}
+/* home: header items sit on the same edge as the grid; lines never cross the bars */
+.mbtn{right:var(--pad)}
+.copy{left:var(--pad)}
+.scr{right:calc(var(--pad) - .25rem)}
+.info{left:var(--pad)}
+.cnt{right:var(--pad)}
+.clip .cl.L,.clip .cl.R{top:var(--hh);bottom:var(--hh);height:auto}
+body.intro .clip .cl.L,body.intro .clip .cl.R{top:0;bottom:0}
+@media (orientation:portrait){
+  .clip{--cx:var(--pad)}
+  .info{left:var(--pad);right:var(--pad)}
+  .crea{left:var(--pad)}
+  .cnt{right:var(--pad)}
+}
+@media (max-width:768px){
+  .mbtn{right:var(--pad)}
+  .copy{left:var(--pad)}
+  .scr{right:var(--pad)}
+}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -875,7 +982,7 @@ dialog#post{width:100%;max-width:none;max-height:none;margin:0;padding:0;border:
         <div class="pbody"><div class="in2 smap">
           <div class="aleg">${Object.entries(AUD).map(([k,v])=>`<span class="${aus.has(k)?'':'off'}"><i class="mk ${k}">${v[0]}</i>${v}${aus.has(k)?'':'（本案不適用）'}</span>`).join('')}</div>
           <div class="sroot"><b>首頁</b><span class="lbl">${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</span></div>
-          <div class="scols">${p.sitemap.map(nd=>`<div class="scol"><p class="h">${nd[0]}</p><div class="mks">${nd[1].split('').map(a=>`<i class="mk ${a}" title="${AUD[a]}">${AUD[a][0]}</i>`).join('')}</div>${kidList(nd[2],6)}</div>`).join('')}</div>
+          <div class="scols">${p.sitemap.map(nd=>`<div class="scol"><p class="h">${nd[0]}</p><div class="mks">${nd[1].split('').map(a=>`<i class="mk ${a}" title="${AUD[a]}">${AUD[a][0]}</i>`).join('')}</div>${kidList(nd[2],4)}</div>`).join('')}</div>
           <div class="smeta"><div><span class="lbl">Main menu</span><b>${p.sitemap.length}</b><span class="lbl">個主選單</span></div><div><span class="lbl">Pages</span><b>${total}</b><span class="lbl">個頁面（含首頁）</span></div><div><span class="lbl">Audience</span><b>${aus.size}</b><span class="lbl">種主要受眾</span></div></div>
         </div></div>
       </section>
@@ -916,7 +1023,7 @@ dialog#post{width:100%;max-width:none;max-height:none;margin:0;padding:0;border:
 
       ${Object.keys(groups).map((g,gi)=>`<section class="pcrea">
         <div class="pch"><div class="pchi"><div><h2 class="sect">${g}<small style="display:block;font-size:.8125rem;font-weight:400;opacity:.6;margin-top:.15rem">${labels[g]||g}</small></h2></div>${gi===0?`<p class="lk"><a class="ul" href="${p.url}" target="_blank" rel="noopener">${p.url}<span class="ic">${ext}</span></a></p>`:''}</div></div>
-        ${groups[g].map(pg=>{no++;return `<div class="pimg"><span class="no">${pad(no)}</span><div class="pw tall px" data-id="${pg[1]}">${img(pg[1],1400,pg[0])}</div><p class="cap">${pg[0]}</p></div>`}).join('')}
+        <div class="pgal">${groups[g].map(pg=>{no++;return `<figure><div class="pw px" data-id="${pg[1]}" data-delay="${(no%4)*80}">${img(pg[1],900,pg[0])}</div><figcaption><span class="lbl">${pad(no)}</span>${pg[0]}</figcaption></figure>`}).join('')}</div>
       </section>`).join('')}
       <section class="pcredit"><div class="ci"><h2 class="sect">Credit</h2>
         <ul class="cl">
