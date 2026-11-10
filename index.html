@@ -661,10 +661,8 @@ body.intro .info,body.intro .cnt{opacity:0}
 .pane.L{left:0;width:var(--cx)}
 .pane.R{right:0;width:var(--cx)}
 body.intro .pane{opacity:0}
-@media (orientation:portrait){
-  .pane.L{left:0;right:0;width:auto;bottom:auto;height:calc(var(--cy) - var(--hh))}
-  .pane.R{left:0;right:0;width:auto;top:auto;height:calc(var(--cy) - var(--hh))}
-}
+.pane.T{left:var(--cx);right:var(--cx);top:var(--hh);bottom:auto;height:calc(var(--cy) - var(--hh))}
+.pane.B{left:var(--cx);right:var(--cx);bottom:var(--hh);top:auto;height:calc(var(--cy) - var(--hh))}
 /* header/footer bars: same frosting, no borders other than the grid line */
 body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,.62)}
 .pnext .gpanel{position:relative}
@@ -688,6 +686,40 @@ body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,
   #v-works .ph{padding:3rem 0 1rem}
   .info{height:6.25rem}.info .t{font-size:1.25rem}
 }
+
+/* ===== v7: alignment system, clean header ===== */
+/* --pad = where text starts; in portrait the window lines sit .75rem outside it */
+@media (max-width:768px){:root{--pad:2rem}}
+@media (orientation:portrait){.clip{--cx:calc(var(--pad) - .75rem)}}
+/* header: logo-type left, menu right, both on the text edge */
+.title{inset:0 auto 0 var(--pad);margin:auto 0;font-size:.9375rem;font-weight:500;letter-spacing:.02em}
+body.intro .title{transform:none}
+.mbtn{right:var(--pad)}
+.copy{left:var(--pad)}
+.scr{right:var(--pad)}
+/* no frosted band: header is clear, with a soft fade only where content scrolls under it */
+.top,.bot,body[data-view=home] .top,body[data-view=home] .bot{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+@media (max-width:768px){.top,.bot{border:0!important}}
+body:not([data-view=home]) .top{background:linear-gradient(to bottom,rgba(255,255,255,.96) 0%,rgba(255,255,255,.85) 55%,rgba(255,255,255,0) 100%)!important}
+body[data-view=home] .top{border-bottom:1px solid var(--border-a)}
+body[data-view=home] .bot{border-top:1px solid var(--border-a)}
+body.intro .top,body.intro .bot{border-color:transparent!important}
+.pbar{background:linear-gradient(to bottom,rgba(255,255,255,.96) 0%,rgba(255,255,255,.88) 60%,rgba(255,255,255,0) 100%);-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:0}
+/* works filter bar sits right under the header without a glass slab */
+.wbar{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+.wbar::before{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* home info/tags/counter all on the text edge */
+@media (orientation:landscape){.crea{left:calc(50vw + min(17.8vw,28rem) + 1.5rem)}}
+.info{left:var(--pad);margin:auto 0}
+.cnt{right:var(--pad)}
+@media (orientation:portrait){
+  .info{left:var(--pad);right:var(--pad);width:auto;top:calc(var(--hh) + 1rem)}
+  .crea{left:var(--pad)}
+  .cnt{right:var(--pad)}
+}
+/* v7c: one even frosted wash over the whole background (no bands, no blocks) */
+.pane{display:none}
+.hbg::after{opacity:.5!important}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -696,12 +728,11 @@ body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,
 
 <header>
   <div class="top">
-    <a class="title" id="title" href="#home" data-split>Brian Kuo Web Design Portfolio</a>
+    <a class="title" id="title" href="#home" data-split>Brian Portfolio</a>
     <button class="mbtn" id="mbtn" aria-expanded="false" aria-controls="menu"><span class="in"><span>Menu</span><span>Close</span></span></button>
   </div>
   <div class="bot">
     <p class="copy">©2026</p>
-    <a class="titleJa" id="titleJa" href="#about" data-split>郭 Brian　網頁設計師</a>
     <div class="scr" aria-hidden="true"></div>
   </div>
 </header>
@@ -731,7 +762,7 @@ body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,
   <section class="view" id="v-home" aria-label="Selected works">
     <h1 style="position:absolute;opacity:0">Brian Kuo 網頁設計作品集</h1>
     <div class="hbg" id="hbg"></div>
-    <div class="clip" id="clip"><span class="pane L"></span><span class="pane R"></span><span class="cl L"></span><span class="cl R"></span><span class="cl T"></span><span class="cl B"></span><div class="body" id="clipBody"></div></div>
+    <div class="clip" id="clip"><span class="pane L"></span><span class="pane R"></span><span class="pane T"></span><span class="pane B"></span><span class="cl L"></span><span class="cl R"></span><span class="cl T"></span><span class="cl B"></span><div class="body" id="clipBody"></div></div>
     <a class="hit" id="hit" href="#work-fusheng" aria-label="View project"></a>
     <div class="info" id="info"></div>
     <div class="crea" id="crea"></div>
@@ -1180,7 +1211,7 @@ body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,
 
   /* ---------- intro ---------- */
   route();
-  typeIn($('#title'),300); typeIn($('#titleJa'),500);
+  typeIn($('#title'),300);
   setTimeout(()=>{ frame.classList.add('open'); B.classList.remove('intro'); if(B.dataset.view==='home') __px.pixelate(document.querySelector(`.shot[data-i="${idx}"] .win`),700); if(B.dataset.view!=='home'&&!post.classList.contains('open')) B.classList.remove('lock'); },reduce?0:1300);
 })();
 </script>
