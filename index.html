@@ -617,22 +617,16 @@ body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,
 body.intro .top,body.intro .bot{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
 body.menu-open .top{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
 /* home info / tags / counter on glass */
-.info{height:8.25rem;padding:0 1.5rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b);overflow:hidden;transition:opacity .8s}
-.info .g{left:1.5rem;right:1.5rem;width:auto}
 body.intro .info,body.intro .cnt{opacity:0}
 .crea li .m{clip-path:inset(-20% -5%)}
 .crea li span{font-size:.8125rem}
-.crea li .m>span{display:inline-block;padding:.3rem .7rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b)}
+
 .crea li+li{margin-top:.4rem}
-.cnt{width:auto;padding:.9rem .65rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b);transition:opacity .8s}
 .clip .body,.clip .shot .win{box-shadow:0 30px 70px -30px rgba(0,0,0,.35)}
 .stk div{background:rgba(22,22,22,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff}
-@media (orientation:portrait){.info{height:6.5rem;padding:0 1.1rem}.info .g{left:1.1rem;right:1.1rem}.cnt{padding:.45rem .7rem}}
 /* works: sticky glass filter bar */
-#v-works .ph{position:sticky;top:var(--hh);z-index:20;margin:0;padding:7.5rem var(--pad) 1.5rem;background:rgba(255,255,255,.6);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border-bottom:1px solid var(--border)}
-@media (max-width:768px){#v-works .ph{padding:3.5rem var(--pad) 1rem;position:relative;top:0}}
 /* post: glass next-project panel, lightbox, about caption */
-.pnext .gpanel{position:relative;display:inline-block;padding:1.5rem 2rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b)}
+
 .pnext .bg{opacity:.55!important;filter:none!important}
 .pnext .bg img{filter:blur(6px) saturate(1.1)}
 #lb{background:rgba(255,255,255,.6)!important;-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
@@ -657,6 +651,43 @@ body.intro .info,body.intro .cnt{opacity:0}
 }
 .wcard .cw,.pgal .pw{overflow:hidden}
 .wcard .cw img,.pgal .pw img{transform-origin:50% 0}
+
+/* ===== v6: glass as panes inside the grid (no boxes, no borders) ===== */
+.info{height:8rem}
+.info .t{font-size:1.5rem}
+.cnt{transition:opacity .8s}
+/* frosted side panes = exactly the grid cells beside the window */
+.pane{position:absolute;z-index:0;top:var(--hh);bottom:var(--hh);background:rgba(255,255,255,.5);-webkit-backdrop-filter:saturate(150%) blur(22px);backdrop-filter:saturate(150%) blur(22px);transition:opacity 1.2s ease}
+.pane.L{left:0;width:var(--cx)}
+.pane.R{right:0;width:var(--cx)}
+body.intro .pane{opacity:0}
+@media (orientation:portrait){
+  .pane.L{left:0;right:0;width:auto;bottom:auto;height:calc(var(--cy) - var(--hh))}
+  .pane.R{left:0;right:0;width:auto;top:auto;height:calc(var(--cy) - var(--hh))}
+}
+/* header/footer bars: same frosting, no borders other than the grid line */
+body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,.62)}
+.pnext .gpanel{position:relative}
+.pnext .bg{opacity:.35!important}
+.pnext .bg img{filter:blur(10px) saturate(1.1)}
+.pnext::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.75) 45%,rgba(255,255,255,.2) 100%);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.pnext>*{position:relative;z-index:1}
+.pnext .bg{z-index:0!important;position:absolute!important}
+
+/* works: compact sticky filter bar */
+.wbar{position:sticky;top:var(--hh);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;height:3.25rem;margin:0 var(--pad);background:rgba(255,255,255,.78);-webkit-backdrop-filter:saturate(150%) blur(18px);backdrop-filter:saturate(150%) blur(18px);border-bottom:1px solid var(--border)}
+.wbar::before{content:"";position:absolute;inset:0 calc(var(--pad) * -1);z-index:-1;background:inherit;-webkit-backdrop-filter:inherit;backdrop-filter:inherit}
+#v-works .ph{border-bottom:0;padding-bottom:1.25rem}
+.wbar .filter{overflow-x:auto;scrollbar-width:none;white-space:nowrap;gap:1.25rem}
+.wbar .filter::-webkit-scrollbar{display:none}
+.wbar .count{flex:none;font-size:.8125rem;color:var(--ink2)}
+.top{background:rgba(255,255,255,.78)}
+@media (max-width:768px){
+  .wbar{height:3rem}
+  .wbar .filter{gap:1rem;font-size:.8125rem}
+  #v-works .ph{padding:3rem 0 1rem}
+  .info{height:6.25rem}.info .t{font-size:1.25rem}
+}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -700,7 +731,7 @@ body.intro .info,body.intro .cnt{opacity:0}
   <section class="view" id="v-home" aria-label="Selected works">
     <h1 style="position:absolute;opacity:0">Brian Kuo 網頁設計作品集</h1>
     <div class="hbg" id="hbg"></div>
-    <div class="clip" id="clip"><span class="cl L"></span><span class="cl R"></span><span class="cl T"></span><span class="cl B"></span><div class="body" id="clipBody"></div></div>
+    <div class="clip" id="clip"><span class="pane L"></span><span class="pane R"></span><span class="cl L"></span><span class="cl R"></span><span class="cl T"></span><span class="cl B"></span><div class="body" id="clipBody"></div></div>
     <a class="hit" id="hit" href="#work-fusheng" aria-label="View project"></a>
     <div class="info" id="info"></div>
     <div class="crea" id="crea"></div>
@@ -710,9 +741,11 @@ body.intro .info,body.intro .cnt{opacity:0}
   <!-- WORKS -->
   <section class="view page" id="v-works">
     <div class="ph rv">
-      <h1><span class="m"><span>Works</span></span></h1>
+      <h1><span class="m"><span>Works</span></span><small class="m d1" style="display:block;font-size:.8125rem;font-weight:400;color:var(--ink2);margin-top:.2rem"><span>企業官網設計與建置</span></small></h1>
+    </div>
+    <div class="wbar">
       <div class="filter" id="filter" role="group" aria-label="Filter"></div>
-      <p class="count"><span class="m"><span id="wcount">04 Projects</span></span></p>
+      <p class="count"><span id="wcount">04 Projects</span></p>
     </div>
     <div class="wlist" id="wlist"></div>
     <footer class="foot"><span>©2026 Brian Kuo</span><nav><a class="ul" href="#about">About</a><a class="ul" href="#contact">Contact</a></nav></footer>
