@@ -603,6 +603,60 @@ body.intro .clip .cl.L,body.intro .clip .cl.R{top:0;bottom:0}
   .copy{left:var(--pad)}
   .scr{right:var(--pad)}
 }
+
+/* ===== v5: brand-tinted home, glass, kettle-style hover ===== */
+:root{--gl:rgba(255,255,255,.52);--gl-b:rgba(255,255,255,.7);--glf:saturate(170%) blur(18px)}
+.glx{background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b)}
+/* home background keeps each site's own colours */
+.hbg .it{background:var(--tint,#eee)}
+.hbg img{filter:blur(42px) saturate(1.15);transform:scale(1.15);opacity:.9}
+.hbg::after{background:#fff;opacity:.28}
+/* header bars: glass */
+.top{background:rgba(255,255,255,.55);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf)}
+body[data-view=home] .top,body[data-view=home] .bot{background:rgba(255,255,255,.3);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf)}
+body.intro .top,body.intro .bot{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+body.menu-open .top{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* home info / tags / counter on glass */
+.info{height:8.25rem;padding:0 1.5rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b);overflow:hidden;transition:opacity .8s}
+.info .g{left:1.5rem;right:1.5rem;width:auto}
+body.intro .info,body.intro .cnt{opacity:0}
+.crea li .m{clip-path:inset(-20% -5%)}
+.crea li span{font-size:.8125rem}
+.crea li .m>span{display:inline-block;padding:.3rem .7rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b)}
+.crea li+li{margin-top:.4rem}
+.cnt{width:auto;padding:.9rem .65rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b);transition:opacity .8s}
+.clip .body,.clip .shot .win{box-shadow:0 30px 70px -30px rgba(0,0,0,.35)}
+.stk div{background:rgba(22,22,22,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff}
+@media (orientation:portrait){.info{height:6.5rem;padding:0 1.1rem}.info .g{left:1.1rem;right:1.1rem}.cnt{padding:.45rem .7rem}}
+/* works: sticky glass filter bar */
+#v-works .ph{position:sticky;top:var(--hh);z-index:20;margin:0;padding:7.5rem var(--pad) 1.5rem;background:rgba(255,255,255,.6);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border-bottom:1px solid var(--border)}
+@media (max-width:768px){#v-works .ph{padding:3.5rem var(--pad) 1rem;position:relative;top:0}}
+/* post: glass next-project panel, lightbox, about caption */
+.pnext .gpanel{position:relative;display:inline-block;padding:1.5rem 2rem;background:var(--gl);-webkit-backdrop-filter:var(--glf);backdrop-filter:var(--glf);border:1px solid var(--gl-b)}
+.pnext .bg{opacity:.55!important;filter:none!important}
+.pnext .bg img{filter:blur(6px) saturate(1.1)}
+#lb{background:rgba(255,255,255,.6)!important;-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+#lb img{box-shadow:0 30px 80px -30px rgba(0,0,0,.35)}
+
+/* kettle-style hover: image eases up in scale, title rolls up and back in from below */
+.roll{display:inline-grid;overflow:hidden;vertical-align:top}
+.roll>span{grid-area:1/1;transition:transform .7s var(--expo)}
+.roll>span+span{transform:translateY(105%)}
+.wcard .cw img,.pgal .pw img{transition:transform 1.2s var(--expo),opacity .3s!important}
+.wcard .go{display:inline-grid;place-items:center;width:2.25rem;height:2.25rem;border:1px solid var(--border-a);border-radius:50%;overflow:hidden;margin-top:.9rem;transition:background-color .4s,border-color .4s,color .4s}
+.wcard .go svg{grid-area:1/1;width:.8rem;transition:transform .6s var(--expo)}
+.wcard .go svg+svg{transform:translateX(-180%)}
+@media (hover:hover){
+  .wcard:hover .cw img{transform:scale(1.05)!important}
+  .wcard:hover .roll>span:first-child,.pgal figure:hover .roll>span:first-child,.pnext:hover .roll>span:first-child{transform:translateY(-105%)}
+  .wcard:hover .roll>span+span,.pgal figure:hover .roll>span+span,.pnext:hover .roll>span+span{transform:none}
+  .wcard:hover .go{background:var(--white);border-color:var(--white);color:#fff}
+  .wcard:hover .go svg:first-child{transform:translateX(180%)}
+  .wcard:hover .go svg+svg{transform:none}
+  .pgal figure:hover .pw img{transform:scale(1.05)!important}
+}
+.wcard .cw,.pgal .pw{overflow:hidden}
+.wcard .cw img,.pgal .pw img{transform-origin:50% 0}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -852,7 +906,7 @@ body.intro .clip .cl.L,body.intro .clip .cl.R{top:0;bottom:0}
   /* ---------- HOME build ---------- */
   const hbg=$('#hbg'), cb=$('#clipBody'), info=$('#info'), crea=$('#crea'), cur=$('#cur');
   P.forEach((p,i)=>{
-    hbg.insertAdjacentHTML('beforeend',`<div class="it" data-i="${i}"><div class="im">${img(p.home,1600,'',i>1)}</div></div>`);
+    hbg.insertAdjacentHTML('beforeend',`<div class="it" data-i="${i}" style="--tint:${p.palette[0][2]}"><div class="im">${img(p.home,1600,'',i>1)}</div></div>`);
     cb.insertAdjacentHTML('beforeend',`<div class="shot" data-i="${i}"><div class="win px" data-manual="1">${img(p.home,1400,p.titleZh,i>1)}</div></div>`);
     info.insertAdjacentHTML('beforeend',`<div class="g" data-i="${i}"><p class="t"><span class="m"><span>${p.zh}</span></span></p><p class="c"><span class="m"><span>${p.en}</span></span></p><p class="c c2"><span class="m"><span>${p.category}</span></span></p></div>`);
     crea.insertAdjacentHTML('beforeend',`<ul data-i="${i}">${p.crea.map(c=>`<li><span class="m"><span>${c}</span></span></li>`).join('')}</ul>`);
@@ -907,7 +961,7 @@ body.intro .clip .cl.L,body.intro .clip .cl.R{top:0;bottom:0}
   $('#filter').innerHTML=cats.map((c,i)=>`<button aria-pressed="${i===0}" data-c="${c}">${c}</button>`).join('');
   $('#wlist').innerHTML=P.map((p,i)=>`<a class="wcard" href="#work-${p.key}" data-c="${p.crea.join(' ')}">
     <div class="ci"><span class="fl L"></span><span class="fl R"></span><span class="fl T"></span><span class="fl B"></span><span class="num">${pad(i+1)}</span><div class="cw px">${img(p.home,1200,p.titleZh)}</div></div>
-    <div class="cc"><div><p class="ct">${p.zh}</p><p class="ccl">${p.en}　/　${p.category}</p></div><ul class="ccr">${p.crea.map(c=>`<li>${c}</li>`).join('')}</ul></div></a>`).join('');
+    <div class="cc"><div><p class="ct"><span class="roll"><span>${p.zh}</span><span aria-hidden="true">${p.zh}</span></span></p><p class="ccl">${p.en}　/　${p.category}</p></div><div style="text-align:right"><ul class="ccr">${p.crea.map(c=>`<li>${c}</li>`).join('')}</ul><span class="go">${arr}${arr}</span></div></div></a>`).join('');
   $('#filter').addEventListener('click',e=>{
     const b=e.target.closest('button'); if(!b) return;
     $$('#filter button').forEach(x=>x.setAttribute('aria-pressed',x===b));
@@ -1023,7 +1077,7 @@ body.intro .clip .cl.L,body.intro .clip .cl.R{top:0;bottom:0}
 
       ${Object.keys(groups).map((g,gi)=>`<section class="pcrea">
         <div class="pch"><div class="pchi"><div><h2 class="sect">${g}<small style="display:block;font-size:.8125rem;font-weight:400;opacity:.6;margin-top:.15rem">${labels[g]||g}</small></h2></div>${gi===0?`<p class="lk"><a class="ul" href="${p.url}" target="_blank" rel="noopener">${p.url}<span class="ic">${ext}</span></a></p>`:''}</div></div>
-        <div class="pgal">${groups[g].map(pg=>{no++;return `<figure><div class="pw px" data-id="${pg[1]}" data-delay="${(no%4)*80}">${img(pg[1],900,pg[0])}</div><figcaption><span class="lbl">${pad(no)}</span>${pg[0]}</figcaption></figure>`}).join('')}</div>
+        <div class="pgal">${groups[g].map(pg=>{no++;return `<figure><div class="pw px" data-id="${pg[1]}" data-delay="${(no%4)*80}">${img(pg[1],900,pg[0])}</div><figcaption><span class="lbl">${pad(no)}</span><span class="roll"><span>${pg[0]}</span><span aria-hidden="true">${pg[0]}</span></span></figcaption></figure>`}).join('')}</div>
       </section>`).join('')}
       <section class="pcredit"><div class="ci"><h2 class="sect">Credit</h2>
         <ul class="cl">
@@ -1033,7 +1087,7 @@ body.intro .clip .cl.L,body.intro .clip .cl.R{top:0;bottom:0}
           <li><p class="cr">Agency</p><p class="cm">振作雲科技</p></li>
           <li style="grid-column:1/-1"><p class="cr">Tags</p><p class="cm" style="opacity:.75">${p.tags.map(t=>'#'+t).join('　')}</p></li>
         </ul></div></section>
-      <a class="pnext" href="#work-${n.key}"><div class="bg">${img(n.home,1400)}</div><p class="lbl">Next — ${pad((i+1)%N+1)}</p><p class="nt">${n.zh}${arr}</p><p class="lbl" style="position:relative">${n.en}</p></a>`;
+      <a class="pnext" href="#work-${n.key}"><div class="bg">${img(n.home,1400)}</div><div class="gpanel"><p class="lbl">Next — ${pad((i+1)%N+1)}</p><p class="nt"><span class="roll"><span>${n.zh}</span><span aria-hidden="true">${n.zh}</span></span>${arr}</p><p class="lbl" style="position:relative">${n.en}</p></div></a>`;
     post.scrollTop=0; post.classList.remove('vis');
     if(!post.open) post.show();
     requestAnimationFrame(()=>{post.classList.add('open');setTimeout(()=>{post.classList.add('vis');pixelate(post.querySelector('.pcover .pi'),300);},250);});
