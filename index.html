@@ -754,6 +754,14 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
 @media (hover:hover){.pnext:hover>video.pv{transform:scale(1.04);filter:blur(4px)}}
 @media (max-width:768px){.pnext{min-height:46svh;padding:2.5rem var(--pad)!important}.pnext .nt{font-size:1.5rem!important}}
 @media (prefers-reduced-motion:reduce){.hbg video,.pnext video{display:none}}
+
+/* ===== v9: performance ===== */
+.pcover .pi.done img,.rwd .sd.done img{animation:none!important}
+.hbg video{filter:none!important;inset:0!important;width:100%!important;height:100%!important}
+.pnext>video.pv{filter:none!important;inset:0!important;width:100%!important;height:100%!important}
+@media (hover:hover){.pnext:hover>video.pv{filter:none!important;transform:scale(1.03)}}
+body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[data-tone=dark] #v-home .cnt{text-shadow:none}
+.wcard .cw img,.pgal .pw img{will-change:auto}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -991,7 +999,7 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
   /* 背景影片：videos/<key>.mp4，tone = 影片上要用白字(dark) 還是黑字(light) */
   const VID={fusheng:'dark',angle:'dark',chunho:'light',yuanjen:'dark'};
   P.forEach(p=>{p.video=`videos/${p.key}.mp4`;p.poster=`videos/${p.key}.jpg`;p.tone=VID[p.key]||'dark';});
-  const vtag=(p,cls='')=>`<video class="${cls}" muted playsinline loop preload="metadata" poster="${p.poster}" src="${p.video}"></video>`;
+  const vtag=(p,cls='')=>`<video class="${cls}" muted playsinline loop preload="none" poster="${p.poster}" src="${p.video}"></video>`;
   const AUD={C:'客戶',I:'投資人',J:'求職者'};
   const N=P.length;
 
@@ -1009,7 +1017,7 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
   const hbg=$('#hbg'), cb=$('#clipBody'), info=$('#info'), crea=$('#crea'), cur=$('#cur');
   P.forEach((p,i)=>{
     hbg.insertAdjacentHTML('beforeend',`<div class="it" data-i="${i}" style="--tint:${p.palette[0][2]}"><div class="im">${vtag(p)}</div></div>`);
-    cb.insertAdjacentHTML('beforeend',`<div class="shot" data-i="${i}"><div class="win px" data-manual="1">${img(p.home,1400,p.titleZh,i>1)}</div></div>`);
+    cb.insertAdjacentHTML('beforeend',`<div class="shot" data-i="${i}"><div class="win px" data-manual="1">${img(p.home,900,p.titleZh,i>1)}</div></div>`);
     info.insertAdjacentHTML('beforeend',`<div class="g" data-i="${i}"><p class="t"><span class="m"><span>${p.zh}</span></span></p><p class="c"><span class="m"><span>${p.en}</span></span></p><p class="c c2"><span class="m"><span>${p.category}</span></span></p></div>`);
     crea.insertAdjacentHTML('beforeend',`<ul data-i="${i}">${p.crea.map(c=>`<li><span class="m"><span>${c}</span></span></li>`).join('')}</ul>`);
     cur.insertAdjacentHTML('beforeend',`<span data-i="${i}">${pad(i+1)}</span>`);
@@ -1064,7 +1072,7 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
   const cats=['All','Website','IR','ESG','Branding'];
   $('#filter').innerHTML=cats.map((c,i)=>`<button aria-pressed="${i===0}" data-c="${c}">${c}</button>`).join('');
   $('#wlist').innerHTML=P.map((p,i)=>`<a class="wcard" href="#work-${p.key}" data-c="${p.crea.join(' ')}">
-    <div class="ci"><span class="fl L"></span><span class="fl R"></span><span class="fl T"></span><span class="fl B"></span><span class="num">${pad(i+1)}</span><div class="cw px">${img(p.home,1200,p.titleZh)}</div></div>
+    <div class="ci"><span class="fl L"></span><span class="fl R"></span><span class="fl T"></span><span class="fl B"></span><span class="num">${pad(i+1)}</span><div class="cw px">${img(p.home,720,p.titleZh)}</div></div>
     <div class="cc"><div><p class="ct"><span class="roll"><span>${p.zh}</span><span aria-hidden="true">${p.zh}</span></span></p><p class="ccl">${p.en}　/　${p.category}</p></div><div style="text-align:right"><ul class="ccr">${p.crea.map(c=>`<li>${c}</li>`).join('')}</ul><span class="go">${arr}${arr}</span></div></div></a>`).join('');
   $('#filter').addEventListener('click',e=>{
     const b=e.target.closest('button'); if(!b) return;
@@ -1130,7 +1138,7 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
         </div>
       </div>
       <a class="plink" href="${p.url}" target="_blank" rel="noopener"><span class="pl">Website<small>${p.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</small></span>${ext}</a>
-      <div class="pcover"><div class="pb"><div class="pi px" data-manual="1">${img(p.home,2000,p.zh+' 首頁',false)}</div></div></div>
+      <div class="pcover"><div class="pb"><div class="pi px" data-manual="1">${img(p.home,1400,p.zh+' 首頁',false)}</div></div></div>
 
       <div class="pov"><div class="povi"><div><h2 class="sect">Overview<small style="display:block;font-size:.8125rem;font-weight:400;opacity:.6;margin-top:.15rem">專案概要</small></h2></div>
         <div class="povt"><h3>專案背景</h3>${p.brief.map(t=>`<p>${t}</p>`).join('')}<h3>設計理念</h3>${p.concept.map(t=>`<p>${t}</p>`).join('')}</div></div></div>
@@ -1174,14 +1182,14 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
       <section class="psx">
         ${sec('Responsive','響應式設計','同一套內容在桌機與手機上的呈現。')}
         <div class="pbody"><div class="in2 rwd" id="rwd">
-          <div><div class="sd px">${img(p.home,1400,p.zh+' 桌機版')}</div><span class="lab">Desktop</span></div>
+          <div><div class="sd px">${img(p.home,800,p.zh+' 桌機版')}</div><span class="lab">Desktop</span></div>
           ${[1,2,3].map(k=>`<div class="m2"><div class="sm px" data-delay="${k*100}"><img src="${MOBILE(p.key,k)}" alt="${p.zh} 手機版" loading="lazy"></div><span class="lab">Mobile ${pad(k)}</span></div>`).join('')}
         </div></div>
       </section>
 
       ${Object.keys(groups).map((g,gi)=>`<section class="pcrea">
         <div class="pch"><div class="pchi"><div><h2 class="sect">${g}<small style="display:block;font-size:.8125rem;font-weight:400;opacity:.6;margin-top:.15rem">${labels[g]||g}</small></h2></div>${gi===0?`<p class="lk"><a class="ul" href="${p.url}" target="_blank" rel="noopener">${p.url}<span class="ic">${ext}</span></a></p>`:''}</div></div>
-        <div class="pgal">${groups[g].map(pg=>{no++;return `<figure><div class="pw px" data-id="${pg[1]}" data-delay="${(no%4)*80}">${img(pg[1],900,pg[0])}</div><figcaption><span class="lbl">${pad(no)}</span><span class="roll"><span>${pg[0]}</span><span aria-hidden="true">${pg[0]}</span></span></figcaption></figure>`}).join('')}</div>
+        <div class="pgal">${groups[g].map(pg=>{no++;return `<figure><div class="pw px" data-id="${pg[1]}" data-delay="${(no%4)*80}">${img(pg[1],480,pg[0])}</div><figcaption><span class="lbl">${pad(no)}</span><span class="roll"><span>${pg[0]}</span><span aria-hidden="true">${pg[0]}</span></span></figcaption></figure>`}).join('')}</div>
       </section>`).join('')}
       <section class="pcredit"><div class="ci"><h2 class="sect">Credit</h2>
         <ul class="cl">
@@ -1198,7 +1206,7 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
     requestAnimationFrame(()=>{post.classList.add('open');setTimeout(()=>{post.classList.add('vis');pixelate(post.querySelector('.pcover .pi'),300);},250);});
     B.classList.add('lock');
     $('#pclose').onclick=()=>{ location.hash = lastView==='home'?'home':lastView; };
-    post.querySelectorAll('.pw').forEach(w=>w.onclick=()=>{ $('#lb img').src=D(w.dataset.id,2400); $('#lb').classList.add('open'); });
+    post.querySelectorAll('.pw').forEach(w=>w.onclick=()=>{ $('#lb img').src=D(w.dataset.id,1600); $('#lb').classList.add('open'); });
     let bad=0; post.querySelectorAll('.rwd .sm img').forEach(m=>m.addEventListener('error',()=>{ if(++bad===1) $('#rwd').classList.add('nomobile'); },{once:true}));
     watchPx(post);
   }
@@ -1216,7 +1224,7 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
   function observe(root){ root.querySelectorAll('.rv,.fade').forEach(el=>{el.classList.remove('in'); io.observe(el);}); }
   function countUp(r){ r.querySelectorAll('[data-count]').forEach(b=>{const to=+b.dataset.count,s=performance.now();(function f(t){const k=Math.min(1,(t-s)/1400);b.firstChild.nodeValue=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s);}); }
   // lazy bg images in about
-  $$('img[data-src]').forEach(i=>i.src=D(i.dataset.src,2000));
+  $$('img[data-src]').forEach(i=>i.src=D(i.dataset.src,1400));
   const abgs=$$('.abg');
   function para(){ if(B.dataset.view!=='about') return; abgs.forEach(a=>{const r=a.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return; const k=(r.top+r.height/2-innerHeight/2)/innerHeight; a.querySelector('.st').style.transform=`translateY(${(-k*12).toFixed(2)}%)`;}); }
   addEventListener('scroll',para,{passive:true});
