@@ -844,7 +844,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
         </div>
       </div>
     </div>
-    <div class="abg" id="abg1"><div class="tr"><div class="st"><img alt="" referrerpolicy="no-referrer" data-src="11EaTNVVnSy7tB8L-zeR0YjFsWpgiBc3x"></div></div></div>
+    <div class="abg" id="abg1"><div class="tr"><div class="st"><img alt="" referrerpolicy="no-referrer" data-src="L:chunho/home"></div></div></div>
 
     <section class="asec" id="a-service">
       <div class="ag">
@@ -874,7 +874,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
       </div>
     </section>
 
-    <div class="abg" id="abg2"><div class="tr"><div class="st"><img alt="" referrerpolicy="no-referrer" data-src="18mNent1ksT7XQc0UZ_OIkaF1z1L0oA9e"></div></div></div>
+    <div class="abg" id="abg2"><div class="tr"><div class="st"><img alt="" referrerpolicy="no-referrer" data-src="L:angle/home"></div></div></div>
 
     <section class="asec" id="a-career">
       <div class="ag">
@@ -931,7 +931,10 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
 <script>
 (function(){
   /* Images: Google Drive thumbnails (folder must be "anyone with the link can view") */
-  const D=(id,w)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${w||1600}`;
+  /* 圖片：'L:作品/檔名' = repo 內 images/ 的 WebP（依顯示寬度自動挑縮圖 / 上半段 / 整頁）；其他 = Google Drive 縮圖 */
+  const D=(id,w)=>{ w=w||1600;
+    if(id.startsWith('L:')){ const b='images/'+id.slice(2); return w<=600?b+'-thumb.webp':(w<1600?b+'-pan.webp':b+'.webp'); }
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`; };
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
   const B=document.body, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pad=n=>String(n).padStart(2,'0');
@@ -956,8 +959,8 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      palette:[['品牌紅','Primary','#C72F27',1],['亮紅','Accent','#E1251B'],['鋼藍灰','Secondary','#3C4F61'],['金屬黑','Text','#282C2E'],['香檳金','Highlight','#B18D40'],['冷灰','Neutral','#707992'],['霧白','Surface','#F3F4F6']],
      fonts:['Noto Sans TC（中文）','Ubuntu（英文・數字）'],
      type:[['H1','52px / 700','技術驅動未來',52,700],['H2','42px / 700','全球最大高爾夫球具製造商',42,700],['H3','28px / 700','股東專欄',28,700],['副標','24px / 700','實事求是、精益求精',24,700],['內文','16px / 400・行高 1.8','復盛應用深耕精密金屬製造超過 40 年',16,400],['輔助','15px / 400','Copyright © 2026',15,400]],
-     home:'1lbc4mCcMs8AzF1boLOu4hWeAXrn9zxmS',
-     pages:[['關於復盛應用','1N-zNBDPoVC3O0GLLJHFtf_lcRGeEeXU1','Website'],['產品應用 — 高爾夫球具','1shSZPvCBiY3mKsfjt1thvwGS3_0qEL4q','Website'],['服務與技術','1TD0UA0-r7-_lJu_UoJQG_46Az4XC6Qz7','Website'],['人力資源','1bKO8n-VjoyRvzdYpjiO8qwySjFXwpWYO','Website'],['聯絡我們','1Q25r4hacH1Ynecv3IZ_nOQTtj0m7AN-Y','Website'],['投資人專區','1tP0YNArPZB-DCaBzEmja60DKzv9lhq_-','IR'],['永續經營 — 重大分析與利害關係人','1z_j76DNXQP3XF2hWqcFNNZ4cwlUz-o4o','ESG'],['環境 — 永續環境政策','1B1eLFr2aoutsfjlUfb0per7A5t3itSf4','ESG'],['價值鏈 — 供應鏈管理','10xu3uKKIfm0j4ept4ZJWh7Ov6dR8qnDb','ESG'],['ESG 資料庫','1j_1z6b0O74LPmOAXEx108XFtSUza5fHX','ESG'],['公益行動','11AYzTbHV41vEtD5rnz_lpUkTxe44iAi_','ESG']]},
+     home:'L:fusheng/home',
+     pages:[['關於復盛應用','L:fusheng/about','Website'],['產品應用 — 高爾夫球具','L:fusheng/golf','Website'],['服務與技術','L:fusheng/service','Website'],['人力資源','L:fusheng/hr','Website'],['聯絡我們','L:fusheng/contact','Website'],['投資人專區','L:fusheng/ir','IR'],['ESG 總覽','L:fusheng/esg','ESG'],['永續經營 — 重大分析與利害關係人','L:fusheng/materiality','ESG'],['環境 — 永續環境政策','L:fusheng/environment','ESG'],['價值鏈 — 供應鏈管理','L:fusheng/supply','ESG'],['ESG 資料庫','L:fusheng/esg-data','ESG'],['公益行動','L:fusheng/charity','ESG']]},
     {key:'angle',zh:'意力室內設計',en:'Angle Space Design',client:'AD 意力室內裝修有限公司',category:'品牌形象官網・作品集網站',year:'2025',
      crea:['Website','Branding'],url:'https://www.anglespace.com.tw/',lead:'為空間賦能，從專業設計開始',
      langs:['繁體中文'],duration:'',
@@ -968,8 +971,8 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      palette:[['品牌橘紅','Primary','#CE5D2A',1],['亮橘','Light','#F07B49'],['深橘','Deep','#A9441F'],['炭灰','Text','#323333'],['墨黑','Dark','#232527'],['紙白','Surface','#F5F5F0'],['淺灰','Secondary','#CCCCCC']],
      fonts:['Noto Sans TC'],
      type:[['H1','48px / 500','為空間賦能',48,500],['H2','36px / 500','精選作品',36,500],['內文','18px / 400・行高 1.6','專業、務實、傾聽',18,400],['輔助','16px / 400','台北總公司・台中分公司',16,400],['標籤','15px / 400・字距 1.2','OFFICE DESIGN',15,400]],
-     home:'18mNent1ksT7XQc0UZ_OIkaF1z1L0oA9e',
-     pages:[['關於意力','1K11RpWXJRKVHcAUiUoirXUUtw0E6J6Nt','Website'],['精選作品','1AqrA6DlA96W9W8L0mQRjdXnP-0yKFhN_','Website'],['作品內頁','1mZigGvZwG3lRfqgWb4pPlVVMwmdAUq5W','Website'],['歷年案例','1iIHxYpIXx8gvIpZ5PaBxabXMiFFxkQBV','Website'],['裝修流程','1XsgFd4FAQHeDMYvHAnL4ed1bLZrdCJOh','Website'],['辦公室設計秘笈','1nD6ERrsfXQe13hjEH3Ynsp-sW4oDlmXG','Website'],['秘笈內頁','1KM69048pzzcURAXbTuwb57WeaCdyj3lo','Website'],['聯絡我們','1AjZCV2ipQ6GsLALhm_pWQ3AOPdytVX5V','Website']]},
+     home:'L:angle/home',
+     pages:[['關於意力','L:angle/about','Website'],['精選作品','L:angle/works','Website'],['作品內頁','L:angle/work-detail','Website'],['歷年案例','L:angle/cases','Website'],['裝修流程','L:angle/process','Website'],['辦公室設計秘笈','L:angle/guide','Website'],['秘笈內頁','L:angle/guide-detail','Website'],['聯絡我們','L:angle/contact','Website']]},
     {key:'chunho',zh:'春賀營造',en:'Chunho Construction',client:'春賀營造工程股份有限公司',category:'企業官網',year:'2025',
      crea:['Website','Branding'],url:'https://www.chunho.com.tw/',lead:'以制度奠定品質，從細節凝聚信任',
      langs:['繁體中文'],duration:'',
@@ -980,8 +983,8 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      palette:[['墨綠','Primary','#216862',1],['深墨綠','Deep','#1A524E'],['青綠','Mid','#4C8D80'],['淺青','Light','#A5CFC4'],['金','Accent','#B49D3F'],['沙米','Sand','#EDE7DA'],['炭灰','Text','#444444']],
      fonts:['Noto Sans TC（中文）','Chakra Petch（英文標籤）'],
      type:[['H1','55px / 700','以制度奠定品質',55,700],['H2','36px / 700','服務內容',36,700],['H3','28px / 500','六階段服務流程',28,500],['內文','17px / 400・行高 1.6','營造統包、舊屋翻新、自地自建',17,400],['標籤','16px / 600・大寫','OUR SERVICE',16,600,'"Chakra Petch",sans-serif']],
-     home:'11EaTNVVnSy7tB8L-zeR0YjFsWpgiBc3x',
-     pages:[['關於我們','1EYWKvIzW5HqQgCwOKq7zkcQk8wW9qrrp','Website'],['服務內容','1a8DI6Dmn1beGw3B77k2FTdkUShnxdleF','Website'],['案例展示','1gMoHScScDlDxcIXhSdCQazhc1y1Ko_d5','Website'],['最新消息','1s_HHToO5PxYbKodTbfg2C8XuPsM2gWiF','Website'],['最新消息內頁','1OjpQHU8GfasFIYqFvZTSGfswfMfv4MpE','Website'],['聯絡我們','184oDPLSFQSX-d5i6rPuaw9qEHPUrhSJY','Website']]},
+     home:'L:chunho/home',
+     pages:[['關於我們','L:chunho/about','Website'],['服務內容','L:chunho/service','Website'],['案例展示','L:chunho/works','Website'],['最新消息','L:chunho/news','Website'],['最新消息內頁','L:chunho/news-detail','Website'],['聯絡我們','L:chunho/contact','Website']]},
     {key:'yuanjen',zh:'元禎企業',en:'Yuan Jen Enterprises',client:'元禎企業股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2026',
      crea:['Website','IR','ESG'],url:'https://www.yuanjen.com/',lead:'深耕產業應用與法規需求，協助客戶安心選料、穩定使用',
      langs:['繁體中文','English'],duration:'',
@@ -992,8 +995,8 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      palette:[['企業藍','Primary','#036EB8',1],['深藍','Deep','#005AA4'],['海軍藍','Navy','#003B6F'],['天藍','Secondary','#218CD6'],['青藍','Accent','#29C4E3'],['淺藍','Light','#94C3EA'],['石板灰','Text','#334155']],
      fonts:['Noto Sans TC'],
      type:[['H1','52px / 700','深耕產業應用',52,700],['H2','30px / 500','產品介紹',30,500],['H3','26px / 500','化學品部',26,500],['內文','16px / 400・行高 1.6','協助客戶安心選料、穩定使用',16,400],['輔助','15px / 400','台北・台中・高雄・上海・廣州・泰國',15,400]],
-     home:'1NfzhNo0qTngkbq_2niIrfjR6HxveXZuF',
-     pages:[['關於元禎','122mI-bPeARtVsdV0DBe1QxyzpSHizb5A','Website'],['產品介紹','1jmHj9LzDAdARyA1iMJStXBM-sb7IW_jW','Website'],['產品介紹 — 化學品部','1WI_zErJzCGZ8nT9z9L98pMUPt7T2ExO7','Website'],['人才招募','1rAr3QaiTnVNTDxMmvRHfM9aI9yCb3jpI','Website'],['聯絡我們','1qXEL7EjUXIHmH2XQ8X6bbNh_FCTtyVhd','Website'],['公司治理','1TnxPpTUwI2lh8L51EEPt96uiyDkvWkNj','IR'],['董事及監察人','1fDf5cnc3ZPdpOBfCoTuxQcfX2kU9rWKm','IR'],['最新消息','18wqacNPPiqPCu3ck5Cw15Tv3-A4uMcTy','IR'],['最新消息內頁','1pAX9M6NfivnfoQH0ZN0zurBVdiC8BmAJ','IR'],['其他資訊','1Ki4yzHaopWlYBs4j4RZVUQEpz6z7DfND','IR'],['利害關係人專區','1c6DNXDPs_oRZqiCu-bi2Mjza72OV4vgJ','ESG'],['企業永續發展','18mru3HHA0ZZmG_53uZWXlhb5UoY_HPmX','ESG']]}
+     home:'L:yuanjen/home',
+     pages:[['關於元禎','L:yuanjen/about','Website'],['產品介紹','L:yuanjen/products','Website'],['產品介紹 — 化學品部','L:yuanjen/chemical','Website'],['人才招募','L:yuanjen/careers','Website'],['聯絡我們','L:yuanjen/contact','Website'],['公司治理','L:yuanjen/governance','IR'],['董事及監察人','L:yuanjen/board','IR'],['最新消息','L:yuanjen/ir-news','IR'],['最新消息內頁','L:yuanjen/ir-news-detail','IR'],['其他資訊','L:yuanjen/ir-other','IR'],['利害關係人專區','L:yuanjen/stakeholders','ESG'],['企業永續發展','L:yuanjen/esg','ESG']]}
   ];
   P.forEach(p=>{p.title=p.en;p.titleZh=p.zh;});
   /* 背景影片：videos/<key>.mp4，tone = 影片上要用白字(dark) 還是黑字(light) */
