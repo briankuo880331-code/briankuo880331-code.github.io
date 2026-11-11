@@ -8,7 +8,7 @@
 <link rel="icon" href="images/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Brian Portfolio｜郭 Brian 網頁設計作品集">
+<meta property="og:title" content="Brian Portfolio｜Brian 網頁設計作品集">
 <meta property="og:description" content="清楚的網頁設計，讓企業把話說明白。企業官網・資訊架構・視覺設計・前端建置。">
 <meta property="og:image" content="https://briankuo880331-code.github.io/images/brand/og.jpg">
 <meta property="og:url" content="https://briankuo880331-code.github.io/">
@@ -773,13 +773,70 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
 
 /* ===== v10: logo, portrait ===== */
 .title{padding:0;line-height:0;clip-path:none!important;height:auto;width:auto}
-.title .logo{display:block;height:1.05rem;width:auto}
-@media (max-width:768px){.title .logo{height:.9rem}}
+.title .blogo{display:block;height:1.05rem;width:auto}
+@media (max-width:768px){.title .blogo{height:.9rem}}
 .aph{margin-top:2rem;max-width:22rem;border:1px solid var(--border);background:#fff}
 .aph img{display:block;width:100%;height:auto}
 @media (max-width:1000px){.aph{max-width:18rem;margin-bottom:2rem}}
 .title{transition:color .8s,opacity var(--dm),visibility var(--dm)}
 @media (max-width:768px){.pchi{flex-direction:column;align-items:flex-start;gap:.6rem}.pchi .lk{word-break:break-all}}
+
+/* ===== v11: Figma review fixes ===== */
+/* logo exactly on the text edge */
+.title{width:max-content!important;padding:0!important;margin:auto 0!important;line-height:0}
+.title .blogo{height:1.05rem;width:calc(1.05rem * 302 / 36);margin-left:calc(-1.05rem * 3 / 36)}
+@media (max-width:768px){.title .blogo{height:.9rem;width:calc(.9rem * 302 / 36);margin-left:calc(-.9rem * 3 / 36)}}
+/* scroll indicator: longer line, sits in the right column above the bottom bar */
+.scr{position:fixed;z-index:3001;right:var(--pad)!important;bottom:calc(var(--hh) + 2rem)!important;top:auto!important;left:auto!important;width:auto!important;height:auto!important;display:flex;flex-direction:column;align-items:center;gap:.6rem;margin:0!important;transition:opacity var(--dm)}
+.scr::before,.scr::after{display:none!important}
+.scr span{font-size:.6875rem;letter-spacing:.14em;writing-mode:vertical-rl;text-transform:uppercase}
+.scr i{position:relative;display:block;width:1px;height:4.5rem;background:currentColor;opacity:.35;overflow:hidden}
+.scr i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:currentColor;opacity:1;animation:scrl 2.2s var(--expo) infinite}
+@keyframes scrl{0%{top:-40%}100%{top:100%}}
+.scr i{opacity:1;background:rgba(127,127,127,.35)}
+body:not([data-view=home]) .scr{display:none}
+body.menu-open .scr,body.intro .scr{opacity:0}
+@media (max-width:768px),(orientation:portrait){
+  .scr{left:50%!important;right:auto!important;transform:translateX(-50%);bottom:.7rem!important;flex-direction:column;gap:.35rem}
+  .scr span{writing-mode:horizontal-tb;font-size:.625rem}
+  .scr i{height:2.4rem}
+}
+/* inner pages: one top spacing everywhere */
+.ph,#v-works .ph{padding-top:3.75rem!important}
+.ahd{padding-top:3.75rem!important}
+.phc{padding-top:3.75rem!important}
+@media (max-width:768px){.ph,#v-works .ph,.ahd,.phc{padding-top:2.75rem!important}}
+/* works: filter bar not sticky, bigger number badge, no doubled rules */
+.wbar{position:relative!important;top:auto!important}
+.wbar::before{display:none}
+.wcard .num{font-size:.9375rem;padding:.45rem .85rem;letter-spacing:.04em}
+.wlist+.foot,.wlist~.foot{border-top:0}
+@media (max-width:768px){
+  .wcard .cc{flex-direction:column;align-items:stretch;gap:.9rem}
+  .wcard .cc>div:last-child{display:flex!important;align-items:center;justify-content:space-between;text-align:left!important}
+  .wcard .ccr{flex-direction:row;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;max-width:none}
+  .wcard .go{margin-top:0}
+}
+/* post: swatches same height, type rows centred, smaller next block */
+.swg .sw .c,.swg .sw.main .c{aspect-ratio:auto!important;height:4.75rem}
+.trow{align-items:center}
+.pnext{min-height:min(38svh,22rem)!important;padding:2.5rem var(--pad)!important}
+.pnext .nt{font-size:1.75rem!important}
+@media (max-width:768px){.pnext{min-height:26svh!important;padding:1.75rem var(--pad)!important}.pnext .nt{font-size:1.25rem!important}}
+/* about: video bands (desktop only), portrait aligned with the info */
+.abv{position:relative;height:56svh;margin:0 var(--pad);overflow:hidden;background:#111}
+.abv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+@media (max-width:768px){.abv{display:none}}
+.pgrid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:2rem;align-items:stretch}
+.pgrid .aph{margin:0;max-width:none;height:100%;border:1px solid var(--border)}
+.pgrid .aph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.pinfo2{display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.pinfo2 .mem{margin:0}
+@media (max-width:1000px){.pgrid{grid-template-columns:1fr}.pgrid .aph{height:auto;aspect-ratio:4/4.4}}
+/* logo box: fixed size, flush left on the text edge */
+.title{left:var(--pad)!important;right:auto!important;top:0!important;bottom:0!important;width:calc(1.05rem * 302 / 36)!important;height:var(--hh)!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;text-align:left!important}
+.title .blogo{margin:0!important;transform:translateX(calc(-1.05rem * 3 / 36))}
+@media (max-width:768px){.title{width:calc(.9rem * 302 / 36)!important}.title .blogo{transform:translateX(calc(-.9rem * 3 / 36))}}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -788,7 +845,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
 
 <header>
   <div class="top">
-    <a class="title" id="title" href="#home" aria-label="BRIAN Portfolio — Home"><svg class="logo" aria-label="BRIAN Portfolio" role="img" viewBox="0 0 302 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a class="title" id="title" href="#home" aria-label="BRIAN Portfolio — Home"><svg class="blogo" aria-label="BRIAN Portfolio" role="img" viewBox="0 0 302 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M128.221 3.42773V31.6763H124.91L109.517 9.49677H109.241V31.6763H105.82V3.42773H109.131L124.579 25.6625H124.855V3.42773H128.221Z" fill="currentColor"/>
 <path d="M101.421 31.6772H97.833L94.9944 23.6768H83.5708L80.7322 31.6772H77.1445L87.5156 3.42773H91.0496L101.421 31.6772ZM84.6486 20.6423H93.9166L89.3932 7.89733H89.172L84.6486 20.6423Z" fill="currentColor"/>
 <path d="M52.6417 6.25458L73.4373 27.5327L70.9909 29.9236L50.1953 8.64551L52.6417 6.25458Z" fill="currentColor"/>
@@ -808,7 +865,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
   </div>
   <div class="bot">
     <p class="copy">©2026</p>
-    <div class="scr" aria-hidden="true"></div>
+    <div class="scr" aria-hidden="true"><span>Scroll</span><i></i></div>
   </div>
 </header>
 
@@ -877,7 +934,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
         </div>
       </div>
     </div>
-    <div class="abg" id="abg1"><div class="tr"><div class="st"><img alt="" referrerpolicy="no-referrer" data-src="L:chunho/home"></div></div></div>
+    <div class="abg abv" id="abg1"><video muted playsinline loop preload="none" poster="videos/chunho.jpg" src="videos/chunho.mp4"></video></div>
 
     <section class="asec" id="a-service">
       <div class="ag">
@@ -892,23 +949,23 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
 
     <section class="asec" id="a-profile">
       <div class="ag">
-        <div><h2 class="sect rv"><span class="m"><span>Profile</span></span></h2>
-          <figure class="aph fade"><img src="images/brand/portrait-sm.webp" srcset="images/brand/portrait-sm.webp 700w, images/brand/portrait.webp 1200w" sizes="(max-width:768px) 84vw, 28vw" alt="郭 Brian" loading="lazy" decoding="async"></figure></div>
-        <div>
+        <h2 class="sect rv"><span class="m"><span>Profile</span></span></h2>
+        <div class="pgrid"><figure class="aph fade"><img src="images/brand/portrait-sm.webp" srcset="images/brand/portrait-sm.webp 700w, images/brand/portrait.webp 1200w" sizes="(max-width:768px) 84vw, 28vw" alt="Brian" loading="lazy" decoding="async"></figure>
+        <div class="pinfo2">
           <div class="stats fade">
             <div><b data-count="8">0</b><span class="lbl">Corporate websites</span></div>
             <div><b data-count="4">0</b><span class="lbl">Solo, design to build</span></div>
             <div><b data-count="4">0<sup>yrs</sup></b><span class="lbl">Design experience</span></div>
           </div>
-          <ul class="mem fade" style="margin-top:3.75rem">
+          <ul class="mem fade">
             <li><div><h3>振作雲科技</h3><p>Web Designer — 資訊架構 / 視覺設計 / 前端建置</p></div><span class="y">2024 — Now</span></li>
             <li><div><h3>茁思科技</h3><p>Graphic Designer — 平面 / 品牌視覺</p></div><span class="y">2022 — 2024</span></li>
           </ul>
-        </div>
+        </div></div>
       </div>
     </section>
 
-    <div class="abg" id="abg2"><div class="tr"><div class="st"><img alt="" referrerpolicy="no-referrer" data-src="L:angle/home"></div></div></div>
+    <div class="abg abv" id="abg2"><video muted playsinline loop preload="none" poster="videos/fusheng.jpg" src="videos/fusheng.mp4"></video></div>
 
     <section class="asec" id="a-career">
       <div class="ag">
@@ -925,7 +982,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
       <div class="ag">
         <h2 class="sect rv"><span class="m"><span>Outline</span></span></h2>
         <dl class="olist fade">
-          <div><dt>Name</dt><dd>郭 Brian（Brian Kuo）</dd></div>
+          <div><dt>Name</dt><dd>Brian Kuo</dd></div>
           <div><dt>Role</dt><dd>Web Designer</dd></div>
           <div><dt>Based in</dt><dd>Taipei, Taiwan</dd></div>
           <div><dt>Industries</dt><dd>製造、營造、室內設計、石化貿易、上市櫃公司</dd></div>
@@ -975,7 +1032,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
   const SIZES={900:'(orientation:portrait) 92vw, 37vw',720:'(max-width:768px) 92vw, 45vw',1400:'92vw',800:'(max-width:1000px) 92vw, 50vw'};
   const img=(id,w,alt='',lazy=true)=>{ const src=D(id,w); let ss='';
     if(id.startsWith('L:')&&src.endsWith('-pan.webp')) ss=` srcset="${src} 1200w, ${src.replace('-pan.webp','-pan@2x.webp')} 2400w" sizes="${SIZES[w]||'50vw'}"`;
-    return `<img src="${src}"${ss} alt="${alt}" ${lazy?'loading="lazy"':''} decoding="async">`; };
+    return `<img src="${src}"${ss} alt="${alt}" ${lazy?'loading="lazy"':''} decoding="async"${ss?` onerror="if(this.hasAttribute('srcset')){this.removeAttribute('srcset');this.removeAttribute('sizes');this.src='${src}'}"`:''}>`; };
   const ext='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><path d="M1 11L11 1M3 1h8v8"/></svg>';
   const arr='<svg viewBox="0 0 14 12" fill="none" stroke="currentColor"><path d="M0 6h13M8 1l5 5-5 5"/></svg>';
 
@@ -1234,9 +1291,9 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
       </section>`).join('')}
       <section class="pcredit"><div class="ci"><h2 class="sect">Credit</h2>
         <ul class="cl">
-          <li><p class="cr">Information Architecture</p><p class="cm">郭 Brian</p></li>
-          <li><p class="cr">Visual Design</p><p class="cm">郭 Brian</p></li>
-          <li><p class="cr">Web Build (WordPress / Elementor)</p><p class="cm">郭 Brian</p></li>
+          <li><p class="cr">Information Architecture</p><p class="cm">Brian</p></li>
+          <li><p class="cr">Visual Design</p><p class="cm">Brian</p></li>
+          <li><p class="cr">Web Build (WordPress / Elementor)</p><p class="cm">Brian</p></li>
           <li><p class="cr">Agency</p><p class="cm">振作雲科技</p></li>
           ${p.solo?'':'<li><p class="cr">Concept / Proposal</p><p class="cm">振作雲科技 設計主管</p></li>'}
           <li style="grid-column:1/-1"><p class="cr">Tags</p><p class="cm" style="opacity:.75">${p.tags.map(t=>'#'+t).join('　')}</p></li>
@@ -1269,8 +1326,9 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
   // lazy bg images in about
   $$('img[data-src]').forEach(i=>i.src=D(i.dataset.src,1400));
   const abgs=$$('.abg');
-  function para(){ if(B.dataset.view!=='about') return; abgs.forEach(a=>{const r=a.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return; const k=(r.top+r.height/2-innerHeight/2)/innerHeight; a.querySelector('.st').style.transform=`translateY(${(-k*12).toFixed(2)}%)`;}); }
+  function para(){ if(B.dataset.view!=='about') return; abgs.forEach(a=>{const r=a.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return; const k=(r.top+r.height/2-innerHeight/2)/innerHeight; const st=a.querySelector('.st'); if(st) st.style.transform=`translateY(${(-k*12).toFixed(2)}%)`;}); }
   addEventListener('scroll',para,{passive:true});
+  { const avo=new IntersectionObserver(es=>es.forEach(e=>{ const v=e.target; if(e.isIntersecting&&getComputedStyle(v.parentElement).display!=='none'){ const pr=v.play(); if(pr&&pr.catch) pr.catch(()=>{}); } else v.pause(); }),{threshold:.1}); document.querySelectorAll('.abv video').forEach(v=>avo.observe(v)); }
   $$('[data-jump]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.getElementById(a.dataset.jump).scrollIntoView({behavior:'smooth'});}));
   $('#copy').onclick=async()=>{ try{ await navigator.clipboard.writeText('briankuo880331@gmail.com'); $('#copy').textContent='Copied'; }catch(_){ $('#copy').textContent='briankuo880331@gmail.com'; } setTimeout(()=>$('#copy').textContent='Copy address',2000); };
 
