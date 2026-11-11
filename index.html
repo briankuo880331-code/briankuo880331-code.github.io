@@ -837,6 +837,57 @@ body.menu-open .scr,body.intro .scr{opacity:0}
 .title{left:var(--pad)!important;right:auto!important;top:0!important;bottom:0!important;width:calc(1.05rem * 302 / 36)!important;height:var(--hh)!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;text-align:left!important}
 .title .blogo{margin:0!important;transform:translateX(calc(-1.05rem * 3 / 36))}
 @media (max-width:768px){.title{width:calc(.9rem * 302 / 36)!important}.title .blogo{transform:translateX(calc(-.9rem * 3 / 36))}}
+/* about v12: two equal halves, softly tinted video */
+.adesc{grid-template-columns:1fr 1fr!important;column-gap:3rem}
+.adesc .db{max-width:none!important;width:100%}
+.abv video{filter:saturate(.6) brightness(1.06) contrast(.95)!important}
+.abv::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.12);pointer-events:none}
+@media (max-width:768px){.adesc{grid-template-columns:1fr!important}}
+
+/* ===== v13: RWD viewer (desktop | mobile, same height) ===== */
+.rv2{display:grid;grid-template-columns:3.4667fr 1fr;column-gap:1.875rem;padding:1.875rem 0}
+.dv{display:flex;flex-direction:column;gap:.9rem;min-width:0}
+.scr3{position:relative;overflow:hidden;background:var(--bg2);outline:1px solid var(--border);outline-offset:-1px;cursor:ns-resize}
+.dv-d .scr3{aspect-ratio:16/10}
+.dv-m .scr3{aspect-ratio:9/19.5}
+.scr3 img{position:absolute;left:0;top:0;width:100%;height:auto;will-change:transform}
+.scr3::after{content:"Hover to scroll";position:absolute;right:.6rem;bottom:.6rem;padding:.25rem .55rem;font-size:.625rem;letter-spacing:.06em;background:rgba(22,22,22,.72);color:#fff;opacity:1;transition:opacity .4s;pointer-events:none}
+.dv-m .scr3::after{content:"Hover"}
+.dv.on .scr3::after{opacity:0}
+@media not all and (hover:hover){.scr3::after{content:"Tap to scroll"}.dv-m .scr3::after{content:"Tap"}}
+.ctl{display:flex;justify-content:space-between;align-items:center;gap:.75rem}
+.ctl .lab{display:block;font-size:.6875rem;color:var(--ink2);letter-spacing:.06em}
+.ctl .nm{display:block;font-size:.8125rem;margin-top:.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22rem}
+.ctl .nav{flex:none;display:flex;align-items:center;gap:.6rem}
+.ctl .ct{font-size:.75rem;color:var(--ink2);min-width:3.6em;text-align:center;font-variant-numeric:tabular-nums}
+.ctl button{width:2rem;height:2rem;border:1px solid var(--border-a);border-radius:50%;display:grid;place-items:center;transition:background-color .3s,color .3s,border-color .3s}
+.ctl button svg{width:.7rem}
+@media (hover:hover){.ctl button:hover{background:var(--white);color:#fff;border-color:var(--white)}}
+.ctl>div:first-child{min-width:0}
+.dv-m .ctl .nav{gap:.4rem}.dv-m .ctl .ct{min-width:3.2em}
+.dv.missing{display:none}
+@media (max-width:1000px){.rv2{column-gap:1.25rem}}
+@media (max-width:768px){
+  .rv2{grid-template-columns:1fr;row-gap:2rem;padding:1.25rem 0}
+  .dv-m{width:62%;margin:0 auto}
+}
+
+/* ===== v13: lightbox prev/next ===== */
+#lb{padding-top:calc(var(--hh) + 1.5rem)!important;padding-bottom:5rem!important}
+#lb img{transition:opacity .35s;max-width:min(1200px,calc(100% - 7rem))!important}
+.lbbar{position:fixed;left:0;right:0;top:0;height:var(--hh);display:flex;align-items:center;gap:1.25rem;padding:0 var(--pad);background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);cursor:default;z-index:2}
+.lbbar .lbc{font-size:.75rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.lbbar .lbn{font-size:.875rem;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lbbar .lbx{font-size:.8125rem;cursor:pointer}
+.lbp,.lbq{position:fixed;top:50%;width:3rem;height:3rem;margin-top:-1.5rem;border:1px solid var(--border-a);border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s;z-index:2}
+.lbp{left:var(--pad)}.lbq{right:var(--pad)}
+.lbp svg,.lbq svg{width:.85rem}
+@media (hover:hover){.lbp:hover,.lbq:hover{background:var(--white);color:#fff;border-color:var(--white)}}
+#lb.single .lbp,#lb.single .lbq{display:none}
+@media (max-width:768px){
+  #lb img{max-width:100%!important}
+  .lbp,.lbq{top:auto;bottom:1.25rem;margin-top:0;width:2.75rem;height:2.75rem}
+}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -934,7 +985,7 @@ body.menu-open .scr,body.intro .scr{opacity:0}
         </div>
       </div>
     </div>
-    <div class="abg abv" id="abg1"><video muted playsinline loop preload="none" poster="videos/chunho.jpg" src="videos/chunho.mp4"></video></div>
+    <div class="abg abv" id="abg1"><video muted playsinline loop preload="none" poster="videos/angle.jpg" src="videos/angle.mp4"></video></div>
 
     <section class="asec" id="a-service">
       <div class="ag">
@@ -1016,7 +1067,7 @@ body.menu-open .scr,body.intro .scr{opacity:0}
 </main>
 
 <dialog id="post" aria-label="Project"></dialog>
-<div id="lb" aria-hidden="true"><img alt=""></div>
+<div id="lb" aria-hidden="true"><img alt=""><div class="lbbar"><span class="lbc"></span><span class="lbn"></span><button class="lbx" aria-label="關閉">Close</button></div><button class="lbp" aria-label="上一張"><svg viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 6H1M6 1L1 6l5 5"/></svg></button><button class="lbq" aria-label="下一張"><svg viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 6h13M8 1l5 5-5 5"/></svg></button></div>
 <div class="stk" id="stk" aria-hidden="true"><div>View More</div></div>
 
 <script>
@@ -1095,7 +1146,8 @@ body.menu-open .scr,body.intro .scr{opacity:0}
   P.forEach(p=>{p.title=p.en;p.titleZh=p.zh;});
   /* 背景影片：videos/<key>.mp4，tone = 影片上要用白字(dark) 還是黑字(light) */
   const VID={fusheng:'dark',angle:'dark',chunho:'light',yuanjen:'dark'};
-  P.forEach(p=>{p.video=`videos/${p.key}.mp4`;p.poster=`videos/${p.key}.jpg`;p.tone=VID[p.key]||'dark';});
+  const MOBN={fusheng:['首頁','產品應用 — 高爾夫球具','ESG 總覽'],angle:['首頁','作品內頁','關於意力'],chunho:['首頁','案例展示','關於我們'],yuanjen:['首頁','投資人專區','關於元禎']};
+  P.forEach(p=>{p.mob=MOBN[p.key];p.video=`videos/${p.key}.mp4`;p.poster=`videos/${p.key}.jpg`;p.tone=VID[p.key]||'dark';});
   const vtag=(p,cls='')=>`<video class="${cls}" muted playsinline loop preload="none" poster="${p.poster}" src="${p.video}"></video>`;
   const AUD={C:'客戶',I:'投資人',J:'求職者'};
   const N=P.length;
@@ -1279,9 +1331,12 @@ body.menu-open .scr,body.intro .scr{opacity:0}
 
       <section class="psx">
         ${sec('Responsive','響應式設計','同一套內容在桌機與手機上的呈現。')}
-        <div class="pbody"><div class="in2 rwd" id="rwd">
-          <div><div class="sd px">${img(p.home,800,p.zh+' 桌機版')}</div><span class="lab">Desktop</span></div>
-          ${[1,2,3].map(k=>`<div class="m2"><div class="sm px" data-full="images/${p.key}/m${k}-full.webp" data-delay="${k*100}"><img src="${MOBILE(p.key,k)}" alt="${p.zh} 手機版" loading="lazy" decoding="async"></div><span class="lab">Mobile ${pad(k)}</span></div>`).join('')}
+        <div class="pbody"><div class="in2 rv2" id="rwd">
+          ${['d','m'].map(kd=>`<div class="dv dv-${kd}" data-kind="${kd}">
+            <div class="scr3"><img alt="" decoding="async"></div>
+            <div class="ctl"><div><span class="lab">${kd==='d'?'Desktop':'Mobile'}</span><span class="nm"></span></div>
+              <div class="nav"><button class="pv" aria-label="上一張"><svg viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 6H1M6 1L1 6l5 5"/></svg></button><span class="ct"></span><button class="nx" aria-label="下一張"><svg viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 6h13M8 1l5 5-5 5"/></svg></button></div></div>
+          </div>`).join('')}
         </div></div>
       </section>
 
@@ -1305,13 +1360,40 @@ body.menu-open .scr,body.intro .scr{opacity:0}
     requestAnimationFrame(()=>{post.classList.add('open');setTimeout(()=>{post.classList.add('vis');pixelate(post.querySelector('.pcover .pi'),300);},250);});
     B.classList.add('lock');
     $('#pclose').onclick=()=>{ location.hash = lastView==='home'?'home':lastView; };
-    post.querySelectorAll('.pw').forEach(w=>w.onclick=()=>{ $('#lb img').src=D(w.dataset.id,1600); $('#lb').classList.add('open'); });
-    post.querySelectorAll('.sm[data-full]').forEach(w=>{ w.style.cursor='zoom-in'; w.onclick=()=>{ $('#lb img').src=w.dataset.full; $('#lb').classList.add('open'); }; });
-    let bad=0; post.querySelectorAll('.rwd .sm img').forEach(m=>m.addEventListener('error',()=>{ if(++bad===1) $('#rwd').classList.add('nomobile'); },{once:true}));
+    { const ws=[...post.querySelectorAll('.pw')]; const LB=ws.map(w=>[w.dataset.id,w.querySelector('img').alt]);
+      ws.forEach((w,i)=>w.onclick=()=>lbOpen(LB,i)); }
+    /* RWD viewer: desktop & mobile switch independently; hover = slow scroll through the page */
+    { const lists={d:[['首頁',p.home],...p.pages.map(x=>[x[0],x[1]])].map(x=>[x[0],D(x[1],1600)]),
+                   m:p.mob.map((n,k)=>[n,`images/${p.key}/m${k+1}-full.webp`])};
+      post.querySelectorAll('.dv').forEach(dv=>{
+        const L=lists[dv.dataset.kind], im=dv.querySelector('img'), fr=dv.querySelector('.scr3'); let k=0;
+        const reset=(t)=>{ im.style.transition=`transform ${t}s cubic-bezier(.3,0,.2,1)`; im.style.transform='translateY(0)'; dv.classList.remove('on'); };
+        const pan=()=>{ const d=im.offsetHeight-fr.clientHeight; if(d<=0) return; im.style.transition=`transform ${Math.max(4,d/90)}s linear`; im.style.transform=`translateY(${-d}px)`; dv.classList.add('on'); };
+        const show=i=>{ k=(i+L.length)%L.length; reset(0); im.src=L[k][1]; im.alt=L[k][0];
+          dv.querySelector('.nm').textContent=L[k][0]; dv.querySelector('.ct').textContent=`${pad(k+1)} / ${pad(L.length)}`;
+          const nx=L[(k+1)%L.length][1]; const pre=new Image(); pre.decoding='async'; setTimeout(()=>pre.src=nx,600); };
+        show(0);
+        dv.querySelector('.pv').onclick=()=>show(k-1); dv.querySelector('.nx').onclick=()=>show(k+1);
+        fr.addEventListener('mouseenter',pan); fr.addEventListener('mouseleave',()=>reset(.9));
+        fr.addEventListener('click',()=>{ if(matchMedia('(hover:hover)').matches) return; dv.classList.contains('on')?reset(.9):pan(); });
+        im.addEventListener('error',()=>{ if(dv.dataset.kind==='m') dv.classList.add('missing'); });
+      }); }
     watchPx(post);
   }
   function closePost(){ if(!post.classList.contains('open')) return; post.classList.remove('open','vis'); setTimeout(()=>{ if(!post.classList.contains('open')&&post.open) post.close(); },1200); if(B.dataset.view!=='home') B.classList.remove('lock'); }
-  $('#lb').onclick=()=>$('#lb').classList.remove('open');
+  /* lightbox with prev / next */
+  let LBL=[],LBK=0; const lb=$('#lb'), lbi=$('#lb img');
+  const lbShow=i=>{ LBK=(i+LBL.length)%LBL.length; lbi.style.opacity=0; lbi.onload=()=>lbi.style.opacity=1; lbi.src=D(LBL[LBK][0],1600); lbi.alt=LBL[LBK][1];
+    $('#lb .lbn').textContent=LBL[LBK][1]; $('#lb .lbc').textContent=`${pad(LBK+1)} / ${pad(LBL.length)}`; lb.scrollTop=0;
+    [LBK+1,LBK-1].forEach(j=>{ const q=LBL[(j+LBL.length)%LBL.length]; if(q){ const m=new Image(); m.src=D(q[0],1600);} }); };
+  window.lbOpen=(L,i)=>{ LBL=L; lb.classList.add('open'); lb.classList.toggle('single',L.length<2); lbShow(i); };
+  const lbClose=()=>lb.classList.remove('open');
+  lb.onclick=e=>{ if(e.target.closest('.lbp')) return lbShow(LBK-1); if(e.target.closest('.lbq')) return lbShow(LBK+1); if(e.target.closest('.lbbar')&&!e.target.closest('.lbx')) return; lbClose(); };
+  addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='ArrowLeft') lbShow(LBK-1); if(e.key==='ArrowRight') lbShow(LBK+1); });
+  { let x0=null,y0=0; lb.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+    lb.addEventListener('touchend',e=>{ if(x0===null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+      if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){ lbShow(LBK+(dx<0?1:-1)); lb.dataset.sw=1; setTimeout(()=>delete lb.dataset.sw,350);} },{passive:true});
+    lb.addEventListener('click',e=>{ if(lb.dataset.sw){e.stopImmediatePropagation();} },true); }
 
   /* ---------- menu ---------- */
   const mbtn=$('#mbtn');
