@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brian Kuo — Web Design Portfolio</title>
 <meta name="description" content="清楚的網頁設計，讓企業把話說明白。網頁設計師 Brian Kuo 的作品集。">
+<link rel="icon" href="images/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brian Portfolio｜郭 Brian 網頁設計作品集">
+<meta property="og:description" content="清楚的網頁設計，讓企業把話說明白。企業官網・資訊架構・視覺設計・前端建置。">
+<meta property="og:image" content="https://briankuo880331-code.github.io/images/brand/og.jpg">
+<meta property="og:url" content="https://briankuo880331-code.github.io/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -762,6 +770,16 @@ body.intro .top,body.intro .bot{color:var(--white)!important}
 @media (hover:hover){.pnext:hover>video.pv{filter:none!important;transform:scale(1.03)}}
 body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[data-tone=dark] #v-home .cnt{text-shadow:none}
 .wcard .cw img,.pgal .pw img{will-change:auto}
+
+/* ===== v10: logo, portrait ===== */
+.title{padding:0;line-height:0;clip-path:none!important;height:auto;width:auto}
+.title .logo{display:block;height:1.05rem;width:auto}
+@media (max-width:768px){.title .logo{height:.9rem}}
+.aph{margin-top:2rem;max-width:22rem;border:1px solid var(--border);background:#fff}
+.aph img{display:block;width:100%;height:auto}
+@media (max-width:1000px){.aph{max-width:18rem;margin-bottom:2rem}}
+.title{transition:color .8s,opacity var(--dm),visibility var(--dm)}
+@media (max-width:768px){.pchi{flex-direction:column;align-items:flex-start;gap:.6rem}.pchi .lk{word-break:break-all}}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -770,7 +788,22 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
 
 <header>
   <div class="top">
-    <a class="title" id="title" href="#home" data-split>Brian Portfolio</a>
+    <a class="title" id="title" href="#home" aria-label="BRIAN Portfolio — Home"><svg class="logo" aria-label="BRIAN Portfolio" role="img" viewBox="0 0 302 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M128.221 3.42773V31.6763H124.91L109.517 9.49677H109.241V31.6763H105.82V3.42773H109.131L124.579 25.6625H124.855V3.42773H128.221Z" fill="currentColor"/>
+<path d="M101.421 31.6772H97.833L94.9944 23.6768H83.5708L80.7322 31.6772H77.1445L87.5156 3.42773H91.0496L101.421 31.6772ZM84.6486 20.6423H93.9166L89.3932 7.89733H89.172L84.6486 20.6423Z" fill="currentColor"/>
+<path d="M52.6417 6.25458L73.4373 27.5327L70.9909 29.9236L50.1953 8.64551L52.6417 6.25458Z" fill="currentColor"/>
+<path d="M37.8078 3.42773C40.0142 3.42787 41.8256 3.80546 43.2415 4.55936C44.6574 5.30417 45.7062 6.32934 46.3866 7.63497C47.0668 8.94032 47.4075 10.425 47.4076 12.0888C47.4076 13.7529 47.0669 15.23 46.3866 16.5173C45.7062 17.8046 44.661 18.8161 43.2541 19.5518C42.9034 19.7328 42.5281 19.89 42.1288 20.0259L48.5108 31.6772H44.5375L38.5791 20.6233C38.3448 20.6324 38.1055 20.6423 37.8615 20.6423H31.6819V31.6772H28.2617V3.42773H37.8078ZM31.6819 17.5509H37.7509C39.2587 17.5509 40.4728 17.3314 41.3923 16.8902C42.3211 16.4489 42.9921 15.8218 43.4059 15.0126C43.8286 14.1944 44.0412 13.2194 44.0412 12.0888C44.0411 10.9582 43.8287 9.96947 43.4059 9.12378C42.983 8.27849 42.3076 7.62675 41.3797 7.16714C40.4511 6.69826 39.2232 6.46234 37.6972 6.46225H31.6819V17.5509Z" fill="currentColor"/>
+<path d="M3 31.6763V3.42773H12.876C14.8438 3.42773 16.4668 3.76797 17.745 4.44844C19.0232 5.11971 19.9749 6.02547 20.6002 7.16571C21.2255 8.29676 21.5381 9.55194 21.5381 10.9313C21.5381 12.1451 21.3221 13.1474 20.8899 13.9382C20.4669 14.729 19.9059 15.3543 19.2071 15.8141C18.5174 16.2739 17.768 16.6141 16.9588 16.8348V17.1106C17.8232 17.1658 18.6921 17.4693 19.5657 18.021C20.4393 18.5727 21.1703 19.3635 21.7588 20.3934C22.3473 21.4233 22.6416 22.6831 22.6416 24.1728C22.6416 25.5889 22.3198 26.8625 21.6761 27.9935C21.0324 29.1246 20.0163 30.0211 18.6278 30.6832C17.2392 31.3453 15.4323 31.6763 13.207 31.6763H3ZM6.42073 28.6418H13.207C15.4415 28.6418 17.0277 28.2096 17.9657 27.3452C18.9128 26.4717 19.3864 25.4142 19.3864 24.1728C19.3864 23.2165 19.1427 22.3337 18.6554 21.5245C18.168 20.7061 17.4737 20.0532 16.5726 19.5658C15.6714 19.0693 14.6047 18.821 13.3725 18.821H6.42073V28.6418ZM6.42073 15.8417H12.7656C13.7955 15.8417 14.7243 15.6394 15.5519 15.2348C16.3887 14.8302 17.0507 14.26 17.5381 13.5244C18.0347 12.7888 18.2829 11.9244 18.2829 10.9313C18.2829 9.68988 17.8507 8.63699 16.9864 7.77261C16.122 6.89904 14.7519 6.46225 12.876 6.46225H6.42073V15.8417Z" fill="currentColor"/>
+<path d="M289.856 32.9995C288.026 32.9995 286.407 32.5351 285 31.6064C283.603 30.6777 282.508 29.3949 281.717 27.7581C280.927 26.1121 280.531 24.2132 280.531 22.0615C280.531 19.8913 280.927 17.9833 281.717 16.3373C282.508 14.6821 283.603 13.3947 285 12.4751C286.407 11.5464 288.026 11.082 289.856 11.082C291.685 11.082 293.299 11.5464 294.697 12.4751C296.095 13.4039 297.189 14.6913 297.98 16.3373C298.78 17.9833 299.18 19.8913 299.18 22.0615C299.18 24.2132 298.784 26.1121 297.994 27.7581C297.203 29.3949 296.104 30.6777 294.697 31.6064C293.299 32.5351 291.685 32.9995 289.856 32.9995ZM289.856 30.7512C291.327 30.7512 292.573 30.3558 293.593 29.565C294.614 28.7742 295.387 27.7213 295.911 26.4063C296.444 25.0914 296.711 23.6431 296.711 22.0615C296.711 20.4798 296.444 19.0269 295.911 17.7028C295.387 16.3786 294.614 15.3166 293.593 14.5166C292.573 13.7165 291.327 13.3165 289.856 13.3165C288.393 13.3165 287.147 13.7165 286.118 14.5166C285.097 15.3166 284.32 16.3786 283.786 17.7028C283.262 19.0269 283 20.4798 283 22.0615C283 23.6431 283.262 25.0914 283.786 26.4063C284.32 27.7213 285.097 28.7742 286.118 29.565C287.138 30.3558 288.384 30.7512 289.856 30.7512Z" fill="currentColor"/>
+<path d="M272.657 32.5572V11.3707H275.126V32.5572H272.657ZM273.913 7.72932C273.407 7.72932 272.975 7.5592 272.616 7.21897C272.257 6.86954 272.078 6.45114 272.078 5.96378C272.078 5.47642 272.257 5.06262 272.616 4.72239C272.975 4.37296 273.407 4.19824 273.913 4.19824C274.418 4.19824 274.851 4.37296 275.209 4.72239C275.568 5.06262 275.747 5.47642 275.747 5.96378C275.747 6.45114 275.568 6.86954 275.209 7.21897C274.851 7.5592 274.418 7.72932 273.913 7.72932Z" fill="currentColor"/>
+<path d="M266.139 4.30957V32.5582H263.684V4.30957H266.139Z" fill="currentColor"/>
+<path d="M248.965 32.9995C247.135 32.9995 245.517 32.5351 244.11 31.6064C242.712 30.6777 241.618 29.3949 240.827 27.7581C240.036 26.1121 239.641 24.2132 239.641 22.0615C239.641 19.8913 240.036 17.9833 240.827 16.3373C241.618 14.6821 242.712 13.3947 244.11 12.4751C245.517 11.5464 247.135 11.082 248.965 11.082C250.795 11.082 252.409 11.5464 253.806 12.4751C255.204 13.4039 256.298 14.6913 257.089 16.3373C257.889 17.9833 258.289 19.8913 258.289 22.0615C258.289 24.2132 257.894 26.1121 257.103 27.7581C256.312 29.3949 255.213 30.6777 253.806 31.6064C252.409 32.5351 250.795 32.9995 248.965 32.9995ZM248.965 30.7512C250.436 30.7512 251.682 30.3558 252.703 29.565C253.724 28.7742 254.496 27.7213 255.02 26.4063C255.553 25.0914 255.82 23.6431 255.82 22.0615C255.82 20.4798 255.553 19.0269 255.02 17.7028C254.496 16.3786 253.724 15.3166 252.703 14.5166C251.682 13.7165 250.436 13.3165 248.965 13.3165C247.503 13.3165 246.257 13.7165 245.227 14.5166C244.206 15.3166 243.429 16.3786 242.896 17.7028C242.372 19.0269 242.11 20.4798 242.11 22.0615C242.11 23.6431 242.372 25.0914 242.896 26.4063C243.429 27.7213 244.206 28.7742 245.227 29.565C246.248 30.3558 247.494 30.7512 248.965 30.7512Z" fill="currentColor"/>
+<path d="M236.703 11.3725V13.5105H226.289V11.3725H236.703ZM229.544 32.559V8.26903C229.544 7.12878 229.806 6.16785 230.33 5.38623C230.864 4.60462 231.558 4.01151 232.413 3.6069C233.268 3.2023 234.174 3 235.131 3C235.774 3 236.308 3.05517 236.731 3.16552C237.163 3.26667 237.503 3.36782 237.751 3.46897L237.034 5.62072C236.85 5.56555 236.625 5.50118 236.358 5.42761C236.091 5.35405 235.756 5.31727 235.351 5.31727C234.285 5.31727 233.462 5.61612 232.882 6.21383C232.303 6.81154 232.013 7.66672 232.013 8.77938L231.999 32.559H229.544Z" fill="currentColor"/>
+<path d="M222.409 11.3738V13.5117H212.299V11.3738H222.409ZM215.457 6.29785H217.926V27.0291C217.926 27.9119 218.078 28.6062 218.382 29.1119C218.685 29.6085 219.081 29.9625 219.568 30.174C220.055 30.3763 220.575 30.4774 221.127 30.4774C221.448 30.4774 221.724 30.459 221.954 30.4223C222.184 30.3763 222.386 30.3303 222.561 30.2843L223.085 32.505C222.846 32.597 222.552 32.6798 222.202 32.7533C221.853 32.8361 221.421 32.8775 220.906 32.8775C220.005 32.8775 219.136 32.6798 218.299 32.2844C217.471 31.8889 216.791 31.3004 216.257 30.5188C215.724 29.7372 215.457 28.7671 215.457 27.6084V6.29785Z" fill="currentColor"/>
+<path d="M198.896 32.5574V11.371H201.283V14.6262H201.462C201.885 13.5595 202.621 12.6997 203.669 12.0468C204.726 11.3847 205.922 11.0537 207.255 11.0537C207.458 11.0537 207.683 11.0583 207.931 11.0675C208.179 11.0767 208.386 11.0859 208.552 11.0951V13.5917C208.441 13.5733 208.248 13.5457 207.972 13.5089C207.697 13.4721 207.398 13.4537 207.076 13.4537C205.972 13.4537 204.989 13.6882 204.124 14.1572C203.269 14.617 202.593 15.2561 202.097 16.0745C201.6 16.8929 201.352 17.8262 201.352 18.8745V32.5574H198.896Z" fill="currentColor"/>
+<path d="M184.18 32.9995C182.35 32.9995 180.731 32.5351 179.324 31.6064C177.927 30.6777 176.833 29.3949 176.042 27.7581C175.251 26.1121 174.855 24.2132 174.855 22.0615C174.855 19.8913 175.251 17.9833 176.042 16.3373C176.833 14.6821 177.927 13.3947 179.324 12.4751C180.731 11.5464 182.35 11.082 184.18 11.082C186.01 11.082 187.623 11.5464 189.021 12.4751C190.419 13.4039 191.513 14.6913 192.304 16.3373C193.104 17.9833 193.504 19.8913 193.504 22.0615C193.504 24.2132 193.109 26.1121 192.318 27.7581C191.527 29.3949 190.428 30.6777 189.021 31.6064C187.623 32.5351 186.01 32.9995 184.18 32.9995ZM184.18 30.7512C185.651 30.7512 186.897 30.3558 187.918 29.565C188.938 28.7742 189.711 27.7213 190.235 26.4063C190.768 25.0914 191.035 23.6431 191.035 22.0615C191.035 20.4798 190.768 19.0269 190.235 17.7028C189.711 16.3786 188.938 15.3166 187.918 14.5166C186.897 13.7165 185.651 13.3165 184.18 13.3165C182.718 13.3165 181.472 13.7165 180.442 14.5166C179.421 15.3166 178.644 16.3786 178.111 17.7028C177.587 19.0269 177.324 20.4798 177.324 22.0615C177.324 23.6431 177.587 25.0914 178.111 26.4063C178.644 27.7213 179.421 28.7742 180.442 29.565C181.462 30.3558 182.708 30.7512 184.18 30.7512Z" fill="currentColor"/>
+<path d="M152.406 32.5582V4.30957H161.524C163.528 4.30957 165.202 4.69578 166.544 5.4682C167.896 6.23143 168.912 7.27052 169.593 8.58548C170.282 9.90044 170.627 11.3809 170.627 13.0269C170.627 14.6729 170.287 16.158 169.606 17.4821C168.926 18.7971 167.914 19.8408 166.572 20.6132C165.229 21.3764 163.56 21.758 161.565 21.758H154.392V19.4408H161.496C162.976 19.4408 164.204 19.1649 165.179 18.6132C166.154 18.0523 166.88 17.289 167.358 16.3235C167.846 15.358 168.089 14.2591 168.089 13.0269C168.089 11.7947 167.846 10.6958 167.358 9.73032C166.88 8.76479 166.149 8.00616 165.165 7.45443C164.19 6.9027 162.953 6.62684 161.455 6.62684H154.986V32.5582H152.406Z" fill="currentColor"/>
+</svg></a>
     <button class="mbtn" id="mbtn" aria-expanded="false" aria-controls="menu"><span class="in"><span>Menu</span><span>Close</span></span></button>
   </div>
   <div class="bot">
@@ -859,7 +892,8 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
 
     <section class="asec" id="a-profile">
       <div class="ag">
-        <h2 class="sect rv"><span class="m"><span>Profile</span></span></h2>
+        <div><h2 class="sect rv"><span class="m"><span>Profile</span></span></h2>
+          <figure class="aph fade"><img src="images/brand/portrait-sm.webp" srcset="images/brand/portrait-sm.webp 700w, images/brand/portrait.webp 1200w" sizes="(max-width:768px) 84vw, 28vw" alt="郭 Brian" loading="lazy" decoding="async"></figure></div>
         <div>
           <div class="stats fade">
             <div><b data-count="8">0</b><span class="lbl">Corporate websites</span></div>
@@ -938,14 +972,17 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
   const B=document.body, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pad=n=>String(n).padStart(2,'0');
-  const img=(id,w,alt='',lazy=true)=>`<img src="${D(id,w)}" alt="${alt}" ${lazy?'loading="lazy"':''} referrerpolicy="no-referrer">`;
+  const SIZES={900:'(orientation:portrait) 92vw, 37vw',720:'(max-width:768px) 92vw, 45vw',1400:'92vw',800:'(max-width:1000px) 92vw, 50vw'};
+  const img=(id,w,alt='',lazy=true)=>{ const src=D(id,w); let ss='';
+    if(id.startsWith('L:')&&src.endsWith('-pan.webp')) ss=` srcset="${src} 1200w, ${src.replace('-pan.webp','-pan@2x.webp')} 2400w" sizes="${SIZES[w]||'50vw'}"`;
+    return `<img src="${src}"${ss} alt="${alt}" ${lazy?'loading="lazy"':''} decoding="async">`; };
   const ext='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><path d="M1 11L11 1M3 1h8v8"/></svg>';
   const arr='<svg viewBox="0 0 14 12" fill="none" stroke="currentColor"><path d="M0 6h13M8 1l5 5-5 5"/></svg>';
 
   const P=[
-    {key:'fusheng',zh:'復盛應用科技',en:'Fusheng Precision',client:'復盛應用科技股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2025',
+    {key:'fusheng',zh:'復盛應用科技',en:'Fusheng Precision',client:'復盛應用科技股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2025.12',
      crea:['Website','IR','ESG'],url:'https://www.fusheng-precision.com/',lead:'全球最大高爾夫球具製造商',
-     langs:['繁體中文','English'],duration:'',
+     langs:['繁體中文','English'],duration:'4–5',solo:false,roleNote:'此案初期由主管發想提案，後續由我接續設計，並完成全站頁面建置。',
      brief:['復盛應用科技是全球最大的高爾夫球具製造商，市占超過四成，製造據點橫跨台灣、中國、越南、泰國等，並以同一套精密製造能量延伸至運動休閒、手工具、航太與車用等多元領域。作為上市公司，企業官網必須同時面對三種對象：向海外品牌客戶證明製造實力、向投資人提供透明即時的財務與治理資訊、向社會傳達永續承諾。','本專案從資訊架構重新梳理，整合企業介紹、產業應用、技術服務、投資人關係、ESG 與人才招募，建構一個層次清楚的多語系企業平台，讓一家七十年的製造集團以符合國際大廠規格的數位門面與世界對話。'],
      concept:['全站以品牌紅作為視覺主軸，搭配銀灰、霧白與金屬黑，建立精密製造的質感基底。紅色只用在標題、按鈕與關鍵數字上，在大面積的中性色中一出現就能被看見。產品與形象區塊採用滿版攝影與深色背景，讓金屬製品在光影下成為畫面主角；需要閱讀的資訊區塊則回到明亮的淺灰底，以微圓角卡片與半透明的毛玻璃層次整理內容。','滿版影像與大字級數字建立氣勢，微圓角、毛玻璃與充足的留白讓冷硬的工業質感變得親近；英文浮水印、章節編號與統一的卡片規則貫穿全站，讓長頁面在滑動時保有清楚的節奏。'],
      tags:['企業官網設計','上市櫃公司網站','投資人關係網站','工業製造業','精密製造','ESG永續','多語系網站','RWD響應式設計'],
@@ -961,9 +998,9 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      type:[['H1','52px / 700','技術驅動未來',52,700],['H2','42px / 700','全球最大高爾夫球具製造商',42,700],['H3','28px / 700','股東專欄',28,700],['副標','24px / 700','實事求是、精益求精',24,700],['內文','16px / 400・行高 1.8','復盛應用深耕精密金屬製造超過 40 年',16,400],['輔助','15px / 400','Copyright © 2026',15,400]],
      home:'L:fusheng/home',
      pages:[['關於復盛應用','L:fusheng/about','Website'],['產品應用 — 高爾夫球具','L:fusheng/golf','Website'],['服務與技術','L:fusheng/service','Website'],['人力資源','L:fusheng/hr','Website'],['聯絡我們','L:fusheng/contact','Website'],['投資人專區','L:fusheng/ir','IR'],['ESG 總覽','L:fusheng/esg','ESG'],['永續經營 — 重大分析與利害關係人','L:fusheng/materiality','ESG'],['環境 — 永續環境政策','L:fusheng/environment','ESG'],['價值鏈 — 供應鏈管理','L:fusheng/supply','ESG'],['ESG 資料庫','L:fusheng/esg-data','ESG'],['公益行動','L:fusheng/charity','ESG']]},
-    {key:'angle',zh:'意力室內設計',en:'Angle Space Design',client:'AD 意力室內裝修有限公司',category:'品牌形象官網・作品集網站',year:'2025',
+    {key:'angle',zh:'意力室內設計',en:'Angle Space Design',client:'AD 意力室內裝修有限公司',category:'品牌形象官網・作品集網站',year:'2026.03',
      crea:['Website','Branding'],url:'https://www.anglespace.com.tw/',lead:'為空間賦能，從專業設計開始',
-     langs:['繁體中文'],duration:'',
+     langs:['繁體中文'],duration:'2–3',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
      brief:['AD 意力室內裝修成立於 2012 年，是一支專注於企業辦公空間的設計與工程團隊，服務範圍從空間策略規劃、室內設計、施工監造，到機電、消防、弱電與家具整合，客戶橫跨企業總部、跨國辦公室、研發中心與醫療診所，並以台北總公司與台中分公司同步服務全台。','隨著案量與服務範圍持續擴大，原有網站已無法完整呈現團隊「專業、務實、傾聽」的核心價值與十多年累積的工程實績。本專案為其重新規劃企業官網，整合公司介紹、精選作品、歷年案例、裝修流程與設計知識，讓企業客戶能快速了解意力的整合能力與作業方式。'],
      concept:['全站以暖灰白的紙質底色為基調，搭配深炭灰與品牌橘紅。橘紅只用在色塊、標題、按鈕與數字上，其餘畫面交給大量留白與實景攝影，讓辦公空間作品本身成為主角；標題以中文搭配拉寬字距的英文副標，再加上淡淡的大型英文浮水印，建立沉穩、帶有設計事務所氣質的閱讀節奏。','最具辨識度的做法，是讓橘紅色塊刻意跨越照片與文字區塊的邊界，形成錯位疊加的層次，呼應室內設計「空間切割與重組」的本質。流程與數據類的內容則以編號、細線與大字級數字整理，讓裝修階段、服務項目與公司實績一眼可讀。'],
      tags:['企業官網設計','室內設計網站','商業空間設計','辦公室裝修','作品集網站','品牌形象網站','RWD響應式設計'],
@@ -972,10 +1009,10 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      fonts:['Noto Sans TC'],
      type:[['H1','48px / 500','為空間賦能',48,500],['H2','36px / 500','精選作品',36,500],['內文','18px / 400・行高 1.6','專業、務實、傾聽',18,400],['輔助','16px / 400','台北總公司・台中分公司',16,400],['標籤','15px / 400・字距 1.2','OFFICE DESIGN',15,400]],
      home:'L:angle/home',
-     pages:[['關於意力','L:angle/about','Website'],['精選作品','L:angle/works','Website'],['作品內頁','L:angle/work-detail','Website'],['歷年案例','L:angle/cases','Website'],['裝修流程','L:angle/process','Website'],['辦公室設計秘笈','L:angle/guide','Website'],['秘笈內頁','L:angle/guide-detail','Website'],['聯絡我們','L:angle/contact','Website']]},
-    {key:'chunho',zh:'春賀營造',en:'Chunho Construction',client:'春賀營造工程股份有限公司',category:'企業官網',year:'2025',
+     pages:[['關於意力','L:angle/about','Website'],['精選作品','L:angle/works','Website'],['作品內頁 01','L:angle/work-detail','Website'],['作品內頁 02','L:angle/work-detail2','Website'],['歷年案例','L:angle/cases','Website'],['裝修流程','L:angle/process','Website'],['辦公室設計秘笈','L:angle/guide','Website'],['秘笈內頁','L:angle/guide-detail','Website'],['聯絡我們','L:angle/contact','Website']]},
+    {key:'chunho',zh:'春賀營造',en:'Chunho Construction',client:'春賀營造工程股份有限公司',category:'企業官網',year:'2026.02',
      crea:['Website','Branding'],url:'https://www.chunho.com.tw/',lead:'以制度奠定品質，從細節凝聚信任',
-     langs:['繁體中文'],duration:'',
+     langs:['繁體中文'],duration:'1',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
      brief:['春賀營造工程股份有限公司位於桃園平鎮，深耕在地二十年，專精廠房與住宅新建，服務範圍涵蓋營造統包、舊屋翻新、房屋修繕、自地自建、鋼構廠房與危老改建。團隊具備公共工程品管與工地主任證照，並在設計階段導入 BIM 建築資訊模型，施工過程以影像全程紀錄，讓業主隨時掌握進度。','隨著業務從單一營造延伸到設計施工一條龍，原有形象已不足以呈現春賀「制度化品管、透明化流程」的核心價值。本專案為其建立第一個完整的企業官網，整合公司介紹、服務項目、六階段服務流程、實績案例與最新消息，建立進一步洽談的信任基礎。'],
      concept:['全站以深墨綠為主色，搭配金色點綴與深炭灰收尾，在營造業常見的冷硬印象中，建立穩重且帶有質感的品牌調性。綠色只用在區塊底色與標題，金色只用在編號、按鈕與強調詞，用量刻意節制，讓每次出現都有份量。','版面將半透明的斜切色塊疊在建築攝影上，呼應建築的量體與結構線條；圖片與區塊採用單邊大圓角的切角處理，讓方正的工程內容多了柔和的節奏。綠金配色與圓弧語彙傳達「春」與「賀」的品牌寓意——萌發的開始與圓滿的落成。'],
      tags:['企業官網設計','營造業網站','建築工程','品牌形象網站','服務流程設計','RWD響應式設計'],
@@ -985,9 +1022,9 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      type:[['H1','55px / 700','以制度奠定品質',55,700],['H2','36px / 700','服務內容',36,700],['H3','28px / 500','六階段服務流程',28,500],['內文','17px / 400・行高 1.6','營造統包、舊屋翻新、自地自建',17,400],['標籤','16px / 600・大寫','OUR SERVICE',16,600,'"Chakra Petch",sans-serif']],
      home:'L:chunho/home',
      pages:[['關於我們','L:chunho/about','Website'],['服務內容','L:chunho/service','Website'],['案例展示','L:chunho/works','Website'],['最新消息','L:chunho/news','Website'],['最新消息內頁','L:chunho/news-detail','Website'],['聯絡我們','L:chunho/contact','Website']]},
-    {key:'yuanjen',zh:'元禎企業',en:'Yuan Jen Enterprises',client:'元禎企業股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2026',
+    {key:'yuanjen',zh:'元禎企業',en:'Yuan Jen Enterprises',client:'元禎企業股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2026.06',
      crea:['Website','IR','ESG'],url:'https://www.yuanjen.com/',lead:'深耕產業應用與法規需求，協助客戶安心選料、穩定使用',
-     langs:['繁體中文','English'],duration:'',
+     langs:['繁體中文','English'],duration:'2',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
      brief:['元禎企業股份有限公司創立於 1977 年，並於 2000 年在台灣證券市場掛牌上市，是國內外知名石化廠的專業代理商，專營工業用化學品、溶劑、塑膠原料、油品與永續材料的經銷貿易，並擁有倉儲、分裝與運輸車隊，提供從原料代理到物流配送的一站式服務。','作為上市公司，官網需要同時面對下游客戶、投資人與社會大眾。本專案為其重新規劃多語系企業官網，整合公司介紹、產品介紹、投資人專區、企業永續發展、人才招募與聯絡管道，讓一家近五十年的石化貿易公司，以現代、清楚的數位形象與客戶及股東溝通。'],
      concept:['全站以企業藍為主色，用漸層、同心圓與大圓弧的幾何色塊鋪陳頁首與重點區塊，讓化學貿易這類偏冷的產業看起來有現代感與流動感；資訊區塊則回到白底與淺灰漸層，用白色卡片和淺色表格整理內容，讓大量的產品規格、財務資料與公告易於閱讀。','每個章節以六角形圖示搭配中英文標題開頭，背景放上淡色的大型英文浮水印。產品部門用大圖卡片與編號呈現，服務據點用點陣地圖標示，投資人與 ESG 內容則用側邊選單與表格整理，讓不同對象各自找到需要的資訊。'],
      tags:['企業官網設計','上市櫃公司網站','投資人關係網站','石化貿易','化學品產業','ESG永續','多語系網站','RWD響應式設計'],
@@ -996,7 +1033,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
      fonts:['Noto Sans TC'],
      type:[['H1','52px / 700','深耕產業應用',52,700],['H2','30px / 500','產品介紹',30,500],['H3','26px / 500','化學品部',26,500],['內文','16px / 400・行高 1.6','協助客戶安心選料、穩定使用',16,400],['輔助','15px / 400','台北・台中・高雄・上海・廣州・泰國',15,400]],
      home:'L:yuanjen/home',
-     pages:[['關於元禎','L:yuanjen/about','Website'],['產品介紹','L:yuanjen/products','Website'],['產品介紹 — 化學品部','L:yuanjen/chemical','Website'],['人才招募','L:yuanjen/careers','Website'],['聯絡我們','L:yuanjen/contact','Website'],['公司治理','L:yuanjen/governance','IR'],['董事及監察人','L:yuanjen/board','IR'],['最新消息','L:yuanjen/ir-news','IR'],['最新消息內頁','L:yuanjen/ir-news-detail','IR'],['其他資訊','L:yuanjen/ir-other','IR'],['利害關係人專區','L:yuanjen/stakeholders','ESG'],['企業永續發展','L:yuanjen/esg','ESG']]}
+     pages:[['關於元禎','L:yuanjen/about','Website'],['產品介紹','L:yuanjen/products','Website'],['產品介紹 — 化學品部','L:yuanjen/chemical','Website'],['人才招募','L:yuanjen/careers','Website'],['聯絡我們','L:yuanjen/contact','Website'],['投資人專區','L:yuanjen/ir','IR'],['財務報告','L:yuanjen/finance','IR'],['董事會','L:yuanjen/board','IR'],['最新消息','L:yuanjen/news','IR'],['利害關係人專區','L:yuanjen/stakeholders','ESG'],['企業永續發展','L:yuanjen/esg','ESG']]}
   ];
   P.forEach(p=>{p.title=p.en;p.titleZh=p.zh;});
   /* 背景影片：videos/<key>.mp4，tone = 影片上要用白字(dark) 還是黑字(light) */
@@ -1118,7 +1155,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
   const countPages=sm=>{ let n=1; const walk=a=>a.forEach(x=>{ n++; if(Array.isArray(x)&&Array.isArray(x[1])) walk(x[1]); }); sm.forEach(n0=>{ n++; if(n0[2]) walk(n0[2]); }); return n; };
   const kidList=(kids,lim)=>{ if(!kids) return ''; const shown=kids.slice(0,lim), rest=kids.length-shown.length;
     return `<ul class="skids">${shown.map(k=>Array.isArray(k)?`<li>${k[0]}${kidList(k[1],3)}</li>`:`<li>${k}</li>`).join('')}${rest>0?`<li class="more">+ ${rest} more</li>`:''}</ul>`; };
-  const MOBILE=(k,n)=>`images/mobile/${k}-${n}.jpg`;
+  const MOBILE=(k,n)=>`images/${k}/m${n}.webp`;
 
   function openPost(i){
     const p=P[i], n=P[(i+1)%N];
@@ -1136,7 +1173,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
           <div class="pinfo">
             <div><p class="k"><span class="m"><span>Category</span></span></p><p class="v"><span class="m d1"><span>${p.category}</span></span></p></div>
             <div><p class="k"><span class="m"><span>Client</span></span></p><p class="v"><span class="m d1"><span>${p.client}</span></span></p></div>
-            <div><p class="k"><span class="m"><span>Year</span></span></p><p class="v"><span class="m d1"><span>${p.year}</span></span></p></div>
+            <div><p class="k"><span class="m"><span>Launch</span></span></p><p class="v"><span class="m d1"><span>${p.year}</span></span></p></div>
           </div>
         </div>
       </div>
@@ -1168,6 +1205,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
         ${sec('My Role & Results','我負責的部分與成果','')}
         <div class="pbody"><div class="in2 rr2">
           <div><ul class="roles">
+            <li><span class="n">00</span><div><b>${p.solo?'獨立完成':'接手設計與建置'}</b><p>${p.roleNote}</p></div></li>
             <li><span class="n">01</span><div><b>資訊架構規劃</b><p>整理 ${p.sitemap.length} 個主選單、${total} 個頁面的層級與動線。</p></div></li>
             <li><span class="n">02</span><div><b>視覺設計</b><p>從品牌識別延伸色彩、字級與版面規則，完成 ${p.pages.length+1} 張頁面設計稿。</p></div></li>
             <li><span class="n">03</span><div><b>前端建置</b><p>以 WordPress、Elementor Pro 建置，設定全站色彩與字體變數，方便客戶維護。</p></div></li>
@@ -1177,7 +1215,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
             <div><span class="k">Pages　網站頁面</span><span class="v">${total}<small>頁</small></span><span class="d">含首頁與各層內頁</span></div>
             <div><span class="k">Designs　設計稿</span><span class="v">${p.pages.length+1}<small>張</small></span><span class="d">本頁展示的頁面設計</span></div>
             <div><span class="k">Languages　語系</span><span class="v">${p.langs.length}<small>種</small></span><span class="d">${p.langs.join('・')}</span></div>
-            ${p.duration?`<div><span class="k">Duration　製作期間</span><span class="v">${p.duration}</span><span class="d">從設計到上線</span></div>`:`<div><span class="k">Audience　服務對象</span><span class="v">${aus.size}<small>種</small></span><span class="d">${[...aus].map(a=>AUD[a]).join('・')}</span></div>`}
+            ${p.duration?`<div><span class="k">Duration　製作期間</span><span class="v">${p.duration}<small>個月</small></span><span class="d">從設計到上線（約）</span></div>`:`<div><span class="k">Audience　服務對象</span><span class="v">${aus.size}<small>種</small></span><span class="d">${[...aus].map(a=>AUD[a]).join('・')}</span></div>`}
           </div>
         </div></div>
       </section>
@@ -1186,7 +1224,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
         ${sec('Responsive','響應式設計','同一套內容在桌機與手機上的呈現。')}
         <div class="pbody"><div class="in2 rwd" id="rwd">
           <div><div class="sd px">${img(p.home,800,p.zh+' 桌機版')}</div><span class="lab">Desktop</span></div>
-          ${[1,2,3].map(k=>`<div class="m2"><div class="sm px" data-delay="${k*100}"><img src="${MOBILE(p.key,k)}" alt="${p.zh} 手機版" loading="lazy"></div><span class="lab">Mobile ${pad(k)}</span></div>`).join('')}
+          ${[1,2,3].map(k=>`<div class="m2"><div class="sm px" data-full="images/${p.key}/m${k}-full.webp" data-delay="${k*100}"><img src="${MOBILE(p.key,k)}" alt="${p.zh} 手機版" loading="lazy" decoding="async"></div><span class="lab">Mobile ${pad(k)}</span></div>`).join('')}
         </div></div>
       </section>
 
@@ -1200,6 +1238,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
           <li><p class="cr">Visual Design</p><p class="cm">郭 Brian</p></li>
           <li><p class="cr">Web Build (WordPress / Elementor)</p><p class="cm">郭 Brian</p></li>
           <li><p class="cr">Agency</p><p class="cm">振作雲科技</p></li>
+          ${p.solo?'':'<li><p class="cr">Concept / Proposal</p><p class="cm">振作雲科技 設計主管</p></li>'}
           <li style="grid-column:1/-1"><p class="cr">Tags</p><p class="cm" style="opacity:.75">${p.tags.map(t=>'#'+t).join('　')}</p></li>
         </ul></div></section>
       <a class="pnext" data-tone="${n.tone}" href="#work-${n.key}">${vtag(n,'pv')}<div class="gpanel"><p class="lbl">Next — ${pad((i+1)%N+1)}</p><p class="nt"><span class="roll"><span>${n.zh}</span><span aria-hidden="true">${n.zh}</span></span>${arr}</p><p class="lbl" style="position:relative">${n.en}</p></div></a>`;
@@ -1210,6 +1249,7 @@ body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[da
     B.classList.add('lock');
     $('#pclose').onclick=()=>{ location.hash = lastView==='home'?'home':lastView; };
     post.querySelectorAll('.pw').forEach(w=>w.onclick=()=>{ $('#lb img').src=D(w.dataset.id,1600); $('#lb').classList.add('open'); });
+    post.querySelectorAll('.sm[data-full]').forEach(w=>{ w.style.cursor='zoom-in'; w.onclick=()=>{ $('#lb img').src=w.dataset.full; $('#lb').classList.add('open'); }; });
     let bad=0; post.querySelectorAll('.rwd .sm img').forEach(m=>m.addEventListener('error',()=>{ if(++bad===1) $('#rwd').classList.add('nomobile'); },{once:true}));
     watchPx(post);
   }
