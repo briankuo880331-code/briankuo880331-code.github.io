@@ -720,6 +720,40 @@ body.intro .top,body.intro .bot{border-color:transparent!important}
 /* v7c: one even frosted wash over the whole background (no bands, no blocks) */
 .pane{display:none}
 .hbg::after{opacity:.5!important}
+
+/* ===== v8: video backgrounds behind frosted glass, tone-aware text ===== */
+.hbg .it{background:#111}
+.hbg .im{position:absolute;inset:0}
+.hbg video{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;filter:blur(10px) saturate(1.05);transform:none}
+/* frosted tint + vignette (edges darker, centre clear) */
+.hbg::after{opacity:1!important;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 35%,rgba(0,0,0,.45) 100%),rgba(12,12,14,.28)!important;transition:background .8s}
+body[data-tone=light] .hbg::after{background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 40%,rgba(0,0,0,.18) 100%),rgba(255,255,255,.42)!important}
+/* text colour follows the clip underneath */
+body[data-view=home] .top,body[data-view=home] .bot,#v-home{transition:color .8s}
+body[data-view=home][data-tone=dark] .top,body[data-view=home][data-tone=dark] .bot,body[data-tone=dark] #v-home{color:#fff}
+body[data-view=home][data-tone=dark] .clip .cl{background:rgba(255,255,255,.26)}
+body[data-view=home][data-tone=dark] .top{border-color:rgba(255,255,255,.26)!important}
+body[data-view=home][data-tone=dark] .bot{border-color:rgba(255,255,255,.26)!important}
+body[data-tone=dark] #v-home .info .c,body[data-tone=dark] #v-home .info .c2{color:rgba(255,255,255,.78);opacity:1}
+body[data-view=home][data-tone=dark] .scr::before,body[data-view=home][data-tone=dark] .scr::after{background:#fff}
+body[data-tone=dark] #v-home .info .t,body[data-tone=dark] #v-home .crea,body[data-tone=dark] #v-home .cnt{text-shadow:0 1px 14px rgba(0,0,0,.25)}
+body.menu-open .top{color:var(--white)!important}
+body.intro .top,body.intro .bot{color:var(--white)!important}
+/* next project: video behind frosted glass */
+.pnext{position:relative;display:flex;align-items:flex-end;min-height:min(60svh,34rem);padding:3.5rem var(--pad)!important;overflow:hidden;background:#111;isolation:isolate}
+.pnext .bg{display:none}
+.pnext>video.pv{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;z-index:-2;filter:blur(8px);transition:transform 1.4s var(--expo),filter .8s}
+.pnext::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 30% 70%,rgba(0,0,0,.05) 20%,rgba(0,0,0,.5) 100%),rgba(12,12,14,.3)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.pnext[data-tone=light]::after{background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,0) 20%,rgba(0,0,0,.14) 100%),rgba(255,255,255,.4)!important}
+.pnext[data-tone=dark]{color:#fff}
+.pnext[data-tone=dark] .lbl{color:rgba(255,255,255,.75)}
+.pnext[data-tone=light]{color:var(--white)}
+.pnext>*{position:relative;z-index:1}
+.pnext>video.pv{position:absolute!important;z-index:-2!important}
+.pnext .nt{font-size:2.25rem!important}
+@media (hover:hover){.pnext:hover>video.pv{transform:scale(1.04);filter:blur(4px)}}
+@media (max-width:768px){.pnext{min-height:46svh;padding:2.5rem var(--pad)!important}.pnext .nt{font-size:1.5rem!important}}
+@media (prefers-reduced-motion:reduce){.hbg video,.pnext video{display:none}}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -954,6 +988,10 @@ body.intro .top,body.intro .bot{border-color:transparent!important}
      pages:[['關於元禎','122mI-bPeARtVsdV0DBe1QxyzpSHizb5A','Website'],['產品介紹','1jmHj9LzDAdARyA1iMJStXBM-sb7IW_jW','Website'],['產品介紹 — 化學品部','1WI_zErJzCGZ8nT9z9L98pMUPt7T2ExO7','Website'],['人才招募','1rAr3QaiTnVNTDxMmvRHfM9aI9yCb3jpI','Website'],['聯絡我們','1qXEL7EjUXIHmH2XQ8X6bbNh_FCTtyVhd','Website'],['公司治理','1TnxPpTUwI2lh8L51EEPt96uiyDkvWkNj','IR'],['董事及監察人','1fDf5cnc3ZPdpOBfCoTuxQcfX2kU9rWKm','IR'],['最新消息','18wqacNPPiqPCu3ck5Cw15Tv3-A4uMcTy','IR'],['最新消息內頁','1pAX9M6NfivnfoQH0ZN0zurBVdiC8BmAJ','IR'],['其他資訊','1Ki4yzHaopWlYBs4j4RZVUQEpz6z7DfND','IR'],['利害關係人專區','1c6DNXDPs_oRZqiCu-bi2Mjza72OV4vgJ','ESG'],['企業永續發展','18mru3HHA0ZZmG_53uZWXlhb5UoY_HPmX','ESG']]}
   ];
   P.forEach(p=>{p.title=p.en;p.titleZh=p.zh;});
+  /* 背景影片：videos/<key>.mp4，tone = 影片上要用白字(dark) 還是黑字(light) */
+  const VID={fusheng:'dark',angle:'dark',chunho:'light',yuanjen:'dark'};
+  P.forEach(p=>{p.video=`videos/${p.key}.mp4`;p.poster=`videos/${p.key}.jpg`;p.tone=VID[p.key]||'dark';});
+  const vtag=(p,cls='')=>`<video class="${cls}" muted playsinline loop preload="metadata" poster="${p.poster}" src="${p.video}"></video>`;
   const AUD={C:'客戶',I:'投資人',J:'求職者'};
   const N=P.length;
 
@@ -970,7 +1008,7 @@ body.intro .top,body.intro .bot{border-color:transparent!important}
   /* ---------- HOME build ---------- */
   const hbg=$('#hbg'), cb=$('#clipBody'), info=$('#info'), crea=$('#crea'), cur=$('#cur');
   P.forEach((p,i)=>{
-    hbg.insertAdjacentHTML('beforeend',`<div class="it" data-i="${i}" style="--tint:${p.palette[0][2]}"><div class="im">${img(p.home,1600,'',i>1)}</div></div>`);
+    hbg.insertAdjacentHTML('beforeend',`<div class="it" data-i="${i}" style="--tint:${p.palette[0][2]}"><div class="im">${vtag(p)}</div></div>`);
     cb.insertAdjacentHTML('beforeend',`<div class="shot" data-i="${i}"><div class="win px" data-manual="1">${img(p.home,1400,p.titleZh,i>1)}</div></div>`);
     info.insertAdjacentHTML('beforeend',`<div class="g" data-i="${i}"><p class="t"><span class="m"><span>${p.zh}</span></span></p><p class="c"><span class="m"><span>${p.en}</span></span></p><p class="c c2"><span class="m"><span>${p.category}</span></span></p></div>`);
     crea.insertAdjacentHTML('beforeend',`<ul data-i="${i}">${p.crea.map(c=>`<li><span class="m"><span>${c}</span></span></li>`).join('')}</ul>`);
@@ -993,6 +1031,8 @@ body.intro .top,body.intro .bot{border-color:transparent!important}
     // background stacking: incoming on top, outgoing just below
     $$('#hbg .it').forEach(el=>{const k=+el.dataset.i; el.style.zIndex=k===idx?3:(k===prev?2:1);});
     $('#hit').href='#work-'+P[idx].key;
+    B.dataset.tone=P[idx].tone;
+    $$('#hbg video').forEach((v,k)=>{ if(k===idx){ const pr=v.play(); if(pr&&pr.catch) pr.catch(()=>{}); } else setTimeout(()=>{ if(+v.closest('.it').dataset.i!==idx) v.pause(); },1400); });
     const w=document.querySelector(`.shot[data-i="${idx}"] .win`); if(window.__px){ __px.resetPx(w); if(!B.classList.contains('intro')) __px.pixelate(w,120); }
   }
   // place incoming item on the correct side before animating
@@ -1151,8 +1191,9 @@ body.intro .top,body.intro .bot{border-color:transparent!important}
           <li><p class="cr">Agency</p><p class="cm">振作雲科技</p></li>
           <li style="grid-column:1/-1"><p class="cr">Tags</p><p class="cm" style="opacity:.75">${p.tags.map(t=>'#'+t).join('　')}</p></li>
         </ul></div></section>
-      <a class="pnext" href="#work-${n.key}"><div class="bg">${img(n.home,1400)}</div><div class="gpanel"><p class="lbl">Next — ${pad((i+1)%N+1)}</p><p class="nt"><span class="roll"><span>${n.zh}</span><span aria-hidden="true">${n.zh}</span></span>${arr}</p><p class="lbl" style="position:relative">${n.en}</p></div></a>`;
+      <a class="pnext" data-tone="${n.tone}" href="#work-${n.key}">${vtag(n,'pv')}<div class="gpanel"><p class="lbl">Next — ${pad((i+1)%N+1)}</p><p class="nt"><span class="roll"><span>${n.zh}</span><span aria-hidden="true">${n.zh}</span></span>${arr}</p><p class="lbl" style="position:relative">${n.en}</p></div></a>`;
     post.scrollTop=0; post.classList.remove('vis');
+    { const pv=post.querySelector('.pnext video'); const vo=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ const pr=pv.play(); if(pr&&pr.catch) pr.catch(()=>{}); } else pv.pause(); })); vo.observe(pv); }
     if(!post.open) post.show();
     requestAnimationFrame(()=>{post.classList.add('open');setTimeout(()=>{post.classList.add('vis');pixelate(post.querySelector('.pcover .pi'),300);},250);});
     B.classList.add('lock');
