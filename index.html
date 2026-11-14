@@ -1105,7 +1105,7 @@ body.menu-open .scr,body.intro .scr{opacity:0}
      fonts:['Noto Sans TC（中文）','Ubuntu（英文・數字）'],
      type:[['H1','52px / 700','技術驅動未來',52,700],['H2','42px / 700','全球最大高爾夫球具製造商',42,700],['H3','28px / 700','股東專欄',28,700],['副標','24px / 700','實事求是、精益求精',24,700],['內文','16px / 400・行高 1.8','復盛應用深耕精密金屬製造超過 40 年',16,400],['輔助','15px / 400','Copyright © 2026',15,400]],
      home:'L:fusheng/home',
-     pages:[['關於復盛應用','L:fusheng/about','Website'],['產品應用 — 高爾夫球具','L:fusheng/golf','Website'],['服務與技術','L:fusheng/service','Website'],['人力資源','L:fusheng/hr','Website'],['聯絡我們','L:fusheng/contact','Website'],['投資人專區','L:fusheng/ir','IR'],['ESG 總覽','L:fusheng/esg','ESG'],['永續經營 — 重大分析與利害關係人','L:fusheng/materiality','ESG'],['環境 — 永續環境政策','L:fusheng/environment','ESG'],['價值鏈 — 供應鏈管理','L:fusheng/supply','ESG'],['ESG 資料庫','L:fusheng/esg-data','ESG'],['公益行動','L:fusheng/charity','ESG']]},
+     pages:[['關於復盛應用','L:fusheng/about','Website'],['產業應用','L:fusheng/industry','Website'],['產業應用 — 航太','L:fusheng/aerospace','Website'],['產業應用 — 高爾夫','L:fusheng/golf','Website'],['服務與技術','L:fusheng/service','Website'],['服務與技術 — 碳纖維','L:fusheng/carbon','Website'],['人力資源','L:fusheng/hr','Website'],['投資人專區','L:fusheng/ir','IR'],['投資人專區 — 內頁 01','L:fusheng/ir-1','IR'],['投資人專區 — 內頁 02','L:fusheng/ir-2','IR'],['投資人專區 — 內頁 03','L:fusheng/ir-3','IR'],['ESG 總覽','L:fusheng/esg','ESG'],['ESG — 永續環境','L:fusheng/environment','ESG'],['ESG — 風險資訊','L:fusheng/risk','ESG'],['ESG — 健康安全','L:fusheng/safety','ESG']]},
     {key:'angle',zh:'意力室內設計',en:'Angle Space Design',client:'AD 意力室內裝修有限公司',category:'品牌形象官網・作品集網站',year:'2026.03',
      crea:['Website','Branding'],url:'https://www.anglespace.com.tw/',lead:'為空間賦能，從專業設計開始',
      langs:['繁體中文'],duration:'2–3',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
@@ -1146,7 +1146,7 @@ body.menu-open .scr,body.intro .scr{opacity:0}
   P.forEach(p=>{p.title=p.en;p.titleZh=p.zh;});
   /* 背景影片：videos/<key>.mp4，tone = 影片上要用白字(dark) 還是黑字(light) */
   const VID={fusheng:'dark',angle:'dark',chunho:'light',yuanjen:'dark'};
-  const MOBN={fusheng:['首頁','產品應用 — 高爾夫球具','ESG 總覽'],angle:['首頁','作品內頁','關於意力'],chunho:['首頁','案例展示','關於我們'],yuanjen:['首頁','投資人專區','關於元禎']};
+  const MOBN={fusheng:['首頁','關於復盛應用','產業應用 — 高爾夫'],angle:['首頁','作品內頁','關於意力'],chunho:['首頁','案例展示','關於我們'],yuanjen:['首頁','投資人專區','關於元禎']};
   P.forEach(p=>{p.mob=MOBN[p.key];p.video=`videos/${p.key}.mp4`;p.poster=`videos/${p.key}.jpg`;p.tone=VID[p.key]||'dark';});
   const vtag=(p,cls='')=>`<video class="${cls}" muted playsinline loop preload="none" poster="${p.poster}" src="${p.video}"></video>`;
   const AUD={C:'客戶',I:'投資人',J:'求職者'};
