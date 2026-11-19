@@ -888,6 +888,88 @@ body.menu-open .scr,body.intro .scr{opacity:0}
   #lb img{max-width:100%!important}
   .lbp,.lbq{top:auto;bottom:1.25rem;margin-top:0;width:2.75rem;height:2.75rem}
 }
+
+/* ===== v14: home — bigger work window, softer background ===== */
+@media (orientation:landscape){
+  :root{--hw:min(23vw,40rem,calc(37svh * 16 / 9))}
+  .clip{--cx:calc(50cqw - var(--hw));--cy:calc(50cqh - var(--hw) * 9 / 16)}
+  .hit{width:calc(var(--hw) * 2);height:calc(var(--hw) * 9 / 8)}
+  .crea{left:calc(50vw + min(23vw,40rem,calc(37svh * 16 / 9)) + 1.5rem)!important}
+  .info{max-width:calc(50vw - min(23vw,40rem,calc(37svh * 16 / 9)) - var(--pad) - 1.5rem)}
+}
+.hbg video{transform:scale(1.06)}
+body[data-view=home] .hbg::after{backdrop-filter:none}
+
+/* ===== v14: About — With AI ===== */
+.aiw{display:grid;gap:3rem}
+.ailead{font-size:1.0625rem;line-height:2}
+.ailead b{font-weight:500;background:linear-gradient(transparent 62%,var(--bg2) 62%)}
+.ailoop{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);counter-reset:a}
+.ailoop li{position:relative;padding:1rem 1rem 1.1rem;font-size:.8125rem;line-height:1.5}
+.ailoop li+li{border-left:1px solid var(--border)}
+.ailoop li small{display:block;font-size:.6875rem;color:var(--ink3);margin-bottom:.35rem;letter-spacing:.06em}
+.ailoop li:not(:last-child)::after{content:"";position:absolute;right:-.3rem;top:50%;width:.55rem;height:.55rem;margin-top:-.275rem;background:var(--bg1);border-top:1px solid var(--border);border-right:1px solid var(--border);transform:rotate(45deg);z-index:1}
+.ailoop li:last-child{background:var(--bg2)}
+.ailist{border-top:1px solid var(--border)}
+.ailist li{display:grid;grid-template-columns:3rem 1fr;padding:1.75rem 0;border-bottom:1px solid var(--border)}
+.ailist li>small{font-size:.8125rem;color:var(--ink2);padding-top:.2rem}
+.ailist h3{font-size:1.125rem;font-weight:500;display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap}
+.ailist h3 span{font-size:.75rem;font-weight:400;color:var(--ink3);letter-spacing:.06em}
+.ailist p{margin-top:.75rem;font-size:.875rem;line-height:2;opacity:.85}
+.aistat{display:flex;align-items:baseline;gap:.35rem;opacity:1!important;margin-top:1.25rem!important}
+.aistat b{font-size:2rem;font-weight:400;line-height:1;letter-spacing:-.01em}
+.aistat span{font-size:.8125rem;color:var(--ink2)}
+.aistat i{align-self:center;width:2.5rem;height:1px;background:var(--white);margin:0 .6rem;position:relative}
+.aistat i::after{content:"";position:absolute;right:0;top:-.2rem;width:.45rem;height:.45rem;border-top:1px solid var(--white);border-right:1px solid var(--white);transform:rotate(45deg)}
+.aistat b:first-of-type{color:var(--ink3);text-decoration:line-through;text-decoration-thickness:1px}
+.aistat em{font-style:normal;font-size:.75rem;color:var(--ink2);margin-left:.75rem}
+@media (max-width:768px){.ailoop{grid-template-columns:1fr 1fr}.ailoop li:nth-child(3){border-left:0}.ailoop li:nth-child(n+3){border-top:1px solid var(--border)}.ailoop li:nth-child(2)::after{display:none}.ailead{font-size:1rem}.ailist li{grid-template-columns:2.25rem 1fr}}
+
+/* ===== v14: About — works by year ===== */
+.yrintro{font-size:.875rem;line-height:2;opacity:.85;align-self:end}
+.yrs{margin-top:3.75rem;border-top:1px solid var(--border)}
+.yr{border-bottom:1px solid var(--border)}
+.yh{width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;text-align:left;padding:1.75rem 0;cursor:pointer;position:relative;color:inherit}
+.yh .yy{grid-column:1;grid-row:1;font-size:clamp(2.25rem,4vw,3.5rem);font-weight:400;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.yh .yt{grid-column:1;grid-row:1;justify-self:start;margin-left:clamp(10rem,17vw,15rem);font-size:.875rem;color:var(--ink2)}
+.yh .ys{grid-column:2;grid-row:1;display:flex;align-items:baseline;gap:1rem;min-width:0;padding-right:3.5rem;transition:opacity .4s}
+.yh .yn{flex:none;font-size:.75rem;color:var(--ink3);letter-spacing:.06em}
+.yh .ynm{font-size:.875rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.yr.open .yh .ys{opacity:0}
+.yi{position:absolute;right:0;top:50%;width:2.25rem;height:2.25rem;margin-top:-1.125rem;border:1px solid var(--border-a);border-radius:50%;transition:background-color .4s,border-color .4s,transform .6s var(--expo)}
+.yi::before,.yi::after{content:"";position:absolute;left:50%;top:50%;width:.75rem;height:1px;margin:-.5px 0 0 -.375rem;background:currentColor;transition:transform .6s var(--expo)}
+.yi::after{transform:rotate(90deg)}
+.yr.open .yi::after{transform:rotate(0)}
+@media (hover:hover){.yh:hover .roll>span:first-child{transform:translateY(-105%)}.yh:hover .roll>span+span{transform:none}.yh:hover .yi{background:var(--white);border-color:var(--white);color:#fff}}
+.yb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .8s var(--expo)}
+.yr.open .yb{grid-template-rows:1fr}
+.ybi{overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:0}
+.yd{grid-column:1;font-size:.875rem;line-height:2;opacity:.75;padding:0 3rem 2.25rem 0;max-width:26rem}
+.yl{grid-column:2;border-top:1px solid var(--border);margin-bottom:2.25rem}
+.yl li{display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-bottom:1px solid var(--border);transition:background-color .3s}
+.yw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1rem;align-items:baseline;padding:1.1rem 0;color:inherit}
+.ynm2 b{display:block;font-weight:500;font-size:.9375rem;transition:transform .5s var(--expo)}
+.ynm2 small{display:block;font-size:.75rem;color:var(--ink2);margin-top:.2rem}
+.yro{font-size:.8125rem;line-height:1.7;opacity:.8}
+.ylk{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;white-space:nowrap;padding:.4rem 0 .4rem .75rem;min-width:4.75rem;justify-content:flex-end}
+.ylk svg{width:.6rem}
+.ylk span{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s var(--expo)}
+@media (hover:hover){a.yw:hover .ynm2 b{transform:translateX(.5rem)}.yl li[data-th]:hover{background:linear-gradient(90deg,var(--bg2),transparent 70%)}.ylk:hover span{background-size:100% 1px}}
+.ypv{position:fixed;left:0;top:0;z-index:3000;width:17rem;aspect-ratio:4/3;overflow:hidden;pointer-events:none;background:var(--bg2);outline:1px solid var(--border);box-shadow:0 24px 60px -24px rgba(0,0,0,.35);clip-path:inset(0 0 100% 0);transition:clip-path .55s var(--expo)}
+.ypv.on{clip-path:inset(0)}
+.ypv img{width:100%;height:100%;object-fit:cover;object-position:top}
+body:not([data-view=about]) .ypv{display:none}
+@media (max-width:768px){
+  .yrs{margin-top:2rem}
+  .yh{grid-template-columns:1fr;padding:1.25rem 0}
+  .yh .yt{margin-left:clamp(7rem,30vw,9rem)}
+  .yh .ys{display:none}
+  .ybi{grid-template-columns:1fr}
+  .yd{padding:0 0 1.25rem}
+  .yl{grid-column:1}
+  .yw{grid-template-columns:1fr;gap:.35rem}
+}
+.yh .yy sub{font-size:.32em;vertical-align:baseline;margin-left:.15em;color:var(--ink2);letter-spacing:0}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -972,7 +1054,9 @@ body.menu-open .scr,body.intro .scr{opacity:0}
         <h1 class="sect"><span class="m"><span>About Brian</span></span></h1>
         <ul class="anav">
           <li><a class="ul" href="#about" data-jump="a-service">Service</a></li>
+          <li><a class="ul" href="#about" data-jump="a-ai">With AI</a></li>
           <li><a class="ul" href="#about" data-jump="a-profile">Profile</a></li>
+          <li><a class="ul" href="#about" data-jump="a-years">Works</a></li>
           <li><a class="ul" href="#about" data-jump="a-career">Career</a></li>
           <li><a class="ul" href="#about" data-jump="a-outline">Outline</a></li>
         </ul>
@@ -985,7 +1069,7 @@ body.menu-open .scr,body.intro .scr{opacity:0}
         </div>
       </div>
     </div>
-    <div class="abg abv" id="abg1"><video muted playsinline loop preload="none" poster="videos/angle.jpg" src="videos/angle.mp4"></video></div>
+    <div class="abg abv" id="abg1"><video muted playsinline loop preload="none" poster="videos/angle-sharp.jpg" src="videos/angle-sharp.mp4"></video></div>
 
     <section class="asec" id="a-service">
       <div class="ag">
@@ -994,6 +1078,22 @@ body.menu-open .scr,body.intro .scr{opacity:0}
           <div class="it fade"><div class="anim"><div class="a1"><i></i><i></i><i></i></div></div><div><h3><small>01</small>Information Architecture<br>資訊架構</h3><p>理解產業與受眾，重新梳理選單與頁面層級，讓客戶、投資人與求職者都能用最短路徑找到需要的資訊。</p></div></div>
           <div class="it fade"><div class="anim"><div class="a2"></div></div><div><h3><small>02</small>Visual Design<br>視覺設計</h3><p>從品牌識別延伸色彩、字級與版面規則，以章節編號、英文浮水印與一致的卡片系統，建立長頁面的閱讀節奏。</p></div></div>
           <div class="it fade"><div class="anim"><div class="a3"><i></i><i></i><i></i></div></div><div><h3><small>03</small>Web Build<br>前端建置</h3><p>以 WordPress、Elementor Pro 搭配 HTML / CSS / JavaScript 完成建置與 RWD 調校，上線後也方便客戶自行維護。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="asec" id="a-ai">
+      <div class="ag">
+        <div class="rv"><h2 class="sect"><span class="m"><span>With AI</span></span></h2><p class="lbl" style="margin-top:.75rem">我怎麼和 AI 合作</p></div>
+        <div class="aiw">
+          <p class="ailead fade">AI 產出很快，但它不會替結果負責。我把它當成速度很快的協作者：<b>我負責定義問題和判斷對錯，它負責大量產出。</b>AI 寫的每一段程式碼，都要在瀏覽器裡通過我的檢查才會上線。</p>
+          <ol class="ailoop fade" aria-label="合作流程"><li><small>01</small>描述需求與現況</li><li><small>02</small>AI 產出</li><li><small>03</small>瀏覽器實測</li><li><small>04</small>具體回饋、再修正</li></ol>
+          <ul class="ailist">
+            <li class="fade"><small>01</small><div><h3>客製化功能與修正<span>Custom code</span></h3><p>Elementor 和外掛只能調到基本設定，要再進一步就得寫 HTML、CSS、JavaScript。我把需求和現況描述清楚，請 AI 產出程式碼，再放到瀏覽器實際測試：對照設計稿，逐一檢查桌機、平板、手機。不對就把問題具體指出來回饋給 AI，反覆修正到可以上線。</p></div></li>
+            <li class="fade"><small>02</small><div><h3>快速上手新工具<span>New tools</span></h3><p>遇到沒用過的外掛或後台設定，我先請 AI 說明設定方式和需要注意的地方，再自己動手操作驗證。剛入職時我對 WordPress 完全陌生，就是靠這個方法，幾個月內做到獨立建站。</p></div></li>
+            <li class="fade"><small>03</small><div><h3>多語系改版<span>Multilingual</span></h3><p>一個 9 語系的官網改版案，我把大量重複的套版修正交給 AI，自己逐頁檢視、調整細節。</p><p class="aistat"><b>7</b><span>天</span><i></i><b>3–4</b><span>天</span><em>每個站的工期</em></p></div></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1009,14 +1109,24 @@ body.menu-open .scr,body.intro .scr{opacity:0}
             <div><b data-count="4">0<sup>yrs</sup></b><span class="lbl">Design experience</span></div>
           </div>
           <ul class="mem fade">
-            <li><div><h3>振作雲科技</h3><p>Web Designer — 資訊架構 / 視覺設計 / 前端建置</p></div><span class="y">2024 — Now</span></li>
-            <li><div><h3>茁思科技</h3><p>Graphic Designer — 平面 / 品牌視覺</p></div><span class="y">2022 — 2024</span></li>
+            <li><div><h3>振作雲科技</h3><p>Web Designer — 資訊架構 / 視覺設計 / 前端建置</p></div><span class="y">2025 — Now</span></li>
+            <li><div><h3>自由接案</h3><p>Freelance — 網頁與視覺設計</p></div><span class="y">2024 — 2025</span></li>
+            <li><div><h3>茁思科技</h3><p>Graphic Designer — 平面 / 展覽 / 網頁介面</p></div><span class="y">2022 — 2024</span></li>
           </ul>
         </div></div>
       </div>
     </section>
 
-    <div class="abg abv" id="abg2"><video muted playsinline loop preload="none" poster="videos/fusheng.jpg" src="videos/fusheng.mp4"></video></div>
+
+    <section class="asec" id="a-years">
+      <div class="ag">
+        <div class="rv"><h2 class="sect"><span class="m"><span>Works by Year</span></span></h2><p class="lbl" style="margin-top:.75rem">年度代表作品 — 從平面走到網頁</p></div>
+        <p class="yrintro fade">每年只挑最能代表那一年轉變的作品。點開年份查看，滑過作品可預覽畫面。</p>
+      </div>
+      <div class="yrs fade" id="yrs"></div>
+    </section>
+
+    <div class="abg abv" id="abg2"><video muted playsinline loop preload="none" poster="videos/fusheng-sharp.jpg" src="videos/fusheng-sharp.mp4"></video></div>
 
     <section class="asec" id="a-career">
       <div class="ag">
@@ -1405,6 +1515,46 @@ body.menu-open .scr,body.intro .scr{opacity:0}
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); if(e.target.querySelector('[data-count]')) countUp(e.target); }}),{rootMargin:'0px 0px -10% 0px'});
   function observe(root){ root.querySelectorAll('.rv,.fade').forEach(el=>{el.classList.remove('in'); io.observe(el);}); }
   function countUp(r){ r.querySelectorAll('[data-count]').forEach(b=>{const to=+b.dataset.count,s=performance.now();(function f(t){const k=Math.min(1,(t-s)/1400);b.firstChild.nodeValue=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s);}); }
+
+  /* ===== About: works by year (accordion + hover preview) ===== */
+  { const W=k=>P.find(p=>p.key===k);
+    const YEARS=[
+      {y:'2026',t:'獨立完成整站',d:'從提案、設計到建置一手包辦，三個不同產業的官網陸續上線。',items:[
+        {k:'yuanjen',type:'上市櫃企業官網・IR・ESG',role:'提案、資訊架構、視覺設計、全站建置'},
+        {k:'angle',type:'室內設計品牌官網',role:'提案、視覺設計、作品案例系統、全站建置'},
+        {k:'chunho',type:'營造公司形象官網',role:'提案、視覺設計、全站建置（約 1 個月）'}]},
+      {y:'2025',t:'進入網頁設計',d:'加入振作雲科技，從零學 WordPress 與前端，接手上市公司官網的設計與建置。',items:[
+        {k:'fusheng',type:'上市公司官網・IR・ESG',role:'接手主管提案後的視覺設計與全站建置'}]},
+      {y:'2024',t:'轉向介面設計',d:'離開平面設計崗位，以接案專注在 UI／UX 與網頁設計。',items:[
+        {n:'活動網頁介面',type:'網頁 UI',role:'活動頁視覺與介面設計（茁思科技）'},
+        {n:'後台管理介面',type:'系統 UI',role:'後台介面規劃與視覺設計（茁思科技）'},
+        {n:'自由接案',type:'網頁・視覺設計',role:'企業網站與視覺設計接案'}]},
+      {y:'2022',sub:'—23',t:'平面設計起步',d:'在茁思科技擔任美術設計，第二年起成為公司唯一的設計師。',items:[
+        {n:'海報與印刷品',type:'平面設計',role:'設計、打樣與印刷品質把關'},
+        {n:'展覽設計',type:'展場視覺',role:'展場主視覺與輸出物設計'},
+        {n:'版型網站',type:'網頁',role:'套版網站的視覺調整'}]}];
+    const ext='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><path d="M1 11L11 1M3 1h8v8"/></svg>';
+    const box=$('#yrs');
+    box.innerHTML=YEARS.map((Y,i)=>{ const names=Y.items.map(it=>it.k?W(it.k).zh:it.n);
+      return `<div class="yr${i===0?' open':''}">
+        <button class="yh" aria-expanded="${i===0}"><span class="yy"><span class="roll"><span>${Y.y}</span><span aria-hidden="true">${Y.y}</span></span>${Y.sub?`<sub>${Y.sub}</sub>`:''}</span><span class="yt">${Y.t}</span>
+          <span class="ys"><span class="yn">${pad(Y.items.length)} works</span><span class="ynm">${names.join('、')}</span></span><i class="yi"></i></button>
+        <div class="yb"><div class="ybi"><p class="yd">${Y.d}</p><ul class="yl">${Y.items.map(it=>{ const p=it.k&&W(it.k);
+          const nm=p?p.zh:it.n, url=p&&p.url, th=p?D(p.home,600):'';
+          return `<li${th?` data-th="${th}"`:''}>${p?`<a class="yw" href="#work-${p.key}">`:'<div class="yw">'}<span class="ynm2"><b>${nm}</b><small>${it.type}</small></span><span class="yro">${it.role}</span>${p?'</a>':'</div>'}${url?`<a class="ylk" href="${url}" target="_blank" rel="noopener"><span>看網站</span>${ext}</a>`:'<span class="ylk off"></span>'}</li>`; }).join('')}</ul></div></div></div>`; }).join('');
+    box.querySelectorAll('.yh').forEach(h=>h.onclick=()=>{ const y=h.parentNode, o=!y.classList.contains('open'); y.classList.toggle('open',o); h.setAttribute('aria-expanded',o); });
+    // hover preview that follows the cursor
+    const pv=document.createElement('div'); pv.className='ypv'; pv.innerHTML='<img alt="">'; document.body.appendChild(pv);
+    const pim=pv.querySelector('img'); let tx=0,ty=0,cx=0,cy=0,raf=0;
+    const loop=()=>{ cx+=(tx-cx)*.18; cy+=(ty-cy)*.18; pv.style.transform=`translate(${cx}px,${cy}px)`; raf=Math.abs(tx-cx)+Math.abs(ty-cy)>.5?requestAnimationFrame(loop):0; };
+    const fine=matchMedia('(hover:hover) and (pointer:fine)');
+    box.addEventListener('mousemove',e=>{ if(!fine.matches) return; const w=pv.offsetWidth,h=pv.offsetHeight; tx=Math.min(e.clientX+28,innerWidth-w-16); ty=Math.max(16,Math.min(e.clientY-h/2,innerHeight-h-16)); if(!raf) raf=requestAnimationFrame(loop); });
+    box.querySelectorAll('li[data-th]').forEach(li=>{
+      li.addEventListener('mouseenter',e=>{ if(!fine.matches) return; if(!pv.classList.contains('on')){ const w=pv.offsetWidth,h=pv.offsetHeight; cx=tx=Math.min(e.clientX+28,innerWidth-w-16); cy=ty=Math.max(16,Math.min(e.clientY-h/2,innerHeight-h-16)); pv.style.transform=`translate(${cx}px,${cy}px)`; }
+        pim.src=li.dataset.th; pv.classList.add('on'); });
+      li.addEventListener('mouseleave',()=>pv.classList.remove('on')); });
+    addEventListener('hashchange',()=>pv.classList.remove('on')); addEventListener('scroll',()=>pv.classList.remove('on'),{passive:true,capture:true});
+  }
   // lazy bg images in about
   $$('img[data-src]').forEach(i=>i.src=D(i.dataset.src,1400));
   const abgs=$$('.abg');
