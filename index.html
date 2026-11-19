@@ -1102,6 +1102,20 @@ body.intro .frame .gH.g2{animation:gy2 1.05s cubic-bezier(.65,0,.3,1) .05s both}
 body.intro .frame .freg{animation:fregIn .7s var(--expo) .75s both}
 .frame.open .freg{opacity:0;transform:scale(2.5)}
 #v-home .reg{display:none}
+
+/* ===== v17: centred cross; on wide screens the text is organised around the vertical axis ===== */
+:root{--FX:50vw;--FY:50svh}
+@media (orientation:portrait),(max-width:768px){:root{--FX:50vw;--FY:42svh}}
+@media (orientation:landscape) and (min-width:769px){
+  #v-home{--X:50vw;--Y:50svh;--hw:min(23vw,40rem,calc(28svh * 16 / 9))}
+  #v-home .info{left:auto!important;right:calc(50vw + 1.5rem)!important;width:calc(var(--hw) - 1.5rem)!important;text-align:right}
+  #v-home .info .g{inset:0 0 auto auto!important}
+  #v-home .crea{right:auto!important;left:calc(50vw + 1.5rem)!important}
+  #v-home .crea ul{inset:0 auto auto 0!important}
+  #v-home .cnt{left:0!important;right:0!important;margin:0 auto!important;width:fit-content!important;top:calc(var(--Y) - var(--hh2) - 3rem)!important;gap:3rem!important}
+  #v-home .cnt .bar{display:none}
+}
+@media (orientation:portrait),(max-width:768px){#v-home .clip .cl.L,#v-home .clip .cl.R{bottom:calc(100svh - var(--Y) - var(--hh2))!important}}
 </style>
 </head>
 <body data-view="home" class="intro lock">
