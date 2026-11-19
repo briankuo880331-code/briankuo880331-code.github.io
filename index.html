@@ -1100,7 +1100,6 @@ body:not([data-view=about]) .ypv{display:none}
         <h1 class="sect"><span class="m"><span>About Brian</span></span></h1>
         <ul class="anav">
           <li><a class="ul" href="#about" data-jump="a-service">Service</a></li>
-          <li><a class="ul" href="#about" data-jump="a-ai">With AI</a></li>
           <li><a class="ul" href="#about" data-jump="a-profile">Profile</a></li>
           <li><a class="ul" href="#about" data-jump="a-years">Works</a></li>
           <li><a class="ul" href="#about" data-jump="a-career">Career</a></li>
@@ -1112,6 +1111,7 @@ body:not([data-view=about]) .ypv{display:none}
         <div class="db fade">
           <p>企業官網往往要同時面對客戶、投資人與求職者。我擅長快速摸清一個陌生產業的邏輯，把龐雜、面向多種對象的資訊，整理成一眼讀懂的頁面。</p>
           <p>色彩只用在需要被看見的地方，其餘交給留白與真實影像，讓內容本身成為主角；從資訊架構、視覺設計到前端建置，盡量讓設計稿與上線成品保持一致。</p>
+          <p>建置時會搭配 AI 產出程式碼，但每一段都經過我在桌機、平板與手機上實際測試，確認沒問題才上線。</p>
         </div>
       </div>
     </div>
@@ -1129,23 +1129,6 @@ body:not([data-view=about]) .ypv{display:none}
     </section>
 
 
-    <section class="asec" id="a-ai">
-      <div class="ag">
-        <div class="rv"><h2 class="sect"><span class="m"><span>With AI</span></span></h2><p class="lbl" style="margin-top:.75rem">我怎麼和 AI 合作</p></div>
-        <div class="aihd fade">
-          <p class="aiq">AI 負責快，我負責<span class="ac">對</span>。</p>
-          <p class="aisub">我一個人就能完成設計到建置，靠的是和 AI 分工：它產出程式碼與做法，我定義問題、判斷對錯，並在瀏覽器實際測試，確認沒問題才上線。</p>
-        </div>
-      </div>
-      <ol class="ailoop fade" aria-label="合作流程">
-        <li><small>01</small>描述需求與現況</li><li><small>02</small>AI 產出程式碼</li><li><small>03</small>瀏覽器實測、對照設計稿</li><li><small>04</small>具體回饋，再修正<em>不符合就回到 02</em></li>
-      </ol>
-      <ul class="aicards">
-        <li class="fade"><small>01 — Custom code</small><h3>客製化功能與修正</h3><p class="aim"><b>3</b><span>種裝置逐一實測<br>桌機・平板・手機</span></p><p>Elementor 做不到的細節，我描述需求請 AI 寫 HTML / CSS / JS，再對照設計稿實測，把問題具體回饋，修到可以上線。</p></li>
-        <li class="fade"><small>02 — New tools</small><h3>快速上手新工具</h3><p class="aim"><b>0<i>→</i>1</b><span>從不會 WordPress<br>到幾個月內獨立建站</span></p><p>沒用過的外掛或後台設定，先請 AI 說明做法和注意事項，再自己動手操作驗證。</p></li>
-        <li class="fade"><small>03 — Multilingual</small><h3>多語系改版</h3><p class="aim"><b>7<i>→</i>3–4</b><span>天／每個語系站<br>9 語系官網改版</span></p><p>大量重複的套版修正交給 AI，我逐頁檢視、微調細節，工期縮短將近一半。</p></li>
-      </ul>
-    </section>
 
     <section class="asec" id="a-profile">
       <div class="ag pro2">
@@ -1248,7 +1231,7 @@ body:not([data-view=about]) .ypv{display:none}
   const P=[
     {key:'fusheng',zh:'復盛應用科技',en:'Fusheng Precision',client:'復盛應用科技股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2025.12',
      crea:['Website','IR','ESG'],url:'https://www.fusheng-precision.com/',lead:'全球最大高爾夫球具製造商',
-     langs:['繁體中文','English'],duration:'4–5',solo:false,roleNote:'此案初期由主管發想提案，後續由我接續設計，並完成全站頁面建置。',
+     langs:['繁體中文','English'],duration:'4–5',solo:false,ai:'',roleNote:'此案初期由主管發想提案，後續由我接續設計，並完成全站頁面建置。',
      brief:['復盛應用科技是全球最大的高爾夫球具製造商，市占超過四成，製造據點橫跨台灣、中國、越南、泰國等，並以同一套精密製造能量延伸至運動休閒、手工具、航太與車用等多元領域。作為上市公司，企業官網必須同時面對三種對象：向海外品牌客戶證明製造實力、向投資人提供透明即時的財務與治理資訊、向社會傳達永續承諾。','本專案從資訊架構重新梳理，整合企業介紹、產業應用、技術服務、投資人關係、ESG 與人才招募，建構一個層次清楚的多語系企業平台，讓一家七十年的製造集團以符合國際大廠規格的數位門面與世界對話。'],
      concept:['全站以品牌紅作為視覺主軸，搭配銀灰、霧白與金屬黑，建立精密製造的質感基底。紅色只用在標題、按鈕與關鍵數字上，在大面積的中性色中一出現就能被看見。產品與形象區塊採用滿版攝影與深色背景，讓金屬製品在光影下成為畫面主角；需要閱讀的資訊區塊則回到明亮的淺灰底，以微圓角卡片與半透明的毛玻璃層次整理內容。','滿版影像與大字級數字建立氣勢，微圓角、毛玻璃與充足的留白讓冷硬的工業質感變得親近；英文浮水印、章節編號與統一的卡片規則貫穿全站，讓長頁面在滑動時保有清楚的節奏。'],
      tags:['企業官網設計','上市櫃公司網站','投資人關係網站','工業製造業','精密製造','ESG永續','多語系網站','RWD響應式設計'],
@@ -1266,7 +1249,7 @@ body:not([data-view=about]) .ypv{display:none}
      pages:[['關於復盛應用','L:fusheng/about','Website'],['產業應用','L:fusheng/industry','Website'],['產業應用 — 航太','L:fusheng/aerospace','Website'],['產業應用 — 高爾夫','L:fusheng/golf','Website'],['服務與技術','L:fusheng/service','Website'],['服務與技術 — 碳纖維','L:fusheng/carbon','Website'],['人力資源','L:fusheng/hr','Website'],['投資人專區','L:fusheng/ir','IR'],['投資人專區 — 內頁 01','L:fusheng/ir-1','IR'],['投資人專區 — 內頁 02','L:fusheng/ir-2','IR'],['投資人專區 — 內頁 03','L:fusheng/ir-3','IR'],['ESG 總覽','L:fusheng/esg','ESG'],['ESG — 永續環境','L:fusheng/environment','ESG'],['ESG — 風險資訊','L:fusheng/risk','ESG'],['ESG — 健康安全','L:fusheng/safety','ESG']]},
     {key:'angle',zh:'意力室內設計',en:'Angle Space Design',client:'AD 意力室內裝修有限公司',category:'品牌形象官網・作品集網站',year:'2026.03',
      crea:['Website','Branding'],url:'https://www.anglespace.com.tw/',lead:'為空間賦能，從專業設計開始',
-     langs:['繁體中文'],duration:'2–3',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
+     langs:['繁體中文'],duration:'2–3',solo:true,ai:'',roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
      brief:['AD 意力室內裝修成立於 2012 年，是一支專注於企業辦公空間的設計與工程團隊，服務範圍從空間策略規劃、室內設計、施工監造，到機電、消防、弱電與家具整合，客戶橫跨企業總部、跨國辦公室、研發中心與醫療診所，並以台北總公司與台中分公司同步服務全台。','隨著案量與服務範圍持續擴大，原有網站已無法完整呈現團隊「專業、務實、傾聽」的核心價值與十多年累積的工程實績。本專案為其重新規劃企業官網，整合公司介紹、精選作品、歷年案例、裝修流程與設計知識，讓企業客戶能快速了解意力的整合能力與作業方式。'],
      concept:['全站以暖灰白的紙質底色為基調，搭配深炭灰與品牌橘紅。橘紅只用在色塊、標題、按鈕與數字上，其餘畫面交給大量留白與實景攝影，讓辦公空間作品本身成為主角；標題以中文搭配拉寬字距的英文副標，再加上淡淡的大型英文浮水印，建立沉穩、帶有設計事務所氣質的閱讀節奏。','最具辨識度的做法，是讓橘紅色塊刻意跨越照片與文字區塊的邊界，形成錯位疊加的層次，呼應室內設計「空間切割與重組」的本質。流程與數據類的內容則以編號、細線與大字級數字整理，讓裝修階段、服務項目與公司實績一眼可讀。'],
      tags:['企業官網設計','室內設計網站','商業空間設計','辦公室裝修','作品集網站','品牌形象網站','RWD響應式設計'],
@@ -1278,7 +1261,7 @@ body:not([data-view=about]) .ypv{display:none}
      pages:[['關於意力','L:angle/about','Website'],['精選作品','L:angle/works','Website'],['作品內頁 01','L:angle/work-detail','Website'],['作品內頁 02','L:angle/work-detail2','Website'],['歷年案例','L:angle/cases','Website'],['裝修流程','L:angle/process','Website'],['辦公室設計秘笈','L:angle/guide','Website'],['秘笈內頁','L:angle/guide-detail','Website'],['聯絡我們','L:angle/contact','Website']]},
     {key:'chunho',zh:'春賀營造',en:'Chunho Construction',client:'春賀營造工程股份有限公司',category:'企業官網',year:'2026.02',
      crea:['Website','Branding'],url:'https://www.chunho.com.tw/',lead:'以制度奠定品質，從細節凝聚信任',
-     langs:['繁體中文'],duration:'1',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
+     langs:['繁體中文'],duration:'1',solo:true,ai:'',roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
      brief:['春賀營造工程股份有限公司位於桃園平鎮，深耕在地二十年，專精廠房與住宅新建，服務範圍涵蓋營造統包、舊屋翻新、房屋修繕、自地自建、鋼構廠房與危老改建。團隊具備公共工程品管與工地主任證照，並在設計階段導入 BIM 建築資訊模型，施工過程以影像全程紀錄，讓業主隨時掌握進度。','隨著業務從單一營造延伸到設計施工一條龍，原有形象已不足以呈現春賀「制度化品管、透明化流程」的核心價值。本專案為其建立第一個完整的企業官網，整合公司介紹、服務項目、六階段服務流程、實績案例與最新消息，建立進一步洽談的信任基礎。'],
      concept:['全站以深墨綠為主色，搭配金色點綴與深炭灰收尾，在營造業常見的冷硬印象中，建立穩重且帶有質感的品牌調性。綠色只用在區塊底色與標題，金色只用在編號、按鈕與強調詞，用量刻意節制，讓每次出現都有份量。','版面將半透明的斜切色塊疊在建築攝影上，呼應建築的量體與結構線條；圖片與區塊採用單邊大圓角的切角處理，讓方正的工程內容多了柔和的節奏。綠金配色與圓弧語彙傳達「春」與「賀」的品牌寓意——萌發的開始與圓滿的落成。'],
      tags:['企業官網設計','營造業網站','建築工程','品牌形象網站','服務流程設計','RWD響應式設計'],
@@ -1290,7 +1273,7 @@ body:not([data-view=about]) .ypv{display:none}
      pages:[['關於我們','L:chunho/about','Website'],['服務內容','L:chunho/service','Website'],['案例展示','L:chunho/works','Website'],['最新消息','L:chunho/news','Website'],['最新消息內頁','L:chunho/news-detail','Website'],['聯絡我們','L:chunho/contact','Website']]},
     {key:'yuanjen',zh:'元禎企業',en:'Yuan Jen Enterprises',client:'元禎企業股份有限公司',category:'上市公司企業官網・投資人關係・ESG',year:'2026.06',
      crea:['Website','IR','ESG'],url:'https://www.yuanjen.com/',lead:'深耕產業應用與法規需求，協助客戶安心選料、穩定使用',
-     langs:['繁體中文','English'],duration:'2',solo:true,roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
+     langs:['繁體中文','English'],duration:'2',solo:true,ai:'',roleNote:'從提案發想到全站頁面建置，由我個人獨立完成。',
      brief:['元禎企業股份有限公司創立於 1977 年，並於 2000 年在台灣證券市場掛牌上市，是國內外知名石化廠的專業代理商，專營工業用化學品、溶劑、塑膠原料、油品與永續材料的經銷貿易，並擁有倉儲、分裝與運輸車隊，提供從原料代理到物流配送的一站式服務。','作為上市公司，官網需要同時面對下游客戶、投資人與社會大眾。本專案為其重新規劃多語系企業官網，整合公司介紹、產品介紹、投資人專區、企業永續發展、人才招募與聯絡管道，讓一家近五十年的石化貿易公司，以現代、清楚的數位形象與客戶及股東溝通。'],
      concept:['全站以企業藍為主色，用漸層、同心圓與大圓弧的幾何色塊鋪陳頁首與重點區塊，讓化學貿易這類偏冷的產業看起來有現代感與流動感；資訊區塊則回到白底與淺灰漸層，用白色卡片和淺色表格整理內容，讓大量的產品規格、財務資料與公告易於閱讀。','每個章節以六角形圖示搭配中英文標題開頭，背景放上淡色的大型英文浮水印。產品部門用大圖卡片與編號呈現，服務據點用點陣地圖標示，投資人與 ESG 內容則用側邊選單與表格整理，讓不同對象各自找到需要的資訊。'],
      tags:['企業官網設計','上市櫃公司網站','投資人關係網站','石化貿易','化學品產業','ESG永續','多語系網站','RWD響應式設計'],
@@ -1477,6 +1460,7 @@ body:not([data-view=about]) .ypv{display:none}
             <li><span class="n">02</span><div><b>視覺設計</b><p>從品牌識別延伸色彩、字級與版面規則，完成 ${p.pages.length+1} 張頁面設計稿。</p></div></li>
             <li><span class="n">03</span><div><b>前端建置</b><p>以 WordPress、Elementor Pro 建置，設定全站色彩與字體變數，方便客戶維護。</p></div></li>
             <li><span class="n">04</span><div><b>RWD 響應式調校</b><p>針對桌機、平板、手機三種尺寸調整版面與字級。</p></div></li>
+            ${p.ai?`<li class="rai"><span class="n">05</span><div><b>AI 協作</b><p>${p.ai}</p></div></li>`:''}
           </ul></div>
           <div class="st2">
             <div><span class="k">Pages　網站頁面</span><span class="v">${total}<small>頁</small></span><span class="d">含首頁與各層內頁</span></div>
