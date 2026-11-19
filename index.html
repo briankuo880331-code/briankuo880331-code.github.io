@@ -970,6 +970,52 @@ body:not([data-view=about]) .ypv{display:none}
   .yw{grid-template-columns:1fr;gap:.35rem}
 }
 .yh .yy sub{font-size:.32em;vertical-align:baseline;margin-left:.15em;color:var(--ink2);letter-spacing:0}
+
+/* ===== v15: About — With AI (statement + outcome cards) ===== */
+.aihd{display:grid;gap:1.25rem;align-content:start}
+.aiq{font-size:1.875rem;font-weight:500;line-height:1.5;letter-spacing:.04em}
+.aiq .ac{position:relative;display:inline-block}
+.aiq .ac::after{content:"";position:absolute;left:-.05em;right:-.05em;bottom:.12em;height:.32em;background:var(--bg2);z-index:-1}
+.aisub{font-size:.9375rem;line-height:2;opacity:.85;max-width:34rem}
+#a-ai .ailoop{margin-top:4rem}
+.ailoop li em{display:block;font-style:normal;font-size:.6875rem;color:var(--ink2);margin-top:.35rem}
+.aicards{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--border);margin-top:1.875rem}
+.aicards li{border-right:1px solid var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.875rem 1.875rem 2.25rem;display:flex;flex-direction:column}
+.aicards small{font-size:.6875rem;color:var(--ink3);letter-spacing:.06em}
+.aicards h3{font-size:1.125rem;font-weight:500;margin-top:.6rem}
+.aim{display:flex;align-items:flex-end;gap:.9rem;margin:2.25rem 0 1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.aim b{font-size:3rem;font-weight:400;line-height:.9;letter-spacing:-.02em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.aim b i{font-style:normal;font-size:.5em;color:var(--ink3);margin:0 .2em;vertical-align:.35em}
+.aim span{font-size:.75rem;line-height:1.6;color:var(--ink2)}
+.aicards li>p:last-child{font-size:.875rem;line-height:2;opacity:.85}
+@media (max-width:1000px){.aicards{grid-template-columns:1fr}.aicards li{border-top:0}.aicards li:first-child{border-top:1px solid var(--border)}}
+@media (max-width:768px){.aiq{font-size:1.375rem}#a-ai .ailoop{margin-top:2rem}.aicards li{padding:1.5rem 1.25rem 1.75rem}.aim{margin:1.5rem 0 1.1rem;padding-bottom:1.1rem}.aim b{font-size:2.5rem}}
+
+/* ===== v15: Profile — portrait under the title (left), info on the right ===== */
+.pro2 .pl{display:flex;flex-direction:column;gap:2rem;padding-right:3rem}
+.pro2 .aph2{position:relative;overflow:hidden;margin:auto 0 0;max-width:none;width:min(100%,30rem);aspect-ratio:4/3;border:1px solid var(--border)}
+.pro2 .aph2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.pro2 .pinfo2{justify-content:space-between}
+@media (max-width:768px){.pro2 .pl{padding-right:0;gap:1.5rem}.pro2 .aph2{width:100%}}
+
+/* ===== v15: works by year — year only on the left, carousel preview ===== */
+.ypv{width:21rem;aspect-ratio:16/10}
+.ypv img{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.ypv img.on{opacity:1}
+.ydots{position:absolute;left:.75rem;bottom:.65rem;display:flex;gap:.3rem;z-index:2}
+.ydots i{width:.4rem;height:.4rem;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(0,0,0,.12);transition:background-color .3s,transform .3s}
+.ydots i.on{background:#fff;transform:scale(1.25)}
+.ynm2 small span{display:block;color:var(--ink3);margin-top:.1rem}
+.ymt{display:none}
+@media (max-width:768px){
+  .yw{grid-template-columns:6.5rem 1fr;column-gap:1rem;row-gap:.35rem}
+  .ymt{display:block;grid-row:span 2;aspect-ratio:16/10;overflow:hidden;background:var(--bg2);outline:1px solid var(--border);align-self:start;margin-top:.2rem}
+  .ymt img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .yro{grid-column:2}
+  .yl li{grid-template-columns:1fr;gap:0}
+  .ylk{justify-content:flex-start;padding:0 0 1rem 7.5rem}
+  .ylk.off{display:none}
+}
 </style>
 </head>
 <body data-view="home" class="intro lock">
@@ -1086,22 +1132,24 @@ body:not([data-view=about]) .ypv{display:none}
     <section class="asec" id="a-ai">
       <div class="ag">
         <div class="rv"><h2 class="sect"><span class="m"><span>With AI</span></span></h2><p class="lbl" style="margin-top:.75rem">我怎麼和 AI 合作</p></div>
-        <div class="aiw">
-          <p class="ailead fade">AI 產出很快，但它不會替結果負責。我把它當成速度很快的協作者：<b>我負責定義問題和判斷對錯，它負責大量產出。</b>AI 寫的每一段程式碼，都要在瀏覽器裡通過我的檢查才會上線。</p>
-          <ol class="ailoop fade" aria-label="合作流程"><li><small>01</small>描述需求與現況</li><li><small>02</small>AI 產出</li><li><small>03</small>瀏覽器實測</li><li><small>04</small>具體回饋、再修正</li></ol>
-          <ul class="ailist">
-            <li class="fade"><small>01</small><div><h3>客製化功能與修正<span>Custom code</span></h3><p>Elementor 和外掛只能調到基本設定，要再進一步就得寫 HTML、CSS、JavaScript。我把需求和現況描述清楚，請 AI 產出程式碼，再放到瀏覽器實際測試：對照設計稿，逐一檢查桌機、平板、手機。不對就把問題具體指出來回饋給 AI，反覆修正到可以上線。</p></div></li>
-            <li class="fade"><small>02</small><div><h3>快速上手新工具<span>New tools</span></h3><p>遇到沒用過的外掛或後台設定，我先請 AI 說明設定方式和需要注意的地方，再自己動手操作驗證。剛入職時我對 WordPress 完全陌生，就是靠這個方法，幾個月內做到獨立建站。</p></div></li>
-            <li class="fade"><small>03</small><div><h3>多語系改版<span>Multilingual</span></h3><p>一個 9 語系的官網改版案，我把大量重複的套版修正交給 AI，自己逐頁檢視、調整細節。</p><p class="aistat"><b>7</b><span>天</span><i></i><b>3–4</b><span>天</span><em>每個站的工期</em></p></div></li>
-          </ul>
+        <div class="aihd fade">
+          <p class="aiq">AI 負責快，我負責<span class="ac">對</span>。</p>
+          <p class="aisub">我一個人就能完成設計到建置，靠的是和 AI 分工：它產出程式碼與做法，我定義問題、判斷對錯，並在瀏覽器實際測試，確認沒問題才上線。</p>
         </div>
       </div>
+      <ol class="ailoop fade" aria-label="合作流程">
+        <li><small>01</small>描述需求與現況</li><li><small>02</small>AI 產出程式碼</li><li><small>03</small>瀏覽器實測、對照設計稿</li><li><small>04</small>具體回饋，再修正<em>不符合就回到 02</em></li>
+      </ol>
+      <ul class="aicards">
+        <li class="fade"><small>01 — Custom code</small><h3>客製化功能與修正</h3><p class="aim"><b>3</b><span>種裝置逐一實測<br>桌機・平板・手機</span></p><p>Elementor 做不到的細節，我描述需求請 AI 寫 HTML / CSS / JS，再對照設計稿實測，把問題具體回饋，修到可以上線。</p></li>
+        <li class="fade"><small>02 — New tools</small><h3>快速上手新工具</h3><p class="aim"><b>0<i>→</i>1</b><span>從不會 WordPress<br>到幾個月內獨立建站</span></p><p>沒用過的外掛或後台設定，先請 AI 說明做法和注意事項，再自己動手操作驗證。</p></li>
+        <li class="fade"><small>03 — Multilingual</small><h3>多語系改版</h3><p class="aim"><b>7<i>→</i>3–4</b><span>天／每個語系站<br>9 語系官網改版</span></p><p>大量重複的套版修正交給 AI，我逐頁檢視、微調細節，工期縮短將近一半。</p></li>
+      </ul>
     </section>
 
     <section class="asec" id="a-profile">
-      <div class="ag">
-        <h2 class="sect rv"><span class="m"><span>Profile</span></span></h2>
-        <div class="pgrid"><figure class="aph fade"><img src="images/brand/portrait-sm.webp" srcset="images/brand/portrait-sm.webp 700w, images/brand/portrait.webp 1200w" sizes="(max-width:768px) 84vw, 28vw" alt="Brian" loading="lazy" decoding="async"></figure>
+      <div class="ag pro2">
+        <div class="pl"><h2 class="sect rv"><span class="m"><span>Profile</span></span></h2><figure class="aph aph2 fade"><img src="images/brand/portrait-sm.webp" srcset="images/brand/portrait-sm.webp 700w, images/brand/portrait.webp 1200w" sizes="(max-width:768px) 84vw, 30vw" alt="Brian" loading="lazy" decoding="async"></figure></div>
         <div class="pinfo2">
           <div class="stats fade">
             <div><b data-count="8">0</b><span class="lbl">Corporate websites</span></div>
@@ -1113,7 +1161,7 @@ body:not([data-view=about]) .ypv{display:none}
             <li><div><h3>自由接案</h3><p>Freelance — 網頁與視覺設計</p></div><span class="y">2024 — 2025</span></li>
             <li><div><h3>茁思科技</h3><p>Graphic Designer — 平面 / 展覽 / 網頁介面</p></div><span class="y">2022 — 2024</span></li>
           </ul>
-        </div></div>
+        </div>
       </div>
     </section>
 
@@ -1121,7 +1169,7 @@ body:not([data-view=about]) .ypv{display:none}
     <section class="asec" id="a-years">
       <div class="ag">
         <div class="rv"><h2 class="sect"><span class="m"><span>Works by Year</span></span></h2><p class="lbl" style="margin-top:.75rem">年度代表作品 — 從平面走到網頁</p></div>
-        <p class="yrintro fade">每年只挑最能代表那一年轉變的作品。點開年份查看，滑過作品可預覽畫面。</p>
+        <p class="yrintro fade">從平面、互動遊戲到企業官網，依年份整理各階段的代表作品。點開年份查看，滑過作品會輪播畫面。</p>
       </div>
       <div class="yrs fade" id="yrs"></div>
     </section>
@@ -1190,7 +1238,7 @@ body:not([data-view=about]) .ypv{display:none}
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
   const B=document.body, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pad=n=>String(n).padStart(2,'0');
-  const SIZES={900:'(orientation:portrait) 92vw, 37vw',720:'(max-width:768px) 92vw, 45vw',1400:'92vw',800:'(max-width:1000px) 92vw, 50vw'};
+  const SIZES={900:'(orientation:portrait) 92vw, 46vw',720:'(max-width:768px) 92vw, 45vw',1400:'92vw',800:'(max-width:1000px) 92vw, 50vw'};
   const img=(id,w,alt='',lazy=true)=>{ const src=D(id,w); let ss='';
     if(id.startsWith('L:')&&src.endsWith('-pan.webp')) ss=` srcset="${src} 1200w, ${src.replace('-pan.webp','-pan@2x.webp')} 2400w" sizes="${SIZES[w]||'50vw'}"`;
     return `<img src="${src}"${ss} alt="${alt}" ${lazy?'loading="lazy"':''} decoding="async"${ss?` onerror="if(this.hasAttribute('srcset')){this.removeAttribute('srcset');this.removeAttribute('sizes');this.src='${src}'}"`:''}>`; };
@@ -1276,7 +1324,7 @@ body:not([data-view=about]) .ypv{display:none}
   const hbg=$('#hbg'), cb=$('#clipBody'), info=$('#info'), crea=$('#crea'), cur=$('#cur');
   P.forEach((p,i)=>{
     hbg.insertAdjacentHTML('beforeend',`<div class="it" data-i="${i}" style="--tint:${p.palette[0][2]}"><div class="im">${vtag(p)}</div></div>`);
-    cb.insertAdjacentHTML('beforeend',`<div class="shot" data-i="${i}"><div class="win px" data-manual="1">${img(p.home,900,p.titleZh,i>1)}</div></div>`);
+    cb.insertAdjacentHTML('beforeend',`<div class="shot" data-i="${i}"><div class="win px" data-manual="1">${img(p.home,900,p.titleZh,false)}</div></div>`);
     info.insertAdjacentHTML('beforeend',`<div class="g" data-i="${i}"><p class="t"><span class="m"><span>${p.zh}</span></span></p><p class="c"><span class="m"><span>${p.en}</span></span></p><p class="c c2"><span class="m"><span>${p.category}</span></span></p></div>`);
     crea.insertAdjacentHTML('beforeend',`<ul data-i="${i}">${p.crea.map(c=>`<li><span class="m"><span>${c}</span></span></li>`).join('')}</ul>`);
     cur.insertAdjacentHTML('beforeend',`<span data-i="${i}">${pad(i+1)}</span>`);
@@ -1516,44 +1564,54 @@ body:not([data-view=about]) .ypv{display:none}
   function observe(root){ root.querySelectorAll('.rv,.fade').forEach(el=>{el.classList.remove('in'); io.observe(el);}); }
   function countUp(r){ r.querySelectorAll('[data-count]').forEach(b=>{const to=+b.dataset.count,s=performance.now();(function f(t){const k=Math.min(1,(t-s)/1400);b.firstChild.nodeValue=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s);}); }
 
+  setTimeout(()=>document.querySelectorAll('.shot img').forEach(i=>{ if(i.decode) i.decode().catch(()=>{}); }),1200);
   /* ===== About: works by year (accordion + hover preview) ===== */
   { const W=k=>P.find(p=>p.key===k);
+    const AR=(k,n)=>Array.from({length:n},(_,i)=>`images/archive/${k}-${i+1}.webp`);
+    const PIM=p=>[p.home,...p.pages.slice(0,3).map(x=>x[1])].map(id=>D(id,600));
     const YEARS=[
-      {y:'2026',t:'獨立完成整站',d:'從提案、設計到建置一手包辦，三個不同產業的官網陸續上線。',items:[
+      {y:'2026',items:[
         {k:'yuanjen',type:'上市櫃企業官網・IR・ESG',role:'提案、資訊架構、視覺設計、全站建置'},
         {k:'angle',type:'室內設計品牌官網',role:'提案、視覺設計、作品案例系統、全站建置'},
-        {k:'chunho',type:'營造公司形象官網',role:'提案、視覺設計、全站建置（約 1 個月）'}]},
-      {y:'2025',t:'進入網頁設計',d:'加入振作雲科技，從零學 WordPress 與前端，接手上市公司官網的設計與建置。',items:[
-        {k:'fusheng',type:'上市公司官網・IR・ESG',role:'接手主管提案後的視覺設計與全站建置'}]},
-      {y:'2024',t:'轉向介面設計',d:'離開平面設計崗位，以接案專注在 UI／UX 與網頁設計。',items:[
-        {n:'活動網頁介面',type:'網頁 UI',role:'活動頁視覺與介面設計（茁思科技）'},
-        {n:'後台管理介面',type:'系統 UI',role:'後台介面規劃與視覺設計（茁思科技）'},
-        {n:'自由接案',type:'網頁・視覺設計',role:'企業網站與視覺設計接案'}]},
-      {y:'2022',sub:'—23',t:'平面設計起步',d:'在茁思科技擔任美術設計，第二年起成為公司唯一的設計師。',items:[
-        {n:'海報與印刷品',type:'平面設計',role:'設計、打樣與印刷品質把關'},
-        {n:'展覽設計',type:'展場視覺',role:'展場主視覺與輸出物設計'},
-        {n:'版型網站',type:'網頁',role:'套版網站的視覺調整'}]}];
+        {k:'chunho',type:'營造公司形象官網',role:'提案、視覺設計、全站建置'}]},
+      {y:'2025',items:[
+        {k:'fusheng',type:'上市公司官網・IR・ESG',role:'接手主管提案，負責視覺設計與全站建置'}]},
+      {y:'2024',items:[
+        {n:'水保酷學堂',type:'政府教育資源網站',cl:'農村水保署',role:'全站網頁設計',url:'https://learning.ardswc.gov.tw/',im:AR('coolschool',5)},
+        {n:'半扮鍋苑',type:'火鍋品牌識別・海報・社群',cl:'好寔有限公司',role:'品牌識別與文宣設計',im:AR('banban',5)},
+        {n:'睡睡平安',type:'Podcast 品牌識別・社群',cl:'睡睡平安創作者',role:'品牌識別與社群視覺',im:AR('sleep',4)}]},
+      {y:'2023',items:[
+        {n:'生存考焰',type:'消防宣導 AR 遊戲・文宣',cl:'桃園市消防局',role:'遊戲介面設計、文宣設計輸出',url:'https://fp.tyfd.gov.tw/ar',im:AR('survive',4)},
+        {n:'出發吧！寶山旅行',type:'觀光活動網站・環景・文宣',cl:'新竹縣寶山鄉公所',role:'活動網頁設計、環景修圖與建置、文宣輸出',url:'https://baoshan.zoustec.com/',im:AR('baoshan',4)},
+        {n:'泰安觀止',type:'溫泉飯店官網・環景',cl:'泰安觀止溫泉飯店',role:'全站網頁設計、環景修圖與建置',url:'https://www.papawaqa.com.tw/',im:AR('papawaqa',5)},
+        {n:'小水滴的旅行',type:'環境教育 AR 遊戲・文宣',cl:'山林水公司',role:'遊戲介面設計、文宣設計輸出',im:AR('droplet',4)},
+        {n:'聽見農村精靈的聲音',type:'展場設計・文宣',cl:'農村水保署',role:'展場美術設計，參與整體配置規劃',im:AR('spirit',5)}]}];
     const ext='<svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><path d="M1 11L11 1M3 1h8v8"/></svg>';
     const box=$('#yrs');
     box.innerHTML=YEARS.map((Y,i)=>{ const names=Y.items.map(it=>it.k?W(it.k).zh:it.n);
       return `<div class="yr${i===0?' open':''}">
-        <button class="yh" aria-expanded="${i===0}"><span class="yy"><span class="roll"><span>${Y.y}</span><span aria-hidden="true">${Y.y}</span></span>${Y.sub?`<sub>${Y.sub}</sub>`:''}</span><span class="yt">${Y.t}</span>
+        <button class="yh" aria-expanded="${i===0}"><span class="yy"><span class="roll"><span>${Y.y}</span><span aria-hidden="true">${Y.y}</span></span></span>
           <span class="ys"><span class="yn">${pad(Y.items.length)} works</span><span class="ynm">${names.join('、')}</span></span><i class="yi"></i></button>
-        <div class="yb"><div class="ybi"><p class="yd">${Y.d}</p><ul class="yl">${Y.items.map(it=>{ const p=it.k&&W(it.k);
-          const nm=p?p.zh:it.n, url=p&&p.url, th=p?D(p.home,600):'';
-          return `<li${th?` data-th="${th}"`:''}>${p?`<a class="yw" href="#work-${p.key}">`:'<div class="yw">'}<span class="ynm2"><b>${nm}</b><small>${it.type}</small></span><span class="yro">${it.role}</span>${p?'</a>':'</div>'}${url?`<a class="ylk" href="${url}" target="_blank" rel="noopener"><span>看網站</span>${ext}</a>`:'<span class="ylk off"></span>'}</li>`; }).join('')}</ul></div></div></div>`; }).join('');
+        <div class="yb"><div class="ybi"><ul class="yl">${Y.items.map(it=>{ const p=it.k&&W(it.k);
+          const nm=p?p.zh:it.n, url=p?p.url:it.url, ims=p?PIM(p):(it.im||[]), sub=p?it.type:`${it.type}<span>${it.cl}</span>`;
+          return `<li${ims.length?` data-ims="${ims.join('|')}"`:''}>${p?`<a class="yw" href="#work-${p.key}">`:'<div class="yw">'}${ims.length?`<span class="ymt"><img src="${ims[0]}" alt="" loading="lazy" decoding="async"></span>`:''}<span class="ynm2"><b>${nm}</b><small>${sub}</small></span><span class="yro">${it.role}</span>${p?'</a>':'</div>'}${url?`<a class="ylk" href="${url}" target="_blank" rel="noopener"><span>看網站</span>${ext}</a>`:'<span class="ylk off"></span>'}</li>`; }).join('')}</ul></div></div></div>`; }).join('');
     box.querySelectorAll('.yh').forEach(h=>h.onclick=()=>{ const y=h.parentNode, o=!y.classList.contains('open'); y.classList.toggle('open',o); h.setAttribute('aria-expanded',o); });
     // hover preview that follows the cursor
-    const pv=document.createElement('div'); pv.className='ypv'; pv.innerHTML='<img alt="">'; document.body.appendChild(pv);
-    const pim=pv.querySelector('img'); let tx=0,ty=0,cx=0,cy=0,raf=0;
+    const pv=document.createElement('div'); pv.className='ypv'; pv.innerHTML='<img alt=""><img alt=""><span class="ydots"></span>'; document.body.appendChild(pv);
+    const [ia,ib]=pv.querySelectorAll('img'), dots=pv.querySelector('.ydots'); let tx=0,ty=0,cx=0,cy=0,raf=0,tm=0,cur=null,k=0,front=ia;
     const loop=()=>{ cx+=(tx-cx)*.18; cy+=(ty-cy)*.18; pv.style.transform=`translate(${cx}px,${cy}px)`; raf=Math.abs(tx-cx)+Math.abs(ty-cy)>.5?requestAnimationFrame(loop):0; };
     const fine=matchMedia('(hover:hover) and (pointer:fine)');
-    box.addEventListener('mousemove',e=>{ if(!fine.matches) return; const w=pv.offsetWidth,h=pv.offsetHeight; tx=Math.min(e.clientX+28,innerWidth-w-16); ty=Math.max(16,Math.min(e.clientY-h/2,innerHeight-h-16)); if(!raf) raf=requestAnimationFrame(loop); });
-    box.querySelectorAll('li[data-th]').forEach(li=>{
-      li.addEventListener('mouseenter',e=>{ if(!fine.matches) return; if(!pv.classList.contains('on')){ const w=pv.offsetWidth,h=pv.offsetHeight; cx=tx=Math.min(e.clientX+28,innerWidth-w-16); cy=ty=Math.max(16,Math.min(e.clientY-h/2,innerHeight-h-16)); pv.style.transform=`translate(${cx}px,${cy}px)`; }
-        pim.src=li.dataset.th; pv.classList.add('on'); });
-      li.addEventListener('mouseleave',()=>pv.classList.remove('on')); });
-    addEventListener('hashchange',()=>pv.classList.remove('on')); addEventListener('scroll',()=>pv.classList.remove('on'),{passive:true,capture:true});
+    const place=e=>{ const w=pv.offsetWidth,h=pv.offsetHeight; tx=Math.min(e.clientX+28,innerWidth-w-16); ty=Math.max(16,Math.min(e.clientY-h/2,innerHeight-h-16)); };
+    const showK=(L,j)=>{ k=j; const back=front===ia?ib:ia; back.onload=null; back.src=L[j]; const go=()=>{ back.classList.add('on'); front.classList.remove('on'); front=back; };
+      back.complete&&back.naturalWidth?go():(back.onload=go); dots.innerHTML=L.length>1?L.map((_,q)=>`<i${q===j?' class="on"':''}></i>`).join(''):''; };
+    const stop=()=>{ clearInterval(tm); tm=0; pv.classList.remove('on'); cur=null; };
+    box.addEventListener('mousemove',e=>{ if(!fine.matches||!cur) return; place(e); if(!raf) raf=requestAnimationFrame(loop); });
+    box.querySelectorAll('li[data-ims]').forEach(li=>{ const L=li.dataset.ims.split('|');
+      li.addEventListener('mouseenter',e=>{ if(!fine.matches) return; if(!pv.classList.contains('on')){ place(e); cx=tx; cy=ty; pv.style.transform=`translate(${cx}px,${cy}px)`; }
+        cur=li; clearInterval(tm); showK(L,0); pv.classList.add('on'); L.slice(1).forEach(u=>{const m=new Image(); m.src=u;});
+        if(L.length>1) tm=setInterval(()=>showK(L,(k+1)%L.length),1300); });
+      li.addEventListener('mouseleave',stop); });
+    addEventListener('hashchange',stop); addEventListener('scroll',()=>{ if(cur) stop(); },{passive:true,capture:true});
   }
   // lazy bg images in about
   $$('img[data-src]').forEach(i=>i.src=D(i.dataset.src,1400));
