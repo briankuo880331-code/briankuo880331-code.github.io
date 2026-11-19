@@ -1016,11 +1016,97 @@ body:not([data-view=about]) .ypv{display:none}
   .ylk{justify-content:flex-start;padding:0 0 1rem 7.5rem}
   .ylk.off{display:none}
 }
+
+/* ===== v16: home — left-offset registration cross, work opens from the intersection ===== */
+#v-home{--X:40vw;--Y:46svh;--hw:min(22vw,38rem,calc(27svh * 16 / 9));--hh2:calc(var(--hw) * 9 / 16)}
+#v-home .clip .body,#v-home .clip .shot .win{
+  --t:calc(var(--Y) - var(--hh2));--r:calc(100vw - var(--X) - var(--hw));--b:calc(100svh - var(--Y) - var(--hh2));--l:calc(var(--X) - var(--hw))}
+#v-home .clip .body{clip-path:inset(var(--t) var(--r) var(--b) var(--l))!important;transition:clip-path 1.5s var(--expo)}
+body.intro #v-home .clip .body{clip-path:inset(var(--Y) calc(100vw - var(--X)) calc(100svh - var(--Y)) var(--X))!important}
+#v-home .clip .shot .win{inset:var(--t) var(--r) var(--b) var(--l)!important}
+#v-home .clip .body,#v-home .clip .shot .win{box-shadow:none}
+/* the cross */
+#v-home .clip .cl{inset:auto!important;margin:0!important;transform:none!important;transition:none!important;z-index:0;background:currentColor!important;opacity:.32}
+#v-home .clip{color:var(--white)}body[data-tone=dark] #v-home .clip{color:#fff}
+#v-home .clip .cl.L,#v-home .clip .cl.R{left:var(--X)!important;top:var(--hh)!important;bottom:var(--hh)!important;width:1px;height:auto!important}
+#v-home .clip .cl.T,#v-home .clip .cl.B{top:var(--Y)!important;left:0!important;right:0!important;height:1px;width:auto!important}
+#v-home .clip .cl.R,#v-home .clip .cl.B{opacity:0}
+#v-home .clip .body{z-index:1}
+#v-home .reg{position:absolute;z-index:0;left:var(--X);top:var(--Y);width:2.25rem;height:2.25rem;margin:-1.125rem 0 0 -1.125rem;border:1px solid currentColor;border-radius:50%;opacity:0}
+/* intro: two misregistered crosses slide into register, then the work opens from the centre */
+@keyframes regLx{from{transform:translateX(-3.2vw)}to{transform:none}}
+@keyframes regTy{from{transform:translateY(-5svh)}to{transform:none}}
+@keyframes regRx{0%{transform:translateX(3.2vw);opacity:.6}80%{opacity:.6}100%{transform:none;opacity:0}}
+@keyframes regBy{0%{transform:translateY(5svh);opacity:.6}80%{opacity:.6}100%{transform:none;opacity:0}}
+@keyframes regC{0%{transform:scale(.2);opacity:0}60%{opacity:.6}100%{transform:none;opacity:.6}}
+@keyframes clIn{from{clip-path:inset(0 50%)}to{clip-path:inset(0)}}
+@keyframes clInV{from{clip-path:inset(50% 0)}to{clip-path:inset(0)}}
+
+body[data-view=home][data-tone=dark] #v-home .reg{border-color:rgba(255,255,255,.4)}
+/* crop marks on the window corners */
+#v-home .crop{position:absolute;z-index:2;left:calc(var(--X) - var(--hw));top:calc(var(--Y) - var(--hh2));width:calc(var(--hw) * 2);height:calc(var(--hh2) * 2);pointer-events:none;transition:opacity .8s .6s}
+#v-home .crop i{position:absolute;width:.9rem;height:.9rem;border:0 solid currentColor;opacity:.5;transition:transform .6s var(--expo)}
+#v-home .crop i:nth-child(1){left:-1.4rem;top:-1.4rem;border-right-width:1px;border-bottom-width:1px}
+#v-home .crop i:nth-child(2){right:-1.4rem;top:-1.4rem;border-left-width:1px;border-bottom-width:1px}
+#v-home .crop i:nth-child(3){left:-1.4rem;bottom:-1.4rem;border-right-width:1px;border-top-width:1px}
+#v-home .crop i:nth-child(4){right:-1.4rem;bottom:-1.4rem;border-left-width:1px;border-top-width:1px}
+body.intro #v-home .crop{opacity:0;transition:none}
+@media (hover:hover){#v-home .hit:hover~.crop i:nth-child(1){transform:translate(.4rem,.4rem)}#v-home .hit:hover~.crop i:nth-child(2){transform:translate(-.4rem,.4rem)}#v-home .hit:hover~.crop i:nth-child(3){transform:translate(.4rem,-.4rem)}#v-home .hit:hover~.crop i:nth-child(4){transform:translate(-.4rem,-.4rem)}}
+/* hit area = the window */
+#v-home .hit{left:calc(var(--X) - var(--hw))!important;top:calc(var(--Y) - var(--hh2))!important;width:calc(var(--hw) * 2)!important;height:calc(var(--hh2) * 2)!important;transform:none!important}
+/* info under the work, aligned to the window's left edge; tags aligned to its right edge */
+#v-home .info{left:calc(var(--X) - var(--hw))!important;right:auto!important;top:calc(var(--Y) + var(--hh2) + 1.75rem)!important;bottom:auto!important;margin:0!important;width:calc(var(--hw) * 1.4)!important;max-width:none!important;min-width:0!important;height:5.5rem!important}
+#v-home .info .g{inset:0 auto auto 0!important;margin:0!important}
+#v-home .info .t{font-size:1.375rem}
+#v-home .crea{left:auto!important;right:calc(100vw - var(--X) - var(--hw))!important;top:calc(var(--Y) + var(--hh2) + 1.75rem)!important;bottom:auto!important;margin:0!important;height:1.5rem}
+#v-home .crea ul{inset:0 0 auto auto!important;display:flex;gap:1.25rem}
+#v-home .crea li+li{margin-top:0}
+/* counter in the left field, just under the horizontal line */
+#v-home .cnt{left:var(--pad)!important;right:auto!important;top:calc(var(--Y) + 1.25rem)!important;bottom:auto!important;margin:0!important;flex-direction:row!important;gap:.6rem!important;width:auto!important;align-items:center}
+#v-home .cnt .cur{width:1.4em}#v-home .cnt .bar{width:1.5rem!important;height:1px!important}
+body[data-view=home] .scr{opacity:0;visibility:hidden}
+@media (orientation:portrait),(max-width:768px){
+  #v-home{--X:50vw;--Y:42svh;--hw:calc(50vw - var(--pad));--hh2:calc(var(--hw) * .66)}
+  #v-home .crop{display:none}
+  #v-home .info{width:calc(var(--hw) * 2)!important;top:calc(var(--Y) + var(--hh2) + 1.25rem)!important;height:5rem!important}
+  #v-home .crea{top:calc(var(--Y) + var(--hh2) + 1.35rem)!important}
+  #v-home .info .t{font-size:1.125rem}
+  #v-home .cnt{top:calc(var(--Y) - var(--hh2) - 2.25rem)!important}
+  #v-home .reg{width:1.75rem;height:1.75rem;margin:-.875rem 0 0 -.875rem}
+}
+
+/* ===== v16b: the loading/transition frame closes onto the same off-centre cross ===== */
+:root{--FX:40vw;--FY:46svh}
+@media (orientation:portrait),(max-width:768px){:root{--FX:50vw;--FY:42svh}}
+.frame .fT{transform:translateY(calc(var(--FY) * var(--c)))}
+.frame .fB{transform:translateY(calc((100svh - var(--FY)) * -1 * var(--c)))}
+.frame .fL{transform:translateX(calc(var(--FX) * var(--c)))}
+.frame .fR{transform:translateX(calc((100vw - var(--FX)) * -1 * var(--c)))}
+.frame .mT{top:calc(var(--FY) * -1);height:var(--FY);transform:translateY(calc(var(--FY) * var(--c)))}
+.frame .mB{bottom:calc((100svh - var(--FY)) * -1);height:calc(100svh - var(--FY));transform:translateY(calc((100svh - var(--FY)) * -1 * var(--c)))}
+.frame .mL{left:calc(var(--FX) * -1);width:var(--FX);transform:translateX(calc(var(--FX) * var(--c)))}
+.frame .mR{right:calc((100vw - var(--FX)) * -1);width:calc(100vw - var(--FX));transform:translateX(calc((100vw - var(--FX)) * -1 * var(--c)))}
+/* registration: two offset crosses slide into the main cross, a circle closes the mark */
+.frame .gV{top:0;left:calc(var(--FX) - 1px);width:1px;height:100%;opacity:0;transition:none}
+.frame .gH{left:0;top:calc(var(--FY) - 1px);height:1px;width:100%;opacity:0;transition:none}
+.frame .freg{position:absolute;z-index:2;left:var(--FX);top:var(--FY);width:2.5rem;height:2.5rem;margin:-1.25rem 0 0 -1.25rem;border:1px solid var(--border-a);border-radius:50%;opacity:0;transition:opacity .4s,transform 1.2s var(--expo)}
+@keyframes gx1{0%{transform:translateX(-4vw);opacity:0}15%{opacity:.7}85%{opacity:.7}100%{transform:none;opacity:0}}
+@keyframes gx2{0%{transform:translateX(4vw);opacity:0}15%{opacity:.7}85%{opacity:.7}100%{transform:none;opacity:0}}
+@keyframes gy1{0%{transform:translateY(-6svh);opacity:0}15%{opacity:.7}85%{opacity:.7}100%{transform:none;opacity:0}}
+@keyframes gy2{0%{transform:translateY(6svh);opacity:0}15%{opacity:.7}85%{opacity:.7}100%{transform:none;opacity:0}}
+@keyframes fregIn{0%{transform:scale(.3);opacity:0}100%{transform:none;opacity:1}}
+body.intro .frame .gV.g1{animation:gx1 1.05s cubic-bezier(.65,0,.3,1) .05s both}
+body.intro .frame .gV.g2{animation:gx2 1.05s cubic-bezier(.65,0,.3,1) .05s both}
+body.intro .frame .gH.g1{animation:gy1 1.05s cubic-bezier(.65,0,.3,1) .05s both}
+body.intro .frame .gH.g2{animation:gy2 1.05s cubic-bezier(.65,0,.3,1) .05s both}
+body.intro .frame .freg{animation:fregIn .7s var(--expo) .75s both}
+.frame.open .freg{opacity:0;transform:scale(2.5)}
+#v-home .reg{display:none}
 </style>
 </head>
 <body data-view="home" class="intro lock">
 
-<div class="frame" id="frame" aria-hidden="true"><i class="fT"></i><i class="fR"></i><i class="fB"></i><i class="fL"></i><b class="mT"></b><b class="mR"></b><b class="mB"></b><b class="mL"></b></div>
+<div class="frame" id="frame" aria-hidden="true"><i class="fT"></i><i class="fR"></i><i class="fB"></i><i class="fL"></i><i class="gV g1"></i><i class="gV g2"></i><i class="gH g1"></i><i class="gH g2"></i><span class="freg"></span><b class="mT"></b><b class="mR"></b><b class="mB"></b><b class="mL"></b></div>
 
 <header>
   <div class="top">
@@ -1073,8 +1159,9 @@ body:not([data-view=about]) .ypv{display:none}
   <section class="view" id="v-home" aria-label="Selected works">
     <h1 style="position:absolute;opacity:0">Brian Kuo 網頁設計作品集</h1>
     <div class="hbg" id="hbg"></div>
-    <div class="clip" id="clip"><span class="pane L"></span><span class="pane R"></span><span class="pane T"></span><span class="pane B"></span><span class="cl L"></span><span class="cl R"></span><span class="cl T"></span><span class="cl B"></span><div class="body" id="clipBody"></div></div>
+    <div class="clip" id="clip"><span class="pane L"></span><span class="pane R"></span><span class="pane T"></span><span class="pane B"></span><span class="cl L"></span><span class="cl R"></span><span class="cl T"></span><span class="cl B"></span><span class="reg"></span><div class="body" id="clipBody"></div></div>
     <a class="hit" id="hit" href="#work-fusheng" aria-label="View project"></a>
+    <div class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="info" id="info"></div>
     <div class="crea" id="crea"></div>
     <div class="cnt"><div class="cur" id="cur"></div><span class="bar"></span><span id="tot"></span></div>
